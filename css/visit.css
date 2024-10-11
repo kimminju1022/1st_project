@@ -1,0 +1,8 @@
+.visit_comment{
+    width: 900px;
+
+}
+.visit_comment>textarea{
+    resize: none;
+    
+}
