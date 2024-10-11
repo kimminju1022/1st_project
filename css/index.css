@@ -32,7 +32,7 @@ container {
 .side-bar , .content{
     border: 2px solid black;
     border-radius: 15px;
-    background-color: #75c1da;
+    background-color: #65a7bd;
 }
 
 .side-bar {
@@ -224,3 +224,37 @@ container {
     line-height: 100%;
     align-items: center;
 }
+
+.menu-bar {
+    margin-top: 70px;
+}
+
+.menu-bar > div {
+    width: 85px;
+    background-color: #65a7bd;
+    padding: 12px 0px 12px 0px;
+    margin-left: -30px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    margin-bottom: 5px;
+    border: 1px solid black;
+    border-left: none;
+
+}
+.home-tab , .todo-tab, .diary-tab, .visit-tab, .credit-tab {
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: white;
+    font-weight: 700;
+    padding: 10px;
+    width: 85px;
+}
+
+.credit:hover , .home:hover ,.todo:hover, .diary:hover ,.visit:hover {
+    background-color: #eeeeee;
+}
+
+.home-tab:hover, .todo-tab:hover ,.diary-tab:hover, .visit-tab:hover, .credit-tab:hover {
+    color:   #1f455a;
+}
+
