@@ -1,8 +1,50 @@
+.visit-content{
+    background-color: #eeeeee;
+    width: 970px;
+    height: 820px;
+    border-radius: 15px;
+    margin-right: auto;
+    margin-top: 25px;
+}
+
+.visit-content>h3{
+    font-size: 1.5rem;
+    margin: -12px 70px;
+
+}
+
 .visit_comment{
     width: 900px;
-
+    height: 150px;
+    position: relative;
+    margin: 20px 30px;
 }
 .visit_comment>textarea{
     resize: none;
-    
+    width: 850px;
+    height: 100px;
+}
+
+
+.post-btn{
+    border-radius: 5px;
+    background-color: #6cb1c9;
+    color: #eeeeee;
+    width: 80px;
+    height: 2rem;
+    text-align: center;
+    z-index: 1;    /* 볼드보다 앞에 표시하기 위한 요소 */
+    position: absolute;
+    margin-left: -100px;
+    margin-top: 50px;
+}
+.visit_post{
+    width: 900px;
+    height: 400px;
+    background-color: #a5dbecb4;
+    border-radius: 20px;
+    margin: auto 30px;
+}
+.visit_box{
+
 }
