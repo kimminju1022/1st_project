@@ -109,6 +109,7 @@ a:visited {
     height: 40px;
     font-size: x-large;
     font-weight: 900;
+    cursor: pointer;
 }
 
 .bar{
