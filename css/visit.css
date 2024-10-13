@@ -18,11 +18,14 @@
     height: 150px;
     position: relative;
     margin: 20px 30px;
+    text-align: center;
 }
 .visit_comment>textarea{
     resize: none;
     width: 850px;
     height: 100px;
+    padding: 20px;
+    font-size: 1.2rem;
 }
 
 
@@ -44,7 +47,33 @@
     background-color: #a5dbecb4;
     border-radius: 20px;
     margin: auto 30px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+
 }
 .visit_box{
+background-color: rgba(240, 255, 255, 0.618);
+width: 800px;
+height: 50px;
+line-height: 20px;
+display: grid;
 
+}
+
+.visit_footer{
+    text-align: center;
+    margin-top: 30px;
+
+}
+.p_btn{
+    display: inline-block;
+
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    border: none;
+}
+.p_btn:hover{
+    border-bottom: 2px solid #65a7bd;
 }
