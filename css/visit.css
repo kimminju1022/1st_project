@@ -41,24 +41,34 @@
     margin-left: -100px;
     margin-top: 50px;
 }
+
 .visit_post{
-    width: 900px;
+    width: 700px;
     height: 400px;
     background-color: #a5dbecb4;
     border-radius: 20px;
     margin: auto 30px;
-    display: flex;
+    padding: 50px 50%;
+    display: grid;
     justify-content: center;
     align-content: center;
-
+    line-height: 20px;
 }
 .visit_box{
 background-color: rgba(240, 255, 255, 0.618);
 width: 800px;
 height: 50px;
-line-height: 20px;
-display: grid;
+display: flex;
 
+}
+
+.delete-btn{
+    background-color: transparent;
+    border: none;
+}
+
+.delete-btn>img{
+width: 50px;
 }
 
 .visit_footer{
@@ -66,6 +76,7 @@ display: grid;
     margin-top: 30px;
 
 }
+
 .p_btn{
     display: inline-block;
 
