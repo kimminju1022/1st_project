@@ -111,6 +111,13 @@ container {
     font-weight: 700;
 }
 
+.error_title {
+    font-size: 1.5rem;
+    color: #5ccfe2;
+    font-weight: 600;
+    padding-left: 20px;
+}
+
 .menu-bar {
     margin-top: 70px;
 }
@@ -150,5 +157,26 @@ container {
 }
 
 .error {
-    margin-top: 300px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 150px;
+    gap: 5rem;
+}
+
+a,
+a:visited {
+  text-decoration: none;
+}
+
+.btn {
+    display: inline-block;
+    background: #D9D9D9;
+    border: none;
+    border-radius: 15px;
+    width: 240px;
+    height: 50px;
+    font-size: x-large;
+    font-weight: 900;
+    cursor: pointer;
 }

@@ -45,27 +45,23 @@
                         <!-- todo-list-title style위치 일치할 것 -->
                         <div class="todo-head"> 오늘까지 할 일 </div>
                         <div class="todo-deadline">
-                      
+
+                            <a href="/"><img src="/img/left-pagebtn.png" alt="왼쪽" class="to_btn"></a>
                             <!-- db lib에서 데이터 불러오기 -->
                             <!-- 최대 카드 2개, 이상일 시 pagination -->
                             <div class="to_box"></div>
                             <div class="to_box"></div>
-                            <div class="to_pagination">
-                                <a href="/"><button class="btn_left"></button></a>
-                                <a href="/"><button class="btn_right"></button></a>
-                            <!-- <a href="/"><button><img src="/img/left-pagebtn.png" alt="왼쪽"
-                                style="width: 20px; height: 20px;"></button></a>
-                            <a href="/"><button><img src="/img/right-pagebtn.png" alt="오른쪽"
-                                        style="width: 20px; height: 20px;"></button></a> -->
-                                    </div>
+                            <a href="/"><img src="/img/right-pagebtn.png" alt="오른쪽" class="to_btn"></a>
                         </div>
+                    </div>
 
-                        <!-- todo card foreach로 2행 4열 -->
+                    <!-- todo card foreach로 2행 4열 -->
+                    <div class="to_main">
                         <div class="to_list">
                             <div class="to_post">
                                 <title>여행- 여수1박 2일 맛집투어</title>
                                 <p>수행일자 : 10.02</p>
-                                <input class="check-lis t" type="checkbox"> 여행계획서 작성 <br>
+                                <input class="check-list" type="checkbox"> 여행계획서 작성 <br>
                                 <input class="check-list" type="checkbox"> 맛집리스트 만들기<br>
                                 <input class="check-list" type="checkbox"> 세면도구<br>
                                 <input class="check-list" type="checkbox"> 고양이시터 구하기fkd sda;lskd;<br>
@@ -103,22 +99,25 @@
                                 <input class="check-list" type="checkbox"> 세면도구<br>
                                 <input class="check-list" type="checkbox"> 고양이시터 구하기<br>
                             </div>
-                            <div class="to_footer">
-
-                            </div>
                         </div>
+                        <div class="to_pagination">
+                        <a href="/"><img src="/img/left-pagebtn.png" alt="왼쪽" class="to_btn"></a>
+
+                        <a href="/"><img src="/img/right-pagebtn.png" alt="오른쪽" class="to_btn"></a>
+                    </div>
                     </div>
                 </div>
             </div>
-<div class="menu-bar">
-    <div class="home"><a href="" class="home-tab">HOME</a></div>
-    <div class="todo"><a href="" class="todo-tab">TODO</a></div>
-    <div class="diary"><a href="" class="diary-tab">DIARY</a></div>
-    <div class="visit"><a href="" class="visit-tab">VISIT</a></div>
-    <div class="credit"><a href="" class="credit-tab">CREDIT</a></div>
-</div>
-</div>
-</container>
+        </div>
+        <div class="menu-bar">
+            <div class="home"><a href="" class="home-tab">HOME</a></div>
+            <div class="todo"><a href="" class="todo-tab">TODO</a></div>
+            <div class="diary"><a href="" class="diary-tab">DIARY</a></div>
+            <div class="visit"><a href="" class="visit-tab">VISIT</a></div>
+            <div class="credit"><a href="" class="credit-tab">CREDIT</a></div>
+        </div>
+        </div>
+    </container>
 </body>
 
 </html>
