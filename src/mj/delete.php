@@ -4,13 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main-page</title>
-    <link rel="stylesheet" href="./css/index.css">
-    <link rel="stylesheet" href="./css/visit.css">
+    <link rel="stylesheet" href="/css/common-design.css">
+    <link rel="stylesheet" href="/css/todo-list_delete.css">
+    <link rel="stylesheet" href="/css/delete.css">
+    <title>Todo list 삭제페이지</title>
 </head>
 
 <body>
     <container>
+
         <div class="main-background">
             <div class="side-bar">
                 <div class="back-side-bar">
@@ -18,7 +20,7 @@
                         <div class="emotion">
                             <p class="emotion_comment">TODAY IS... </p>
                         </div>
-                        <div class="profile"><img class="profile-img" src="./img/profile.jpg" alt="" width="250px"
+                        <div class="profile"><img class="profile-img" src="/img/profile.jpg" alt="" width="250px"
                                 height="300px"></div>
                         <br>
                         <div class="comment">
@@ -35,40 +37,32 @@
                     </div>
                 </div>
             </div>
+
             <div class="content">
-                <div class="visit-content">
+                <div class="main-content">
                     <div class="main-title">
                         ブl억님으l ㅁıLI홈ㅍı
                     </div>
-                    <div class="visit_comment">
-                        <textarea maxlength="300" cols="10" rows="3" placeholder="남길 말씀이 있다면 여기에 남겨주세요"></textarea>
-                        <button class="post-btn">글남기기</button>
-                    </div>
-                    <h3>방명록 <img src="./img/visit.png" alt="guest" id="g-icon"></h3>
-
-                    <div class="visit_post"> 
-                        <!-- foreach로 4개 까지 표기 -->
-                        <!-- 미니미 이미지 선택???고정?? -->
-                         <form action="/delete.html?id=1" method="get">
-                        <div class="visit_box">
-                            <img src="/img/icon.png" alt="미니미" class="visit_icon">
-                            <p>오늘 또 행복하길 바래</p>
-                            <p class="visit_date">2024.10.14 AM.9:00</p>
-                            <button type="submit" class="delete-btn"><img src="/img/delete.png" alt="delete-btn"></button>
+                    <div class="d_container">
+                        <div class="title_bar">
+                            <h1>삭제하시겠습니까?</h1>
                         </div>
-                    </form>
-                        
+
+                        <div class="white_board">
+                            <p class="write">더 이상 다른 이에게 노출되지 않습니다.</p>
+                            <p class="write sub_p">정말 기억을 지우시겠습니까?</p>
+                        </div>
+                        <form action="/todo_list_delete.html" class="">
+                            <!-- php적용 -->
+                            <div class="btn-insert">
+                                <a href="/photo.php"><button type="button" class="btn">취소</button></a>
+                                <button type="submit" class="btn">삭제하기</button>
+                            </div>
+                        </form>
                     </div>
-                    <div class="visit_footer">  <!--유효페이지까지만 보이기  -->
-                        <a href="/"><img src="/img/left-pagebtn.png" alt="before" class="p_btn"></img></a>
-                        <a href="/"><button class="p_btn">p</button></a>
-                        <a href="/"><img src="/img/right-pagebtn.png" alt="before" class="p_btn"></img></a>
-
-                    </div>
-
-
                 </div>
             </div>
+
             <div class="menu-bar">
                 <div class="home"><a href="" class="home-tab">HOME</a></div>
                 <div class="todo"><a href="" class="todo-tab">TODO</a></div>
@@ -77,6 +71,7 @@
                 <div class="credit"><a href="" class="credit-tab">CREDIT</a></div>
             </div>
         </div>
+
     </container>
 </body>
 

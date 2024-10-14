@@ -90,6 +90,12 @@ width: 50px;
     margin-top: 30px;
 }
 
+#g-icon{
+    width: 100px;
+    height: 60px;
+    margin: -15px 2px;
+}
+
 .visit_icon{
     width: 25px;
     height: auto;
