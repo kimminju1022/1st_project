@@ -411,16 +411,19 @@ function insert_todolist(PDO $conn, array $arr_param, array $checklists){
     throw new Exception("Error : Query count has problem -> insert_todolist");
   }
 
+  $lastID = $conn -> lastInsertId();
+
   foreach($checklists as $key => $value){
     $arr_prepare = [
-      "list_id"   => $conn -> lastInsertId()
+      "list_id"   => $lastID
       ,"content"  => $value
       ,"input_id" => $key
     ];
 
     insert_checklist ($conn, $arr_prepare);
   }
-
+  
+  
   return null;
 }
 
@@ -452,10 +455,6 @@ function insert_checklist(PDO $conn, array $arr_param){
 
   if(!$result_flg){
     throw new Exception("Error : Query has problem -> insert_checklist");
-  }
-
-  if(!($result_cnt === 1)){
-    throw new Exception("Error : Query count has problem -> insert_checklist");
   }
 
   return null;
