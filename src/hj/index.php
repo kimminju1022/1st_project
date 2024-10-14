@@ -5,13 +5,13 @@ require_once(MY_ROOT_DB_LIB);
 $conn=null;
 
 try{
-    $id = isset($_GET["id"]) ? (int)$_GET["id"] : 0 ;
+    // $id = isset($_GET["id"]) ? (int)$_GET["id"] : 0 ;
 
-    $page = isset($_GET["page"]) ? (int)$_GET["page"] : 1 ;
+    // $page = isset($_GET["page"]) ? (int)$_GET["page"] : 1 ;
 
-    if($id <1) {
-        throw new Exception("Param Error");
-    }
+    // if($id <1) {
+    //     throw new Exception("Param Error");
+    // }
 
     $conn=my_db_conn();
 
@@ -48,7 +48,7 @@ try{
                         <div class="emotion">
                             <p class="emotion_comment">TODAY IS... </p>
                         </div>
-                        <div class="profile"><img class="profile-img" src="./img/profile.jpg" alt="" width="250px" height="300px"></div>
+                        <div class="profile"><img class="profile-img" src="/img/profile.jpg" alt="" width="250px" height="300px"></div>
                         <br>
                         <div class="comment">
                             <p>난... ㄱr끔... </p>
@@ -87,14 +87,14 @@ try{
                    <div class="sec-content">
                         <div class="sec-content-title">Miniroom <br>
                             <div class="miniroom">
-                            <img src="./img/miniroom.PNG" alt="" width="580px" height="330px"></div>
+                            <img src="/img/miniroom.PNG" alt="" width="580px" height="330px"></div>
                         </div>
                         <div class="sec-content-visitor">
                             <div>Visitor</div>
                             <?php
                                 foreach($result2 as $item) { ?>
                                     <div class="visit">
-                                        <img class="visitor" src="./img/icon.png" alt="" height="60px" width="30px">
+                                        <img class="visitor" src="/img/icon.png" alt="" height="60px" width="30px">
                                         <p class="visit-comment"><?php echo $item["content"] ?></p>
                                     </div>
                                 <?php } ?>
