@@ -313,14 +313,14 @@ function check_user_name(PDO $conn, array | string $arr_param){
  * 
  * @param $arr_param : :user_name :user_password 
  */
-function check_account(PDO $conn, array $arr_param){
+function check_account(PDO $conn, array $arr_param, array &$user_data){
   
   if(check_user_name($conn, $arr_param["user_name"]) === false){
     return false;
   }
   
   $sql =
-  " SELECT user_password                  "
+  " SELECT user_password, ismanager, id   "
   ." FROM users                           "
   ." WHERE user_password = :user_password "
   ." ; "
@@ -341,6 +341,8 @@ function check_account(PDO $conn, array $arr_param){
   if(!($result_cnt === 1)){
     return false;
   }
+  
+  $user_data = ($stmt -> fetch());
 
   return true;
 }
