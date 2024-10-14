@@ -1,15 +1,19 @@
+<?php
+
+require_once($_SERVER["DOCUMENT_ROOT"]."/config.php");
+
+?>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/common-design.css">
-    <link rel="stylesheet" href="./css/todo-list_delete.css">
-    <title>Todo list 삭제페이지</title>
+    <link rel="stylesheet" href="./css/error.css">
+    <title>에러페이지</title>
 </head>
 <body>
     <container>
-        
         <div class="main-background">
             <div class="side-bar">
                 <div class="back-side-bar">
@@ -29,58 +33,40 @@
                             <p>울 수 있 ㄷㅏ는건.... </p>
                             <p>좋은ㄱ ㅓ ㅇ ㅑ..... </p>
                         </div>
-                        <div class="logout"><button class="logout">로그아웃</button></div>
+                        <form action="" method="post">
+                            <input type="hidden" name="posttype" value="logout">
+                            <div class="logout"><button type="submit" class="logout">로그아웃</button></div>
+                        </form>
                     </div>
                 </div>
             </div>
-            
             <div class="content">
                 <div class="main-content">
                     <div class="main-title">
                         ブl억님으l ㅁıLI홈ㅍı
                     </div>
-                    <div class="update_title">
-                        Todo-List 삭제페이지
+                    <div class="error_title">
+                        에러페이지
                         <br>
-                        <hr width="220px">
+                        <hr width="110px">
                     </div>
-                    <div class="title_bar">
-                        <h1>삭제하시겠습니까?</h1>
-                    </div>
-                    <div class="nine_bar">
-                        <hr width="900px">
-                    </div>
-
-                    <div class="calendar">
-                        <div class="sub_title">제목</div>
-                        <div class="echo">
-                            <input type="text" id="title_bar" name="title_bar" class="input_area" value="10월 24일까지 해야할 일 체크리스트">
+                    <div class="error">
+                        <p>기억에 오류가 발생했습니다.</p>
+                        <p>메인페이지로 돌아가 다시 시도해주세요</p>
+                        <div>
+                            <a href="/"><button type="button" class="btn btn-bottom">메인페이지로 이동하기</button></a>
                         </div>
                     </div>
-                    <div class="white">
-                        <div class="white_board">
-                            <p class="write">더 이상 다른 이에게 노출되지 않습니다.</p>
-                            <p class="write sub_p">정말 기억을 지우시겠습니까?</p>
-                        </div>
-                    </div>
-                    <form action="/todo_list_delete.html" class="">
-                        <div class="btn-insert">
-                            <a href="/photo.php"><button type="button" class="btn">취소</button></a>
-                            <button type="submit" class="btn">삭제하기</button>
-                        </div>
-                    </form>
                 </div>
             </div>
-        
             <div class="menu-bar">
                 <div class="home"><a href="" class="home-tab">HOME</a></div>
                 <div class="todo"><a href="" class="todo-tab">TODO</a></div>
                 <div class="diary"><a href="" class="diary-tab">DIARY</a></div>
                 <div class="visit"><a href="" class="visit-tab">VISIT</a></div>
                 <div class="credit"><a href="" class="credit-tab">CREDIT</a></div>
-            </div>         
+            </div>
         </div>
-        
     </container>  
 </body>
 </html>
