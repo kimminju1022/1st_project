@@ -45,7 +45,7 @@
                     <div class="login-back" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap : 2rem">
                         <p class="login-mention"> 회원가입을 완료했습니다. <br>
                         계속 이용하시려면 로그인을 해주세요.</p>
-                        <button class="for-login" style="padding: 0; margin: 0;"><a href="/login.php"> 로그인으로</a> </button>
+                        <button class="for-login" style="padding: 0; margin: 0;"><a href="/login.php">로그인</a> </button>
                     </div>
                 </div>
 
