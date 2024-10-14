@@ -149,7 +149,15 @@ function get_todolist_detail(PDO $conn, array | int $arr_param){
   return $stmt -> fetchAll();
 }
 
-function get_checklist_today(PDO $conn){
+/**
+ * 오늘까지 할 일 체크리스트 출력하는 함수
+ * 
+ * 다음 정보가 출력됨
+ * checklists.content
+ * 
+ * @param $arr_param : :limit, :offset 
+ */
+function get_checklist_today(PDO $conn, array $arr_param){
   $sql =
   " SELECT checklists.content "
   ." FROM checklists "
@@ -164,9 +172,16 @@ function get_checklist_today(PDO $conn){
   ." AND todolists.deleted_at IS NULL"
   ." ) "
   ." ORDER BY checklists.id "
-  ." LIMIT 8 ; ";
+  ." LIMIT :limit  "
+  ." OFFSET :offset "
+  ." ; ";
 
-  $stmt = $conn -> query($sql);
+  $stmt = $conn -> prepare($sql);
+  $result_flg = $stmt -> execute($arr_param);
+
+  if(!$result_flg){
+    throw new Exception("Error : Query has problem -> get_checklist_today");
+  }
 
   return $stmt -> fetchAll();
 }
