@@ -21,7 +21,7 @@
 
       $conn -> commit();
 
-      header("Location: /index.php");
+      header("Location: /completejoinmembership.php");
     }
   } catch(Throwable $th) {
     if(!is_null($conn) && $conn -> inTransaction()){

@@ -90,7 +90,7 @@ try{
                                 <input type="password" name="pw-input" class="pw-input"  required>
                             </div>
                             <p class="login-mention">회원가입시 입력한 이름이 아이디입니다</p>
-                            <button class="for-join"><a href="./joinMembership.html">회원가입</a></button>
+                            <button class="for-join"><a href="/joinmembership.php">회원가입</a></button>
                             <button class="for-login" type="submit">로그인</button>
                         </div>
                     </form>
