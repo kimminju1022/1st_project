@@ -4,6 +4,10 @@
     
     session_start();
 
+    if(!isset($_SESSION["id"])){
+        header("Location: /index.php");
+    }
+
     $conn = null;
     try{
         if(strtoupper($_SERVER["REQUEST_METHOD"]) === "POST"){
@@ -46,8 +50,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/common-design.css">
-    <link rel="stylesheet" href="/css/todo-list_insert.css">
+    <link rel="stylesheet" href="./css/common-design.css">
+    <link rel="stylesheet" href="./css/todo-list_insert.css">
     <title>Todo list 작성페이지</title>
 </head>
 <body>
@@ -71,22 +75,26 @@
                             <p>울 수 있 ㄷㅏ는건.... </p>
                             <p>좋은ㄱ ㅓ ㅇ ㅑ..... </p>
                         </div>
-                        <div class="logout"><button class="logout">로그아웃</button></div>
+                        <form action="#" method="post">
+                            <input type="hidden" name="posttype" value="logout">
+                            <div class="logout"><button class="logout">로그아웃</button></div>
+                        </form>
                     </div>
                 </div>
             </div>
-            
-            <form action="/todo_list_insert.php" method="post" class="">
-                <div class="content">
-                    <div class="main-content">
-                        <div class="main-title">
-                            ブl억님으l ㅁıLI홈ㅍı
-                        </div>
-                        <div class="insert_title">
-                            Todo-List 작성페이지
-                            <br>
-                            <hr width="220px">
-                        </div>
+        
+            <div class="content">
+                <div class="main-content">
+                    <div class="main-title">
+                        ブl억님으l ㅁıLI홈ㅍı
+                    </div>
+                    <div class="insert_title">
+                        Todo-List 작성페이지
+                        <br>
+                        <hr width="220px">
+                    </div>
+                    
+                    <form action="/todo_list_insert.html" method="post" class="">
                         <div>
                             <div class="calendar">
                                 <div class="sub_title">제목</div>
@@ -102,33 +110,34 @@
                         <div class="sub_content">
                             <div class="chk_area">
                                 <div class="chk_list">
-                                    <?php $i = 0;
-                                    for( ; $i< 20; $i++) { ?>
+                                    <?php for($i = 0; $i<20; $i++) { ?>
                                         <div>
-                                            <input type="checkbox" class="check_btn" disabled>
-                                            <input type="text" name="<?php echo (string)($i) ?>" maxlength="40" class="chk_text" >
+                                            <input type="checkbox" class="check_btn">
+                                            <input type="text" name="<?php echo (string)($i) ?>" maxlength="40" class="chk_text">
                                             <hr class="bar">
                                         </div>
                                     <?php } ?>
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="btn-insert">
                             <a href="/photo.php"><button type="button" class="btn">뒤로가기</button></a>
                             <button type="submit" class="btn">작성 완료</button>
+                            <input type="hidden" name="posttype" value="insert">
                         </div>
-                    </div>
-                </div>
-
-                <div class="menu-bar">
-                    <div class="home"><a href="" class="home-tab">HOME</a></div>
-                    <div class="todo"><a href="" class="todo-tab">TODO</a></div>
-                    <div class="diary"><a href="" class="diary-tab">DIARY</a></div>
-                    <div class="visit"><a href="" class="visit-tab">VISIT</a></div>
-                    <div class="credit"><a href="" class="credit-tab">CREDIT</a></div>
+                    </form>
                 </div>
             </div>
-        </form>
+
+            <div class="menu-bar">
+                <div class="home"><a href="" class="home-tab">HOME</a></div>
+                <div class="todo"><a href="" class="todo-tab">TODO</a></div>
+                <div class="diary"><a href="" class="diary-tab">DIARY</a></div>
+                <div class="visit"><a href="" class="visit-tab">VISIT</a></div>
+                <div class="credit"><a href="" class="credit-tab">CREDIT</a></div>
+            </div>
+        </div>
     </container>  
 </body>
 </html>
