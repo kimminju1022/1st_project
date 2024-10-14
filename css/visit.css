@@ -28,6 +28,10 @@
     font-size: 1.2rem;
 }
 
+textarea{
+    border-radius: 10px;
+    border-style: 10px double;
+}
 
 .post-btn{
     border-radius: 5px;
@@ -43,23 +47,32 @@
 }
 
 .visit_post{
-    width: 700px;
+    width: 840px;
     height: 400px;
     background-color: #a5dbecb4;
     border-radius: 20px;
-    margin: auto 30px;
-    padding: 50px 50%;
-    display: grid;
-    justify-content: center;
-    align-content: center;
+    margin: auto 60px;
+    padding: 20px 30px;
+    display: flex;
+    flex-flow: wrap;
+    /* justify-content: center;
+    align-content: center; */
     line-height: 20px;
 }
 .visit_box{
 background-color: rgba(240, 255, 255, 0.618);
-width: 800px;
-height: 50px;
-display: flex;
+width: 740px;
+height: 70px;
+margin: 10px 20px;
+padding: 10px;
+display: grid;
+grid-template-columns: 1fr 8fr 3fr 1fr;
+border-radius: 10px;
+}
 
+.visit_date{
+    margin-top: 25px;
+    margin-left: 20px;
 }
 
 .delete-btn{

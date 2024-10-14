@@ -12,3 +12,10 @@ function ischecked(int $value){
   }
   return false;
 }
+
+function login(int $id, bool $ismanager){
+  session_start();
+
+  $_SESSION["id"] = $id;
+  $_SESSION["manager"] = $ismanager;
+}
