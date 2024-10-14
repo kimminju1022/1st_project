@@ -1,5 +1,44 @@
 <?php
+    require_once($_SERVER["DOCUMENT_ROOT"]."/config.php");
+    require_once(MY_ROOT_DB_LIB);
+    
+    session_start();
 
+    $conn = null;
+    try{
+        if(strtoupper($_SERVER["REQUEST_METHOD"]) === "POST"){
+            $conn = my_db_conn();
+
+            $name = isset($_POST["sub_title"]) ? $_POST["sub_title"] : throw new Exception("제목을 입력하세요");
+            $deadline = isset($_POST["deadline"]) ? $_POST["deadline"] : date("Ymd");
+            $checklists = [];
+
+            for($i = 0; $i < 20; $i++){
+                $checklists[$i] = isset($_POST[(string)($i)]) ? $_POST[(string)($i)] : "";
+            }
+
+            $conn -> beginTransaction();
+
+            $arr_prepare = [
+                "name" => $name
+                ,"deadline" => $deadline
+            ];
+
+            insert_todolist($conn, $arr_prepare, $checklists);
+
+            $conn -> commit();
+
+            header("Location: /index.php");
+        }
+    }
+    catch(Throwable $th){
+        if(!is_null($conn) && $conn -> inTransaction()){
+            $conn -> rollBack();
+        }
+
+        echo $th -> getMessage();
+        exit;
+    }
 ?>
 
 <!DOCTYPE html>
@@ -7,13 +46,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/common-design.css">
-    <link rel="stylesheet" href="./css/todo-list_insert.css">
+    <link rel="stylesheet" href="/css/common-design.css">
+    <link rel="stylesheet" href="/css/todo-list_insert.css">
     <title>Todo list 작성페이지</title>
 </head>
 <body>
     <container>
-    <form action="/todo_list_insert.html" class="">
         <div class="main-background">
             <div class="side-bar">
                 <div class="back-side-bar">
@@ -38,6 +76,7 @@
                 </div>
             </div>
             
+            <form action="/todo_list_insert.php" method="post" class="">
                 <div class="content">
                     <div class="main-content">
                         <div class="main-title">
@@ -51,7 +90,7 @@
                         <div>
                             <div class="calendar">
                                 <div class="sub_title">제목</div>
-                                <input type="text" class="input_area sub_title_area">
+                                <input type="text" name="sub_title" class="input_area sub_title_area">
                                 <div class="sub_date">수행일자</div>
                                 <div class="input_area sub_date_area"></div>
                                 <input type="date" name="deadline" id="deadline" class="deadline">
@@ -63,34 +102,20 @@
                         <div class="sub_content">
                             <div class="chk_area">
                                 <div class="chk_list">
-                                    <input type="text" maxlength="40" class="chk_text">
-                                    <input type="text" maxlength="40" class="chk_text">
-                                    <input type="text" maxlength="40" class="chk_text">
-                                    <input type="text" maxlength="40" class="chk_text">
-                                    <input type="text" maxlength="40" class="chk_text">
-                                    <input type="text" maxlength="40" class="chk_text">
-                                    <input type="text" maxlength="40" class="chk_text">
-                                    <input type="text" maxlength="40" class="chk_text">
-                                    <input type="text" maxlength="40" class="chk_text">
-                                    <input type="text" maxlength="40" class="chk_text">
-                                </div>
-                                <div class="chk_list">
-                                    <input type="text" maxlength="40" class="chk_text">
-                                    <input type="text" maxlength="40" class="chk_text">
-                                    <input type="text" maxlength="40" class="chk_text">
-                                    <input type="text" maxlength="40" class="chk_text">
-                                    <input type="text" maxlength="40" class="chk_text">
-                                    <input type="text" maxlength="40" class="chk_text">
-                                    <input type="text" maxlength="40" class="chk_text">
-                                    <input type="text" maxlength="40" class="chk_text">
-                                    <input type="text" maxlength="40" class="chk_text">
-                                    <input type="text" maxlength="40" class="chk_text">
+                                    <?php $i = 0;
+                                    for( ; $i< 20; $i++) { ?>
+                                        <div>
+                                            <input type="checkbox" class="check_btn" disabled>
+                                            <input type="text" name="<?php echo (string)($i) ?>" maxlength="40" class="chk_text" >
+                                            <hr class="bar">
+                                        </div>
+                                    <?php } ?>
                                 </div>
                             </div>
                         </div>
                         <div class="btn-insert">
                             <a href="/photo.php"><button type="button" class="btn">뒤로가기</button></a>
-                            <a href="/photo.php"><button type="submit" class="btn">작성 완료</button></a>
+                            <button type="submit" class="btn">작성 완료</button>
                         </div>
                     </div>
                 </div>
