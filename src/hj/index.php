@@ -1,10 +1,40 @@
+<?php 
+require_once($_SERVER["DOCUMENT_ROOT"]."/config.php");
+require_once(MY_ROOT_DB_LIB);
+
+$conn=null;
+
+try{
+    $id = isset($_GET["id"]) ? (int)$_GET["id"] : 0 ;
+
+    $page = isset($_GET["page"]) ? (int)$_GET["page"] : 1 ;
+
+    if($id <1) {
+        throw new Exception("Param Error");
+    }
+
+    $conn=my_db_conn();
+
+    $arr_prepare = [
+        "limit" => 4
+        ,"offset"=> 0
+    ];
+
+    $result = get_todolist_board($conn, $arr_prepare);
+}catch(Throwable $th) {
+    echo $th->getMessage();
+    exit;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main-page</title>
-    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="/css/index.css">
 </head>
 <body>
     <container>
@@ -38,48 +68,20 @@
                     </div>
                     <div class="todo-list-title">Updated Todo-List <br> <hr width="200px"></div>
                     <div class="main-list">
-                        <div class="main-content-travel">
-                            <div class="main-checkbox">
-                                <p class="check-title">여행- 여수1박...</p>
-                                <p class="check-date">수행일자 : 10.02</p>
-                                <input class="check-list check-first" type="checkbox"> 여행계획서 작성 <br>
-                                <input class="check-list" type="checkbox"> 맛집리스트 만들기<br>
-                                <input class="check-list" type="checkbox"> 세면도구<br>
-                                <input class="check-list" type="checkbox"> 고양이시터 구하기<br>
+                        <?php 
+                        foreach($result as $item) { ?>
+                            <div class="main-content-box">
+                                <div class="main-checkbox">
+                                    <p class="check-title"><?php echo $item["name"] ?></p>
+                                    <p class="check-date"><?php echo $item["deadline"] ?></p>
+                                    <?php foreach($item["contents"] as $chk_list_item) { ?>
+                                    <input class="check-list check-first" type="checkbox"><?php echo $chk_list_item["content"] ?><br>
+                                    <?php } ?>
+                                </div>
                             </div>
-                        </div>
-                        <div class="main-content-work">
-                            <div class="main-checkbox">
-                                <p class="check-title">출장 - 부산 2박...</p>
-                                <p class="check-date">수행일자 : 10.07</p>
-                                <input class="check-list check-first" type="checkbox"> 컨퍼런스자료 준비     <br>
-                                <input class="check-list" type="checkbox"> 참가자 리스트확인<br>
-                                <input class="check-list" type="checkbox"> 정장2벌, 구두, 실..<br>
-                                <input class="check-list" type="checkbox"> USB, 배포자료<br>
-                            </div>
-                        </div>
-                        <div class="main-content-study">
-                            <div class="main-checkbox">
-                                <p class="check-title">PHP</p>
-                                <p class="check-date">수행일자 : 10.21</p>
-                                <input class="check-list check-first" type="checkbox"> 팀원들 역할분배 <br>
-                                <input class="check-list" type="checkbox"> 메인디자인 완료하기<br>
-                                <input class="check-list" type="checkbox"> 안되는부분 메모<br>
-                                <input class="check-list" type="checkbox"> 기획안 정리 마무리<br>
-                            </div>
-                        </div>
-                        <div class="main-content-blog">
-                            <div class="main-checkbox">
-                                <p class="check-title">블로그 작성</p>
-                                <p class="check-date">수행일자 : 10.17</p>
-                                <input class="check-list check-first" type="checkbox"> 사진선별 <br>
-                                <input class="check-list" type="checkbox"> 영상편집<br>
-                                <input class="check-list" type="checkbox"> URL업로드 및 보고<br>
-                                <input class="check-list" type="checkbox"> 업체전화 - 리뷰확정<br>
-                            </div>
-                        </div>
+                        <?php } ?>
                     </div>
-                    <div class="sec-content">
+                   <div class="sec-content">
                         <div class="sec-content-title">Miniroom <br>
                             <div class="miniroom">
                             <img src="./img/miniroom.PNG" alt="" width="580px" height="330px"></div>

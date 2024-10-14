@@ -61,7 +61,7 @@ function is_manager_account(PDO $conn, int $id ){
  */
 function get_todolist_board(PDO $conn, array $arr_param){
   $sql = 
-  " SELECT id, NAME, deadline "
+  " SELECT id, name, deadline "
   ." FROM todolists           "
   ." WHERE deleted_at IS NULL "
   ." ORDER BY deadline ASC    "
@@ -74,20 +74,29 @@ function get_todolist_board(PDO $conn, array $arr_param){
 
   $result_todo = $stmt -> fetchAll();
 
-  for($i = 0; $i < count($result_todo); $i ++){
+  foreach($result_todo as $key => $item) {
     $arr_prepare = [
-      "list_id" => $result_todo[$i]["id"]
+      "list_id" => $item["id"]
     ];
 
-    $checklists = [];
-    $result_checklists = get_checklist_forboard($conn, $arr_prepare);
-
-    foreach($result_checklists as $key => $value){
-      $checklists[$key] = $value["content"];
-    }
-
-    $result_todo[$i]["content"] = $checklists;
+    $result_chk_list = get_checklist_forboard($conn, $arr_prepare);
+    $result_todo[$key]["contents"] = $result_chk_list;
   }
+
+  // for($i = 0; $i < count($result_todo); $i ++){
+  //   $arr_prepare = [
+  //     "list_id" => $result_todo[$i]["id"]
+  //   ];
+
+  //   $checklists = [];
+  //   $result_checklists = get_checklist_forboard($conn, $arr_prepare);
+
+  //   foreach($result_checklists as $key => $value){
+  //     $checklists[$key] = $value["content"];
+  //   }
+
+  //   $result_todo[$i]["content"] = $checklists;
+  // }
 
   return $result_todo;
 }
@@ -447,7 +456,7 @@ function check_account(PDO $conn, array $arr_param, array &$user_data){
   if(!($result_cnt === 1)){
     return false;
   }
-  
+
   $user_data = ($stmt -> fetch());
 
   return true;
