@@ -112,7 +112,7 @@
                                 <div class="chk_list">
                                     <?php for($i = 0; $i<20; $i++) { ?>
                                         <div>
-                                            <input type="checkbox" class="check_btn">
+                                            <input type="checkbox" class="check_btn" disabled>
                                             <input type="text" name="<?php echo (string)($i) ?>" maxlength="40" class="chk_text">
                                             <hr class="bar">
                                         </div>
