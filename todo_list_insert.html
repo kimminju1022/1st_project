@@ -28,7 +28,10 @@
                             <p>울 수 있 ㄷㅏ는건.... </p>
                             <p>좋은ㄱ ㅓ ㅇ ㅑ..... </p>
                         </div>
-                        <div class="logout"><button class="logout">로그아웃</button></div>
+                        <form action="#" method="post">
+                            <input type="hidden" name="posttype" value="logout">
+                            <div class="logout"><button class="logout">로그아웃</button></div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -43,129 +46,132 @@
                         <br>
                         <hr width="220px">
                     </div>
-                    <div>
-                        <div class="calendar">
-                            <div class="sub_title">제목</div>
-                            <input type="text" class="input_area sub_title_area">
-                            <div class="sub_date">수행일자</div>
-                            <div class="input_area sub_date_area"></div>
-                            <input type="date" name="deadline" id="deadline" class="deadline">
-                        </div>
-                        <div class="nine_bar">
-                            <hr width="900px">
-                        </div>
-                    </div>
-                    <div class="sub_content">
-                        <div class="chk_area">
-                            <div class="chk_list">
-                                <div>
-                                    <input type="checkbox" class="check_btn" disabled>
-                                    <input type="text" maxlength="40" class="chk_text" >
-                                    <hr class="bar">
-                                </div>
-                                <div>
-                                    <input type="checkbox" class="check_btn">
-                                    <input type="text" maxlength="40" class="chk_text">
-                                    <hr class="bar">
-                                </div>
-                                <div>
-                                    <input type="checkbox" class="check_btn">
-                                    <input type="text" maxlength="40" class="chk_text">
-                                    <hr class="bar">
-                                </div>
-                                <div>
-                                    <input type="checkbox" class="check_btn">
-                                    <input type="text" maxlength="40" class="chk_text">
-                                    <hr class="bar">
-                                </div>
-                                <div>
-                                    <input type="checkbox" class="check_btn">
-                                    <input type="text" maxlength="40" class="chk_text">
-                                    <hr class="bar">
-                                </div>
-                                <div>
-                                    <input type="checkbox" class="check_btn">
-                                    <input type="text" maxlength="40" class="chk_text">
-                                    <hr class="bar">
-                                </div>
-                                <div>
-                                    <input type="checkbox" class="check_btn">
-                                    <input type="text" maxlength="40" class="chk_text">
-                                    <hr class="bar">
-                                </div>
-                                <div>
-                                    <input type="checkbox" class="check_btn">
-                                    <input type="text" maxlength="40" class="chk_text">
-                                    <hr class="bar">
-                                </div>
-                                <div>
-                                    <input type="checkbox" class="check_btn">
-                                    <input type="text" maxlength="40" class="chk_text">
-                                    <hr class="bar">
-                                </div>
-                                <div>
-                                    <input type="checkbox" class="check_btn">
-                                    <input type="text" maxlength="40" class="chk_text">
-                                    <hr class="bar">
-                                </div>
-                                <div>
-                                    <input type="checkbox" class="check_btn">
-                                    <input type="text" maxlength="40" class="chk_text">
-                                    <hr class="bar">
-                                </div>
-                                <div>
-                                    <input type="checkbox" class="check_btn">
-                                    <input type="text" maxlength="40" class="chk_text">
-                                    <hr class="bar">
-                                </div>
-                                <div>
-                                    <input type="checkbox" class="check_btn">
-                                    <input type="text" maxlength="40" class="chk_text">
-                                    <hr class="bar">
-                                </div>
-                                <div>
-                                    <input type="checkbox" class="check_btn">
-                                    <input type="text" maxlength="40" class="chk_text">
-                                    <hr class="bar">
-                                </div>
-                                <div>
-                                    <input type="checkbox" class="check_btn">
-                                    <input type="text" maxlength="40" class="chk_text">
-                                    <hr class="bar">
-                                </div>
-                                <div>
-                                    <input type="checkbox" class="check_btn">
-                                    <input type="text" maxlength="40" class="chk_text">
-                                    <hr class="bar">
-                                </div>
-                                <div>
-                                    <input type="checkbox" class="check_btn">
-                                    <input type="text" maxlength="40" class="chk_text">
-                                    <hr class="bar">
-                                </div>
-                                <div>
-                                    <input type="checkbox" class="check_btn">
-                                    <input type="text" maxlength="40" class="chk_text">
-                                    <hr class="bar">
-                                </div>
-                                <div>
-                                    <input type="checkbox" class="check_btn">
-                                    <input type="text" maxlength="40" class="chk_text">
-                                    <hr class="bar">
-                                </div>
-                                <div>
-                                    <input type="checkbox" class="check_btn">
-                                    <input type="text" maxlength="40" class="chk_text">
-                                    <hr class="bar">
-                                </div>
-                                
+                    
+                    <form action="/todo_list_insert.html" method="post" class="">
+                        <div>
+                            <div class="calendar">
+                                <div class="sub_title">제목</div>
+                                <input type="text" name="sub_title" class="input_area sub_title_area">
+                                <div class="sub_date">수행일자</div>
+                                <div class="input_area sub_date_area"></div>
+                                <input type="date" name="deadline" id="deadline" class="deadline">
+                            </div>
+                            <div class="nine_bar">
+                                <hr width="900px">
                             </div>
                         </div>
-                    </div>
-                    <form action="/todo_list_insert.html" class="">
+                        <div class="sub_content">
+                            <div class="chk_area">
+                                <div class="chk_list">
+                                    <div>
+                                        <input type="checkbox" class="check_btn">
+                                        <input type="text" name="text" maxlength="40" class="chk_text">
+                                        <hr class="bar">
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" class="check_btn">
+                                        <input type="text" name="text" maxlength="40" class="chk_text">
+                                        <hr class="bar">
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" class="check_btn">
+                                        <input type="text" name="text" maxlength="40" class="chk_text">
+                                        <hr class="bar">
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" class="check_btn">
+                                        <input type="text" name="text" maxlength="40" class="chk_text">
+                                        <hr class="bar">
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" class="check_btn">
+                                        <input type="text" name="text" maxlength="40" class="chk_text">
+                                        <hr class="bar">
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" class="check_btn">
+                                        <input type="text" name="text" maxlength="40" class="chk_text">
+                                        <hr class="bar">
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" class="check_btn">
+                                        <input type="text" name="text" maxlength="40" class="chk_text">
+                                        <hr class="bar">
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" class="check_btn">
+                                        <input type="text" name="text" maxlength="40" class="chk_text">
+                                        <hr class="bar">
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" class="check_btn">
+                                        <input type="text" name="text" maxlength="40" class="chk_text">
+                                        <hr class="bar">
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" class="check_btn">
+                                        <input type="text" name="text" maxlength="40" class="chk_text">
+                                        <hr class="bar">
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" class="check_btn">
+                                        <input type="text" name="text" maxlength="40" class="chk_text">
+                                        <hr class="bar">
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" class="check_btn">
+                                        <input type="text" name="text" maxlength="40" class="chk_text">
+                                        <hr class="bar">
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" class="check_btn">
+                                        <input type="text" name="text" maxlength="40" class="chk_text">
+                                        <hr class="bar">
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" class="check_btn">
+                                        <input type="text" name="text" maxlength="40" class="chk_text">
+                                        <hr class="bar">
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" class="check_btn">
+                                        <input type="text" name="text" maxlength="40" class="chk_text">
+                                        <hr class="bar">
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" class="check_btn">
+                                        <input type="text" name="text" maxlength="40" class="chk_text">
+                                        <hr class="bar">
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" class="check_btn">
+                                        <input type="text" name="text" maxlength="40" class="chk_text">
+                                        <hr class="bar">
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" class="check_btn">
+                                        <input type="text" name="text" maxlength="40" class="chk_text">
+                                        <hr class="bar">
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" class="check_btn">
+                                        <input type="text" name="text" maxlength="40" class="chk_text">
+                                        <hr class="bar">
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" class="check_btn">
+                                        <input type="text" name="text" maxlength="40" class="chk_text">
+                                        <hr class="bar">
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        
                         <div class="btn-insert">
                             <a href="/photo.php"><button type="button" class="btn">뒤로가기</button></a>
-                            <a href="/photo.php"><button type="submit" class="btn">작성 완료</button></a>
+                            <button type="submit" class="btn">작성 완료</button>
+                            <input type="hidden" name="posttype" value="insert">
                         </div>
                     </form>
                 </div>
