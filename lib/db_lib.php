@@ -56,42 +56,111 @@ function is_manager_account(PDO $conn, int $id ){
  * , todolist 제목
  * , todolist 마감기한
  * , todolist에 있는 체크리스트
- * , todolist의 체크리스트 체크 여부
  * 
  * @param $arr_param = :limit, :offset
  */
 function get_todolist_board(PDO $conn, array $arr_param){
   $sql = 
-  " SELECT                              "
-	." todo.id                            "
-	." ,todo.name                         "
-  ." ,todo.deadline                     "
-	." ,checklists.content                "
-	." ,checklists.ischecked              " 
-  ." FROM (                             "
-	." SELECT *                           "
-	." FROM todolists                     "
-	." WHERE todolists.deleted_at IS NULL "
-  ." ORDER BY todolists.deadline        "
-	." LIMIT :limit                       " // prepare statmente
-	." OFFSET :offset                     " // prepare statmente
-	." ) AS todo                          "
-	." JOIN checklists                    "
-  ." ON todo.id = checklists.list_id    "
-  ." AND checklists.deleted_at IS NULL  "
-  ." ;                                  "
+  " SELECT id, NAME, deadline "
+  ." FROM todolists           "
+  ." WHERE deleted_at IS NULL "
+  ." ORDER BY deadline ASC    "
+  ." LIMIT :limit             "
+  ." OFFSET :offset           "
+  ; 
+
+  $stmt = $conn -> prepare($sql);
+  $stmt -> execute($arr_param);
+
+  $result_todo = $stmt -> fetchAll();
+
+  for($i = 0; $i < count($result_todo); $i ++){
+    $arr_prepare = [
+      "list_id" => $result_todo[$i]["id"]
+    ];
+
+    $checklists = [];
+    $result_checklists = get_checklist_forboard($conn, $arr_prepare);
+
+    foreach($result_checklists as $key => $value){
+      $checklists[$key] = $value["content"];
+    }
+
+    $result_todo[$i]["content"] = $checklists;
+  }
+
+  return $result_todo;
+}
+
+/**
+ * 사용금지. board에 checklist 출력할 때 사용하는 함수
+ */
+
+function get_checklist_forboard(PDO $conn, array $arr_param){
+  $sql =
+  " SELECT content "
+  ." FROM checklists "
+  ." WHERE deleted_at IS NULL "
+  ." AND checklists.content IS NOT NULL "
+  ." AND checklists.content != '' "
+  ." AND list_id = :list_id "
+  ." ORDER BY id "
+  ." LIMIT 4 "
   ;
 
-  $stmt = $conn->prepare($sql);
+  $stmt = $conn -> prepare($sql);
+  $result_flg = $stmt -> execute($arr_param);
 
-  $result = $stmt->execute($arr_param);
-
-  if(!$result){
-    throw new Exception("Error : Query has problem -> get_todolist_board");
+  if(!$result_flg){
+    throw new Exception("Error : Query has problem -> get_checklist_forboard");
   }
 
   return $stmt -> fetchAll();
 }
+
+// /**
+  //  * todo list 카드에 출력할 때 쓰는 함수.
+  //  * 다음 정보가 출력됨.
+  //  * todolist id
+  //  * , todolist 제목
+  //  * , todolist 마감기한
+  //  * , todolist에 있는 체크리스트
+  //  * , todolist의 체크리스트 체크 여부
+  //  * 
+  //  * @param $arr_param = :limit, :offset
+  //  */
+  // function get_todolist_board(PDO $conn, array $arr_param){
+  //   $sql = 
+  //   " SELECT                              "
+  // 	." todo.id                            "
+  // 	." ,todo.name                         "
+  //   ." ,todo.deadline                     "
+  // 	." ,checklists.content                "
+  // 	." ,checklists.ischecked              " 
+  //   ." FROM (                             "
+  // 	." SELECT *                           "
+  // 	." FROM todolists                     "
+  // 	." WHERE todolists.deleted_at IS NULL "
+  //   ." ORDER BY todolists.deadline        "
+  // 	." LIMIT :limit                       " // prepare statmente
+  // 	." OFFSET :offset                     " // prepare statmente
+  // 	." ) AS todo                          "
+  // 	." JOIN checklists                    "
+  //   ." ON todo.id = checklists.list_id    "
+  //   ." AND checklists.deleted_at IS NULL  "
+  //   ." ;                                  "
+  //   ;
+
+  //   $stmt = $conn->prepare($sql);
+
+  //   $result = $stmt->execute($arr_param);
+
+  //   if(!$result){
+  //     throw new Exception("Error : Query has problem -> get_todolist_board");
+  //   }
+
+  //   return $stmt -> fetchAll();
+  // }
 
 /**
  * todolist 상세페이지 출력할 때 쓰는 함수
