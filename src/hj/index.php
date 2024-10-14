@@ -21,6 +21,9 @@ try{
     ];
 
     $result = get_todolist_board($conn, $arr_prepare);
+
+    $result2 = get_guestbook_board($conn, $arr_prepare);
+
 }catch(Throwable $th) {
     echo $th->getMessage();
     exit;
@@ -88,22 +91,14 @@ try{
                         </div>
                         <div class="sec-content-visitor">
                             <div>Visitor</div>
-                            <div class="visit">
-                                <img class="visitor" src="./img/icon.png" alt="" height="60px" width="30px">
-                                <p class="visit-comment"> 언니 울거면 프로젝트 끝나고 울어요</p>
-                            </div>
-                            <div class="visit">
-                                <img class="visitor" src="./img/icon.png" alt="" height="60px" width="30px">
-                                <div class="visit-comment"> 연봉 3000만원이면 평범하죠</div>
-                            </div>
-                            <div class="visit">
-                                <img class="visitor" src="./img/icon.png" alt="" height="60px" width="30px">
-                                <p class="visit-comment"> 지금 나는 내실력에 눈물이 <br>나버릴것같아</p>
-                            </div>
-                            <div class="visit">
-                                <img class="visitor" src="./img/icon.png" alt="" height="60px" width="30px">
-                                <p class="visit-comment"> 다끝난것같,,,아니 저 수정좀 할게요!</p>
-                            </div>
+                            <?php
+                                foreach($result2 as $item) { ?>
+                                    <div class="visit">
+                                        <img class="visitor" src="./img/icon.png" alt="" height="60px" width="30px">
+                                        <p class="visit-comment"><?php echo $item["content"] ?></p>
+                                    </div>
+                                <?php } ?>
+                          
                         </div>
 
                     </div>

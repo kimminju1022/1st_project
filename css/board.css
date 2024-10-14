@@ -1,9 +1,10 @@
-.to_body{
+.to_body {
     display: grid;
     justify-content: space-between;
     align-items: center;
     margin-left: 10px;
 }
+
 .todo-head {
     background-color: #65a7bd;
     color: #eeeeee;
@@ -11,7 +12,7 @@
     width: 150px;
     text-align: center;
     font-size: 1.2rem;
-    margin: 20px 0 0 20px;
+    margin: 10px 0 0 20px;
 }
 
 .todo-deadline {
@@ -20,7 +21,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    grid-template-columns: 1fr 3fr 3fr 1fr;
+    grid-template-columns: 1fr 6fr 1fr;
     border: 5px solid #65a7bd;
     border-radius: 0 10px 10px 10px;
     background-image: url(/img/list-deadline.png);
@@ -28,38 +29,49 @@
     background-position: center;
     margin: auto 20px;
 }
+
 .todo-deadline>button {
-align-items: center;
+    align-items: center;
 }
 
-.to_main{
+.to_main {
     display: grid;
     justify-content: center;
+    align-items: center;
     margin: 10px;
+    height: 500px;
 }
 
-.to_btn{
-    width: 50px;
-    height: 50px;
+.to_btn {
+    width: 40px;
+    height: 40px;
+}
+.to_checkbox{
+    display: grid;
+    width: 780px;
 }
 
 .to_box {
     background-color: #4a62694f;
-    width: 350px;
-    height: 100px;
-    margin: 20px;
+    width: 370px;
+    height: 120px;
+    margin: 10px;
     padding: 10px;
 }
 
 .to_pagination {
-    display: flex;
-    justify-content: space-between;
+    width: 100px;
+    display: inline-flex;
+    align-items: center;
+    justify-content:center;
     margin: auto 20px;
 }
 
-.to_pagination>.btn_left, .btn_right{
-    width: 50px;
-    height: 50px;
+
+.to_pagination>a {
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 1.2rem;
 }
 
 .to_footer>img {
@@ -69,28 +81,43 @@ align-items: center;
 .to_list {
     /* 2행 4열 배열ok */
     display: grid;
+    align-items: center;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
-    margin: 10px;
     width: 900px;
 }
 
 .to_post {
-    height: 180px;
+    height: 200px;
     width: 200px;
     padding: 10px;
-    margin: 10px auto;
+    margin: 10px;
     background-color: #fffbbdd8;
     overflow: hidden;
-    display:flexbox;
+    text-overflow: ellipsis;
     align-items: center;
+    /* display: grid;
+    grid-template-rows: 1.5fr 1fr 6fr; */
 }
 
-.to_post>title, input{
-    width: 100%; 
-    font-size: 0.9rem;
+.to_title {
+    font-size: 1.2rem;
+    text-align: left;
+    font-weight: 700;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.to_date {
+    font-size: 1rem;
+    text-align: right;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.to_post>.to_title, input {
+    width: 100%;
     display: block;
-    font-size: 20px;
     /* 말줄임↓ */
     overflow: hidden;
     display: '-webkit-box';
@@ -101,8 +128,20 @@ align-items: center;
     word-break: break-all;
 }
 
-.to_post > input[type="checkbox"] {
-    margin-right: 8px;  /* 체크박스와 텍스트 간격 설정 */
+.list_box {
+    display: grid;
+    grid-template-columns: 1fr 6fr;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+input:checked+label{
+    text-decoration-line: line-through;
+}
+
+.to_post>.check-list {
+    margin-right: 8px;
+    /* 체크박스와 텍스트 간격 설정 */
 }
 
 .to_post>p {

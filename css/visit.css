@@ -15,9 +15,9 @@
 
 .visit_comment{
     width: 900px;
-    height: 150px;
+    height: 100px;
     position: relative;
-    margin: 20px 30px;
+    margin: 50px 30px;
     text-align: center;
 }
 .visit_comment>textarea{
@@ -66,6 +66,7 @@ height: 70px;
 margin: 10px 20px;
 padding: 10px;
 display: grid;
+align-items: center;
 grid-template-columns: 1fr 8fr 3fr 1fr;
 border-radius: 10px;
 }
@@ -87,7 +88,12 @@ width: 50px;
 .visit_footer{
     text-align: center;
     margin-top: 30px;
+}
 
+.visit_icon{
+    width: 25px;
+    height: auto;
+    margin-left: 10px;
 }
 
 .p_btn{
@@ -98,6 +104,7 @@ width: 50px;
     background-color: transparent;
     border: none;
 }
+
 .p_btn:hover{
     border-bottom: 2px solid #65a7bd;
 }
