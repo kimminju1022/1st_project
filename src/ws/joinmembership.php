@@ -1,3 +1,38 @@
+<?php
+  require_once($_SERVER["DOCUMENT_ROOT"]."/config.php");
+  require_once(MY_ROOT_DB_LIB);
+  require_once(MY_ROOT_UTILITY);
+
+  $conn = null;
+  try{
+    if(strtoupper($_SERVER["REQUEST_METHOD"])=== "POST" ){
+      $conn = my_db_conn();
+      $user_name = isset($_POST["id-input"]) ? $_POST["id-input"] : throw new Exception("id를 입력하지 않았습니다.");
+      $user_password = isset($_POST["pw-input"]) ? $_POST["pw-input"] : throw new Exception("pw를 입력하지 않았습니다.");
+
+      $arr_prepare = [
+        "user_name" => $user_name
+        ,"user_password" => $user_password
+      ];
+
+      $conn -> beginTransaction();
+
+      insert_membership($conn, $arr_prepare);
+
+      $conn -> commit();
+
+      header("Location: /index.php");
+    }
+  } catch(Throwable $th) {
+    if(!is_null($conn) && $conn -> inTransaction()){
+      $conn -> rollBack();
+    }
+
+    echo $th-> getMessage();
+    exit;
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -27,7 +62,7 @@
                             <p>울 수 있 ㄷㅏ는건.... </p>
                             <p>좋은ㄱ ㅓ ㅇ ㅑ..... </p>
                         </div>
-                        <div class="logout"><button class="logout">로그아웃</button></div>
+                        <!-- <div class="logout"><button class="logout">로그아웃</button></div> -->
                     </div>
                 </div>
             </div>
@@ -41,11 +76,11 @@
                         Lorem ipsum, dolor sit amet consectetur adipisicing elit.<br>
                         Lorem ipsum, dolor sit amet consectetur adipisicing elit.<br>
                     </div>
-                <form action="">
-                    <div class="login-back">
+                    <form action="joinmembership.php" method="post">
+                      <div class="login-back">
                         <div class="login">
                             <div class="id">
-                               <p class="login-name">NAME</p>  
+                                <p class="login-name">NAME</p>  
                                 <img class="visitor1" src="./img/icon.png" alt="" height="60px" width="30px">
                             </div>
                             <input type="text" name="id-input" class="id-input" maxlength="15" required>
@@ -56,12 +91,11 @@
                             <input type="password" name="pw-input" class="pw-input"  required>
                         </div>
                         <p class="login-mention"> 입력하신 이름이 로그인에 사용되는 아이디입니다</p>
-                        <button class="for-login"><a href="./login.html"> 뒤로가기</a> </button>
-                        <button class="for-join"><a href="./index.html"> 회원가입</a></button>
+                        <button class="for-login"><a href="/login.php"> 뒤로가기</a> </button>
+                        <button type="submit" class="for-join"> 회원가입</button>
                     </div>
-                </form>
+                  </form>
                 </div>
-
             </div>
             <div class="menu-bar">
                 <div class="home"><a href="" class="home-tab">HOME</a></div>

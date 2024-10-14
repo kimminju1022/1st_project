@@ -371,7 +371,7 @@ function insert_membership(PDO $conn, array $arr_param){
 
   $stmt = $conn -> prepare($sql);
   $result_flg = $stmt -> execute($arr_param);
-  $result_cnt = $stmt -> rowCount($arr_param);
+  $result_cnt = $stmt -> rowCount();
 
   if(!$result_flg){
     throw new Exception("Error : Query has problem -> insert_membership");
