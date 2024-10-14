@@ -149,6 +149,28 @@ function get_todolist_detail(PDO $conn, array | int $arr_param){
   return $stmt -> fetchAll();
 }
 
+function get_checklist_today(PDO $conn){
+  $sql =
+  " SELECT checklists.content "
+  ." FROM checklists "
+  ." WHERE checklists.deleted_at IS NULL "
+  ." AND checklists.ischecked = FALSE "
+  ." AND checklists.content IS NOT NULL "
+  ." AND checklists.content != '' "
+  ." AND checklists.list_id IN "
+  ." (SELECT todolists.id "
+  ." FROM todolists "
+  ." WHERE todolists.deadline = CURDATE() "
+  ." AND todolists.deleted_at IS NULL"
+  ." ) "
+  ." ORDER BY checklists.id "
+  ." LIMIT 8 ; ";
+
+  $stmt = $conn -> query($sql);
+
+  return $stmt -> fetchAll();
+}
+
 /**
  * 방명록 정보 출력하는 함수
  * 

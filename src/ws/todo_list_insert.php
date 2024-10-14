@@ -94,7 +94,7 @@
                         <hr width="220px">
                     </div>
                     
-                    <form action="/todo_list_insert.html" method="post" class="">
+                    <form action="/todo_list_insert.php" method="post" class="">
                         <div>
                             <div class="calendar">
                                 <div class="sub_title">제목</div>
