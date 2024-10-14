@@ -42,6 +42,7 @@
 
 .sub_title_area{
     width: 300px;  
+    padding-left: 1rem;
 }
 
 .sub_date {
@@ -70,15 +71,21 @@
 
 .chk_list {
     display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 90%;
     margin: 20px;
     gap: 10px;
+    overflow: scroll;
+    overflow-x: hidden;
 }
 
 .chk_text {
     width: 300px;
+    border: none;
     outline: none;
     border-radius: 9px;
     padding: 0 0.5rem;
+    font-size: 15px;
 }
 
 .btn-insert{
@@ -103,4 +110,12 @@ a:visited {
     font-size: x-large;
     font-weight: 900;
     cursor: pointer;
+}
+
+.bar{
+    width: 320px;
+}
+
+.check_btn:checked + input {
+    text-decoration: line-through;
 }
