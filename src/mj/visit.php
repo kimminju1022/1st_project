@@ -1,3 +1,8 @@
+<?php
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -5,8 +10,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main-page</title>
-    <link rel="stylesheet" href="./css/index.css">
-    <link rel="stylesheet" href="./css/visit.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/visit.css">
 </head>
 
 <body>
@@ -42,40 +47,30 @@
                     </div>
                     <div class="visit_comment">
                         <textarea maxlength="300" cols="10" rows="3" placeholder="남길 말씀이 있다면 여기에 남겨주세요"></textarea>
+                        <!-- post -->
                         <button class="post-btn">글남기기</button>
                     </div>
                     <h3>방명록</h3>
-                    <div class="visit_post"> 
+                    <div class="visit_post">
                         <!-- foreach로 4개 까지 표기 -->
-                        <!-- 미니미 이미지 선택???고정?? -->
-                        <div class="visit_box">
+                        <?php foreach ($result as $item) { ?>
+                            <div class="visit_box">
                             <img src="/img/icon.png" alt="미니미" class="visit_icon">
-                            <p>오늘 또 행복하길 바래</p>
-                            <p class="visit_date">2024.10.14 AM.9:00</p>
-                            <a href="#" onclick="confirmDel('정말로 삭제하시겠습니까?')"><button class="delete-btn"><img src="/img/delete.png" alt="delete-btn"></button></a>
+                                <div><?php echo $item["content"] ?></div>
+                                <div><?php echo $item["updated_at"] ?></div>
+
+
+                <form action="/visit.php" method="post">
+                    <input type="hidden" name="id" value="<?php echo $result["id"] ?>">
+                    <a href="/detail.php?id=<?php echo $result["id"] ?>&page=<?php echo $page ?>"><img src="/img/delete.png" alt="delete-btn"></a>
+                </form>
+
+
                         </div>
-                        <div class="visit_box">
-                            <img src="/img/icon.png" alt="미니미" class="visit_icon">
-                            <p>오늘 또 행복하길 바래</p>
-                            <p class="visit_date">2024.10.14 AM.9:00</p>
-                            <button class="delete-btn"><img src="/img/delete.png" alt="delete-btn"></button>
-                        </div>
-                        <div class="visit_box">
-                            <img src="/img/icon.png" alt="미니미" class="visit_icon">
-                            <p>오늘 또 행복하길 바래 오늘 또 행복하길 바래 오늘 또 행복하길 바래 오늘 또 행복하길 바래
-                            오늘 또 행복하길 바래</p>
-                            <p class="visit_date">2024.10.14 AM.9:00</p>
-                            <button class="delete-btn"><img src="/img/delete.png" alt="delete-btn"></button>
-                        </div>
-                        <div class="visit_box">
-                            <img src="/img/icon.png" alt="미니미" class="visit_icon">
-                            <p>오늘 또 행복하길 바래</p>
-                            <p class="visit_date">2024.10.14 AM.9:00</p>
-                            <button class="delete-btn"><img src="/img/delete.png" alt="delete-btn"></button>
-                        </div>
-                        
+                        <?php } ?>
+
                     </div>
-                    <div class="visit_footer">  <!--유효페이지까지만 보이기  -->
+                    <div class="visit_footer"> <!-- 유효페이지까지 가능하고, 전후, 현재만 표시 -->
                         <a href="/"><img src="/img/left-pagebtn.png" alt="before" class="p_btn"></img></a>
                         <a href="/"><button class="p_btn">p</button></a>
                         <a href="/"><img src="/img/right-pagebtn.png" alt="before" class="p_btn"></img></a>
