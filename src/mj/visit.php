@@ -6,7 +6,6 @@ $conn = null;
 
 try {
     $id = isset($_GET["id"]) ? (int)$_GET["id"] : 0;
-
     $page = isset($_GET["page"]) ? (int)$_GET["page"] : 1;
 
     if ($id < 1) {
@@ -14,21 +13,17 @@ try {
     }
 
     $conn = my_db_conn();
-
     $arr_prepare = [
         "limit" => 4,
         "offset" => 0
     ];
-
     $result = get_todolist_board($conn, $arr_prepare);
-
-    $result2 = get_guestbook_board($conn, $arr_prepare);
 } catch (Throwable $th) {
     echo $th->getMessage();
     exit;
 }
-
 ?>
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -62,7 +57,11 @@ try {
                             <p>울 수 있 ㄷㅏ는건.... </p>
                             <p>좋은ㄱ ㅓ ㅇ ㅑ..... </p>
                         </div>
+                        <!-- 폼태그확인하기 -->
+                        <form action="/login.php">
                         <div class="logout"><button class="logout">로그아웃</button></div>
+                        </form>
+
                     </div>
                 </div>
             </div>
@@ -126,3 +125,5 @@ try {
 </body>
 
 </html>
+<!-- 질문사항 -->
+<!-- get_guestbook_boar에서 created_at이 아닌 updated_at을 사용하지 않는 이유 -->
