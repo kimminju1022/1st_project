@@ -28,7 +28,10 @@
                             <p>울 수 있 ㄷㅏ는건.... </p>
                             <p>좋은ㄱ ㅓ ㅇ ㅑ..... </p>
                         </div>
-                        <div class="logout"><button class="logout">로그아웃</button></div>
+                        <form method="post" action="#">
+                            <input type="hidden" name="posttype" value="logout">
+                            <div class="logout"><button class="logout">로그아웃</button></div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -43,128 +46,130 @@
                         <br>
                         <hr width="220px">
                     </div>
-                    <div>
-                        <div class="calendar">
-                            <div class="sub_title">제목</div>
-                            <input type="text" id="title_bar" name="title_bar" class="input_area sub_title_area" value="10월 24일까지 해야할 일 체크리스트">
-                            <div class="sub_date">수행일자</div>
-                            <div class="input_area sub_date_area"></div>
-                            <input type="date" name="deadline" id="deadline" class="deadline">
-                        </div>
-                        <div class="nine_bar">
-                            <hr width="900px">
-                        </div>
-                    </div>
-                    <div class="sub_content">
-                        <div class="chk_area">
-                            <div class="chk_list">
-                                <div>
-                                    <input type="checkbox" class="check_btn">
-                                    <input type="text" maxlength="40" class="chk_text" value="여행 계획서 작성">
-                                    <hr class="bar">
-                                </div>
-                                <div>
-                                    <input type="checkbox" class="check_btn">
-                                    <input type="text" maxlength="40" class="chk_text" value="맛집 리스트">
-                                    <hr class="bar">
-                                </div>
-                                <div>
-                                    <input type="checkbox" class="check_btn">
-                                    <input type="text" maxlength="40" class="chk_text" value="상의2, 청바지2, 실내화...">
-                                    <hr class="bar">
-                                </div>
-                                <div>
-                                    <input type="checkbox" class="check_btn">
-                                    <input type="text" maxlength="40" class="chk_text" value="세면도구">
-                                    <hr class="bar">
-                                </div>
-                                <div>
-                                    <input type="checkbox" class="check_btn">
-                                    <input type="text" maxlength="40" class="chk_text" value="컨퍼런스 자료 준비">
-                                    <hr class="bar">
-                                </div>
-                                <div>
-                                    <input type="checkbox" class="check_btn">
-                                    <input type="text" maxlength="40" class="chk_text" value="참가자 리스트 확보">
-                                    <hr class="bar">
-                                </div>
-                                <div>
-                                    <input type="checkbox" class="check_btn">
-                                    <input type="text" maxlength="40" class="chk_text" value="정장 3벌, 구두 2벌">
-                                    <hr class="bar">
-                                </div>
-                                <div>
-                                    <input type="checkbox" class="check_btn">
-                                    <input type="text" maxlength="40" class="chk_text" value="usb, 배포자료 업로드">
-                                    <hr class="bar">
-                                </div>
-                                <div>
-                                    <input type="checkbox" class="check_btn">
-                                    <input type="text" maxlength="40" class="chk_text" value="사진 수정">
-                                    <hr class="bar">
-                                </div>
-                                <div>
-                                    <input type="checkbox" class="check_btn">
-                                    <input type="text" maxlength="40" class="chk_text" value="사진 선별 및 영상편집">
-                                    <hr class="bar">
-                                </div>
-                                <div>
-                                    <input type="checkbox" class="check_btn">
-                                    <input type="text" maxlength="40" class="chk_text" value="여행 계획서 작성">
-                                    <hr class="bar">
-                                </div>
-                                <div>
-                                    <input type="checkbox" class="check_btn">
-                                    <input type="text" maxlength="40" class="chk_text" value="맛집 리스트">
-                                    <hr class="bar">
-                                </div>
-                                <div>
-                                    <input type="checkbox" class="check_btn">
-                                    <input type="text" maxlength="40" class="chk_text" value="상의2, 청바지2, 실내화...">
-                                    <hr class="bar">
-                                </div>
-                                <div>
-                                    <input type="checkbox" class="check_btn">
-                                    <input type="text" maxlength="40" class="chk_text" value="세면도구">
-                                    <hr class="bar">
-                                </div>
-                                <div>
-                                    <input type="checkbox" class="check_btn">
-                                    <input type="text" maxlength="40" class="chk_text" value="컨퍼런스 자료 준비">
-                                    <hr class="bar">
-                                </div>
-                                <div>
-                                    <input type="checkbox" class="check_btn">
-                                    <input type="text" maxlength="40" class="chk_text" value="참가자 리스트 확보">
-                                    <hr class="bar">
-                                </div>
-                                <div>
-                                    <input type="checkbox" class="check_btn">
-                                    <input type="text" maxlength="40" class="chk_text" value="정장 3벌, 구두 2벌">
-                                    <hr class="bar">
-                                </div>
-                                <div>
-                                    <input type="checkbox" class="check_btn">
-                                    <input type="text" maxlength="40" class="chk_text" value="usb, 배포자료 업로드">
-                                    <hr class="bar">
-                                </div>
-                                <div>
-                                    <input type="checkbox" class="check_btn">
-                                    <input type="text" maxlength="40" class="chk_text" value="사진 수정">
-                                    <hr class="bar">
-                                </div>
-                                <div>
-                                    <input type="checkbox" class="check_btn">
-                                    <input type="text" maxlength="40" class="chk_text" value="사진 선별 및 영상편집">
-                                    <hr class="bar">
-                                </div>                                     
+
+                    <form action="/todo_list_update.html" method="post" class="">
+                        <div>
+                            <div class="calendar">
+                                <div class="sub_title">제목</div>
+                                <input type="text" id="title_bar" name="title_bar" class="input_area sub_title_area" value="10월 24일까지 해야할 일 체크리스트">
+                                <div class="sub_date">수행일자</div>
+                                <div class="input_area sub_date_area"></div>
+                                <input type="date" name="deadline" id="deadline" class="deadline">
+                            </div>
+                            <div class="nine_bar">
+                                <hr width="900px">
                             </div>
                         </div>
-                    </div>
-                    <form action="/todo_list_update.html" class="">
+                        <div class="sub_content">
+                            <div class="chk_area">
+                                <div class="chk_list">
+                                    <div>
+                                        <input type="checkbox" class="check_btn">
+                                        <input type="text" name="text" maxlength="40" class="chk_text" value="여행 계획서 작성">
+                                        <hr class="bar">
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" class="check_btn">
+                                        <input type="text" name="text" maxlength="40" class="chk_text" value="맛집 리스트">
+                                        <hr class="bar">
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" class="check_btn">
+                                        <input type="text" name="text" maxlength="40" class="chk_text" value="상의2, 청바지2, 실내화...">
+                                        <hr class="bar">
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" class="check_btn">
+                                        <input type="text" name="text" maxlength="40" class="chk_text" value="세면도구">
+                                        <hr class="bar">
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" class="check_btn">
+                                        <input type="text" name="text" maxlength="40" class="chk_text" value="컨퍼런스 자료 준비">
+                                        <hr class="bar">
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" class="check_btn">
+                                        <input type="text" name="text" maxlength="40" class="chk_text" value="참가자 리스트 확보">
+                                        <hr class="bar">
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" class="check_btn">
+                                        <input type="text" name="text" maxlength="40" class="chk_text" value="정장 3벌, 구두 2벌">
+                                        <hr class="bar">
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" class="check_btn">
+                                        <input type="text" name="text" maxlength="40" class="chk_text" value="usb, 배포자료 업로드">
+                                        <hr class="bar">
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" class="check_btn">
+                                        <input type="text" name="text" maxlength="40" class="chk_text" value="사진 수정">
+                                        <hr class="bar">
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" class="check_btn">
+                                        <input type="text" name="text" maxlength="40" class="chk_text" value="사진 선별 및 영상편집">
+                                        <hr class="bar">
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" class="check_btn">
+                                        <input type="text" name="text" maxlength="40" class="chk_text" value="여행 계획서 작성">
+                                        <hr class="bar">
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" class="check_btn">
+                                        <input type="text" name="text" maxlength="40" class="chk_text" value="맛집 리스트">
+                                        <hr class="bar">
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" class="check_btn">
+                                        <input type="text" name="text" maxlength="40" class="chk_text" value="상의2, 청바지2, 실내화...">
+                                        <hr class="bar">
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" class="check_btn">
+                                        <input type="text" name="text" maxlength="40" class="chk_text" value="세면도구">
+                                        <hr class="bar">
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" class="check_btn">
+                                        <input type="text" name="text" maxlength="40" class="chk_text" value="컨퍼런스 자료 준비">
+                                        <hr class="bar">
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" class="check_btn">
+                                        <input type="text" name="text" maxlength="40" class="chk_text" value="참가자 리스트 확보">
+                                        <hr class="bar">
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" class="check_btn">
+                                        <input type="text" name="text" maxlength="40" class="chk_text" value="정장 3벌, 구두 2벌">
+                                        <hr class="bar">
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" class="check_btn">
+                                        <input type="text" name="text" maxlength="40" class="chk_text" value="usb, 배포자료 업로드">
+                                        <hr class="bar">
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" class="check_btn">
+                                        <input type="text" name="text" maxlength="40" class="chk_text" value="사진 수정">
+                                        <hr class="bar">
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" class="check_btn">
+                                        <input type="text" name="text" maxlength="40" class="chk_text" value="사진 선별 및 영상편집">
+                                        <hr class="bar">
+                                    </div>                                     
+                                </div>
+                            </div>
+                        </div>
+                    
                         <div class="btn-insert">
                             <a href="/photo.php"><button type="button" class="btn">수정 취소</button></a>
-                            <a href="/photo.php"><button type="submit" class="btn">수정 완료</button></a>
+                            <button type="submit" class="btn">수정 완료</button>
                         </div>
                     </form>
                 </div>
