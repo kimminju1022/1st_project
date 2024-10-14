@@ -116,6 +116,6 @@ a:visited {
     width: 320px;
 }
 
-.check_btn:checked + input {
+/* .check_btn:checked + input {
     text-decoration: line-through;
-}
+} */
