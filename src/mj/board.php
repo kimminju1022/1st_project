@@ -1,3 +1,32 @@
+<?php 
+require_once($_SERVER["DOCUMENT_ROOT"]."/config.php");
+require_once(MY_ROOT_DB_LIB);
+
+$conn=null;
+
+try{
+    $conn=my_db_conn();
+    $arr_prepare1 = [
+        "limit" => 8
+        ,"offset"=> 0
+    ];
+    $arr_prepare2 = [
+        "limit" => 4
+        ,"offset"=> 0
+    ];
+
+    $result1 = get_checklist_today($conn, $arr_prepare);
+    $result2 = get_todolist_board($conn, $arr_prepare);
+
+
+}catch(Throwable $th) {
+    echo $th->getMessage();
+    exit;
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="ko">
 

@@ -4,6 +4,10 @@ require_once(MY_ROOT_DB_LIB); //db_lib 파일의 정보를 가져와 쓴다
 
 $conn = null;
 
+// if(!isset($_SESSION["id"])){
+//     header("")
+// }
+
 // try catch
 try {
     if (strtoupper($_SERVER["REQUEST_METHOD"]) === "GET") {
