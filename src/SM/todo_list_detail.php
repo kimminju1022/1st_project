@@ -85,7 +85,7 @@ try {
                         <hr width="220px">
                     </div>
                     
-                    <form action="/todo_list_insert.html" method="post" class="">
+                    <form action="/todo_list_chk_save.php" method="post" class="">
                         <input type="hidden" name="id" value="<?php echo $result[0]["todolist_id"] ?>">
                         <input type="hidden" name="page" value="<?php echo $page ?>">
                         <div>
@@ -103,10 +103,10 @@ try {
                         <div class="sub_content">
                             <div class="chk_area">
                                 <div class="chk_list">
-                                    <?php for($i = 0; $i < count($result); $i++) { ?>
+                                    <?php foreach($result as $item) { ?>
                                         <div class="chk_content">
-                                            <input type="checkbox" class="check_btn" <?php if($result[$i]["ischecked"] === true) { echo "checked" ;} ?>>
-                                            <input type="text" name="text" maxlength="40" class="chk_text" value="<?php echo $result[$i]["content"] ?>" disabled>
+                                            <input type="checkbox" class="check_btn" name="chk[]" value="<?php echo $item["checklist_id"] ?>" <?php if($item["ischecked"] === 1) { echo "checked" ;} ?>>
+                                            <input type="text" name="text" maxlength="40" class="chk_text" value="<?php echo $item["content"] ?>" disabled>
                                             <hr class="bar">
                                         </div>
                                     <?php } ?>
@@ -115,9 +115,9 @@ try {
                         </div>
                         
                         <div class="btn-insert">
-                            <a href="/board.php"><button type="button" class="btn">뒤로가기</button></a>
-                            <a href="/todo_list_detail.php"><button type="button" class="btn">삭제하기</button></a>
-                            <a href="/todo_list_update.php"><button type="button" class="btn">수정하기</button></a>
+                            <a href="/board.php?page=<?php echo $page; ?>"><button type="button" class="btn">뒤로가기</button></a>
+                            <a href="/todo_list_delete.php?id=<?php echo $id?>&page=<?php echo $page; ?>"><button type="button" class="btn">삭제하기</button></a>
+                            <a href="/todo_list_update.php?id=<?php echo $id?>&page=<?php echo $page; ?>"><button type="button" class="btn">수정하기</button></a>
                             <button type="submit" class="btn">저장하기</button>
                             <input type="hidden" name="posttype" value="insert">
                         </div>

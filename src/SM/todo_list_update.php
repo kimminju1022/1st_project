@@ -148,10 +148,10 @@ try {
                         <div class="sub_content">
                             <div class="chk_area">
                                 <div class="chk_list">
-                                    <?php for($i = 0; $i < count($result); $i++) { ?>
+                                    <?php foreach($result as $item) { ?>
                                         <div>
-                                            <input type="checkbox" class="check_btn" <?php if($result[$i]["ischecked"] === true) { echo "checked" ;} ?>>
-                                            <input type="text" name="<?php echo (string)($i) ?>" maxlength="40" class="chk_text" value="<?php echo $result[$i]["content"] ?>">
+                                            <input type="checkbox" class="check_btn" value="<?php echo $item["checklist_id"] ?>" <?php if($item["ischecked"] === true) { echo "checked" ;} ?>>
+                                            <input type="text" name="text" maxlength="40" class="chk_text" value="<?php echo $item["content"] ?>">
                                             <hr class="bar">
                                         </div>
                                     <?php } ?>                   
