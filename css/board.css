@@ -51,13 +51,33 @@
     width: 780px;
 }
 
-.to_box {
+/* .to_box {
     background-color: #4a62694f;
     width: 370px;
     height: 120px;
     margin: 10px;
     padding: 10px;
+} */
+
+.to_box{
+    display: grid;
+    grid-template-areas: 
+    "a e"
+    "b f"
+    "c g"
+    "d h";
 }
+
+    /* 각 아이템의 위치 조정 */
+    .to_box:nth-child(1) { grid-area: a; }
+    .to_box:nth-child(2) { grid-area: b; }
+    .to_box:nth-child(3) { grid-area: c; }
+    .to_box:nth-child(4) { grid-area: d; }
+    .to_box:nth-child(5) { grid-area: e; }
+    .to_box:nth-child(6) { grid-area: f; }
+    .to_box:nth-child(7) { grid-area: g; }
+    .to_box:nth-child(8) { grid-area: h; }
+
 
 .to_pagination {
     display: inline-flex;
@@ -114,7 +134,7 @@
     margin-bottom: 5px;
 }
 
-.to_post>.to_title, input {
+.to_post>.to_title, .list_box{
     width: 100%;
     display: block;
     /* 말줄임↓ */

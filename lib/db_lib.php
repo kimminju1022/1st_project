@@ -391,6 +391,43 @@ function insert_guestbook_board(PDO $conn, array $arr_param){
 }
 
 /**
+ * page count할 때 쓰는 함수
+ */
+function cnt_checklist_today(PDO $conn){
+  $sql =
+ " SELECT COUNT(*) AS COUNT "
+  ." FROM checklists "
+  ." WHERE checklists.content != '' "
+  ." AND checklists.content IS NOT NULL "
+  ." AND checklists.deleted_at IS NULL "
+  ." AND checklists.list_id IN  "
+  ." ( SELECT todolists.id "
+  ." FROM todolists "
+  ." WHERE todolists.deleted_at IS NULL "
+  ." AND todolists.deadline = CURDATE() "
+  ." ) ";
+
+  $stmt = $conn -> query($sql);
+  $result =$stmt -> fetch();
+
+  return $result["COUNT"];
+}
+
+function cnt_checklist_todo(PDO $conn){
+  $sql =
+ " SELECT COUNT(*) AS COUNT "
+  ." FROM todolists "
+  ." WHERE deleted_at IS NULL "
+  ;
+
+  $stmt = $conn -> query($sql);
+  $result =$stmt -> fetch();
+
+  return $result["COUNT"];
+}
+
+
+/**
  * 방명록 총 게시글 조회할 때 쓰는 함수
  * 필요정보
  */
