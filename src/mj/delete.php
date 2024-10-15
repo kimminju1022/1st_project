@@ -1,6 +1,6 @@
 <?php
 require_once($_SERVER["DOCUMENT_ROOT"] . "/config.php"); //config파일의 정보를 가져와 쓴다
-require_once(MY_PATH_DB_LIB); //db_lib 파일의 정보를 가져와 쓴다
+require_once(MY_ROOT_DB_LIB); //db_lib 파일의 정보를 가져와 쓴다
 
 $conn = null;
 
@@ -19,21 +19,13 @@ try {
             throw new Exception("파라미터 이상");
         }
 
-        // PDO instance
-        $conn = my_db_conn();
-
-        // 데이터 조회!!
-        $arr_prepare = [
-            "id" => $id
-        ];
-
-        $result = my_board_select_id($conn, $arr_prepare);
     } else {
         // post처리
 
         // parm setting ↓        
         // id획득
         $id = isset($_POST["id"]) ?  (int)$_POST["id"] : 0;
+        $page = isset($_POST["page"])? (int)$_POST["page"] : 1;
         if ($id < 1) {
             throw new Exception("파라미터 오류");
         }
@@ -48,21 +40,21 @@ try {
             "id" => $id
         ];
         // 삭제처리
-        my_board_delete_id($conn, $arr_prepare);
+        delete_guestbook_board($conn, $arr_prepare);
 
         // commit
         $conn->commit();
 
         // 리스트페이지 이동
-        header("Location: /");
+        header("Location: /visit.php?page=".$page );
         exit;
     }
 } catch (Throwable $th) {
     if (!is_null($conn) && $conn->inTransaction()) {
         $conn->rollBack();
     }
-
-    require_once(MY_PATH_ERROR);
+    echo $th->getMessage();
+    // require_once(MY_PATH_ERROR);
     exit;
 }
 ?>
@@ -101,7 +93,11 @@ try {
                             <p>울 수 있 ㄷㅏ는건.... </p>
                             <p>좋은ㄱ ㅓ ㅇ ㅑ..... </p>
                         </div>
+                        <!-- form태그 확인하기 -->
+                        <form action="/login.php">
                         <div class="logout"><button class="logout">로그아웃</button></div>
+                        </form>
+                        
                     </div>
                 </div>
             </div>
@@ -120,10 +116,12 @@ try {
                             <p class="write">더 이상 다른 이에게 노출되지 않습니다.</p>
                             <p class="write sub_p">정말 기억을 지우시겠습니까?</p>
                         </div>
-                        <form action="/todo_list_delete.html" class="">
+                        <form action="/delete.php" class="" method="post">
+                            <input type="hidden" name="id" value="<?php echo $id ?>">
+                            <input type="hidden" name="page" value="<?php echo $page ?>">
                             <!-- php적용 -->
                             <div class="btn-insert">
-                                <a href="/photo.php"><button type="button" class="btn">취소</button></a>
+                                <a href="/visit.php?page=<?php echo $page ?>"><button type="button" class="btn" >취소</button></a>
                                 <button type="submit" class="btn">삭제하기</button>
                             </div>
                         </form>
