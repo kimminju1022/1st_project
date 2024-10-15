@@ -88,7 +88,7 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/common-design.css">
-    <link rel="stylesheet" href="/css/todo_list_detail.css">
+    <link rel="stylesheet" href="/css/todo_list_update.css">
     <title>Todo list 수정페이지</title>
 </head>
 <body>
@@ -130,7 +130,7 @@ try {
                         <hr width="220px">
                     </div>
 
-                    <form action="/todo_list_update.html" method="post" class="">
+                    <form action="/todo_list_update.php" method="post" class="">
                         <input type="hidden" name="id" value="<?php echo $result[0]["todolist_id"] ?>">
                         <input type="hidden" name="page" value="<?php echo $page ?>">
                         <div>
