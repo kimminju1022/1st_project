@@ -736,7 +736,7 @@ function delete_todolist(PDO $conn, array | int $arr_param){
   ." updated_at = NOW()  "
   ." ,deleted_at = NOW() "
   ." WHERE               "
-  ." user_id = :id       "
+  ." list_id = :id       "
   ." ;                   "
   ;
 
