@@ -12,6 +12,7 @@ define("MY_DSN", "mysql:host=".MY_HOST.";port=".MY_PORT.";dbname=".MY_DB_NAME.";
 define("MY_ROOT", $_SERVER["DOCUMENT_ROOT"]);
 define("MY_ROOT_DB_LIB",MY_ROOT."/lib/db_lib.php");
 define("MY_ROOT_UTILITY", MY_ROOT."/lib/utility.php");
+define("MY_ROOT_ERRORPAGE", MY_ROOT."/error.php");
 
 // 값 관련 상수
 define("MY_BOARD_CARD_COUNT", 8);
