@@ -16,3 +16,4 @@ define("MY_ROOT_UTILITY", MY_ROOT."/lib/utility.php");
 // 값 관련 상수
 define("MY_BOARD_CARD_COUNT", 8);
 define("CHECKLIST_INPUT_COUNT", 20);
+define("MY_VISIT_COUNT", 4);
