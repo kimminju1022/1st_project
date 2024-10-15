@@ -581,22 +581,21 @@ function insert_checklist(PDO $conn, array $arr_param){
 /**
  * 체크리스트 갱신할 때 쓰는 함수
  * 
- * @param $arr_param : :ischecked, :list_id, :input_id
+ * @param $arr_todolist_id : :list_id
+ * @param $arr_checklists_id : :checklists_id
  */
-function save_checklist(PDO $conn, array $arr_param){
+function save_checklists(PDO $conn, array $arr_todolist_id ,array $arr_checklists_id){
 
   $sql =
   " UPDATE checklists "
   ." SET "
-  ." ischecked = :ischecked "
-  ." ,updated_at = NOW() "
+  ." ischecked = FALSE "
+  ." ,updated_at - NOW() "
   ." WHERE "
-  ." list_id = :list_id "
-  ." AND input_id = :input_id "
-  ; 
+  ." list_id = :list_id ";
 
   $stmt = $conn -> prepare($sql);
-  $result_flg = $stmt -> execute($arr_param);
+  $result_flg = $stmt -> execute($arr_todolist_id);
   $result_cnt = $stmt -> rowCount();
 
   if(!$result_flg){
@@ -605,6 +604,23 @@ function save_checklist(PDO $conn, array $arr_param){
 
   if(!($result_cnt === 1)){
     throw new Exception("Error : Query count has problem -> save_checklist");
+  }
+
+  $sql =
+  " UPDATE checklists "
+  ." SET "
+  ." ischecked = TRUE "
+  ." ,updated_at = NOW() "
+  ." WHERE "
+  ." id IN ( :checklists_id ) "
+  ;
+
+  $stmt = $conn -> prepare($sql);
+  $result_flg = $stmt -> execute($arr_checklists_id);
+  $result_cnt = $stmt -> rowCount();
+
+  if(!$result_flg){
+    throw new Exception("Error : Query has problem -> save_checklist");
   }
 
   return null;
