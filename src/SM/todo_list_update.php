@@ -67,7 +67,7 @@ try {
         $conn->commit();
 
         // detail 페이지로 이동
-        header("Location: /detail.php?id=".$id."&page=".$page);
+        header("Location: /todo_list_detail.php?id=".$id."&page=".$page);
         exit;
     }
     } catch(Throwable $th) {
@@ -75,8 +75,8 @@ try {
         $conn -> rollBack();
     }
 
-
-    echo $th ->getMessage();
+    header("Location: /error.php");
+    // echo $th ->getMessage();
     exit;
 }
 

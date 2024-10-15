@@ -29,7 +29,8 @@ try {
     $result = get_todolist_detail($conn, $arr_prepare);
 
 } catch(Throwable $th) {
-    echo $th -> getMessage();
+    header("Location: /error.php");
+    // echo $th -> getMessage();
     exit;
 }
 

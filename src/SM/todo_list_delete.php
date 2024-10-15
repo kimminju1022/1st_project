@@ -78,7 +78,8 @@ try {
         $conn->rollBack();
     } // 오타 없이 코드를 잘 만들었다면 여기로 들어올 확률은 1% 정도이다.
 
-    echo $th ->getMessage();
+    header("Location: /error.php");
+    // echo $th ->getMessage();
     exit;
 }
 

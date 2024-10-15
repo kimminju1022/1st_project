@@ -33,7 +33,7 @@ require_once($_SERVER["DOCUMENT_ROOT"]."/config.php");
                             <p>울 수 있 ㄷㅏ는건.... </p>
                             <p>좋은ㄱ ㅓ ㅇ ㅑ..... </p>
                         </div>
-                        <form action="" method="post">
+                        <form action="#" method="post">
                             <input type="hidden" name="posttype" value="logout">
                             <div class="logout"><button type="submit" class="logout">로그아웃</button></div>
                         </form>
