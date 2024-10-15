@@ -697,10 +697,6 @@ function delete_todolist(PDO $conn, array | int $arr_param){
     throw new Exception("Error : Query has problem -> delete_todolist, checklists");
   }
 
-  if(!($result_cnt === 1)){
-    throw new Exception("Error : Query count has problem -> delete_todolist, checklists");
-  }
-
   return null;
 }
 
