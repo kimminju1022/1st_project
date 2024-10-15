@@ -1,27 +1,40 @@
 <?php
-require_once($_SERVER["DOCUMENT_ROOT"] . "/config.php");
-require_once(MY_ROOT_DB_LIB);
+require_once($_SERVER["DOCUMENT_ROOT"] . "/config.php"); //config파일의 정보를 가져와 쓴다
+require_once(MY_ROOT_DB_LIB); //db_lib 파일의 정보를 가져와 쓴다
 
 $conn = null;
 
+// try catch
 try {
     $id = isset($_GET["id"]) ? (int)$_GET["id"] : 0;
     $page = isset($_GET["page"]) ? (int)$_GET["page"] : 1;
+
 
     if ($id < 1) {
         throw new Exception("Param Error");
     }
 
-    $conn = my_db_conn();
+    $conn=my_db_conn();
+
     $arr_prepare = [
-        "limit" => 4,
-        "offset" => 0
+        "limit" => 4
+        ,"offset"=> 0
     ];
-    $result = get_todolist_board($conn, $arr_prepare);
-} catch (Throwable $th) {
+
+    $result = get_guestbook_board($conn, $arr_prepare);
+
+}catch(Throwable $th) {
     echo $th->getMessage();
     exit;
 }
+
+
+ // pagination
+    $page = isset($_GET["page"]) ? (int)$_GET["page"] : 1; // 현재 페이지 획득
+    $offset = ($page - 1) * MY_VISIT_COUNT; // 오프셋 설정
+    $prev_page_button_number = $page - 1 < 1 ? 1 : $page - 1; // 이전 버튼
+    $next_page_button_number = $page + 1 > $max_page ? $max_page : $page + 1; // 다음버튼
+
 ?>
 
 <!DOCTYPE html>
@@ -70,7 +83,9 @@ try {
                     <div class="main-title">
                         ブl억님으l ㅁıLI홈ㅍı
                     </div>
-                    <form action="/src/visit_insert.php">
+                    
+                    <!-- visit_insert -->
+                    <form action="/visit_insert.php" class="" method="post">
                         <div class="visit_comment">
                             <textarea maxlength="300" cols="10" rows="3" placeholder="남길 말씀이 있다면 여기에 남겨주세요"></textarea>
                             <!-- post -->
@@ -78,19 +93,21 @@ try {
                         </div>
                     </form>
                 </div>
+
+                <!-- visit_detail -->
                 <h3>방명록 <img src="/img/visit.png" alt="guest" id="g-icon"></h3>
                 <div class="visit_post">
-                    <!-- foreach로 4개 까지 표기 -->
+                    <!-- foreach로 4개 까지 표기 → 미니미,방명록,일자,삭제버튼 표시 -->
                     <?php foreach ($result as $item) { ?>
                         <div class="visit_box">
                             <img src="/img/icon.png" alt="미니미" class="visit_icon">
 
-                            <form action="/delete.html?id=1" method="get">
+                            <form action="/delete.php?id=1">
                                 <div class="visit_box">
                                     <img src="/img/icon.png" alt="미니미" class="visit_icon">
                                     <p class="visit-comment"><?php echo $item["content"] ?></p>
                                     <p class="visit_date"><?php echo $item["updated_at"] ?></p>
-                                    <button type="submit" class="delete-btn"><img src="/img/delete.png" alt="delete-btn"></button>
+                                    <a href="/delete.php" class="delete-btn"><img src="/img/delete.png" alt="delete-btn"></a>
                                 </div>
                             </form>
 
@@ -105,13 +122,21 @@ try {
                     <?php } ?>
 
                 </div>
-                <div class="visit_footer"> <!-- 유효페이지까지 가능하고, 전후, 현재만 표시 -->
-                    <a href="/"><img src="/img/left-pagebtn.png" alt="before" class="p_btn"></img></a>
-                    <a href="/"><button class="p_btn">p</button></a>
-                    <a href="/"><img src="/img/right-pagebtn.png" alt="before" class="p_btn"></img></a>
 
+                <!-- pagenation → 유효페이지까지 가능하고, 전후, 현재만 표시 -->
+                <div class="visit_footer">
+                    <?php if($page !== 1) { ?>
+                        <a href="/visit.php?page=<?php echo $prev_page_button_number ?>"><img src="/img/left-pagebtn.png" alt="before" class="p_btn"></a>
+                    <?php } else { ?>
+                        <div class="p_btn"></div>
+                    <?php } ?>
+                    <button class="p_btn"><?php echo $i ?></button>
+                    <?php if($page !== $max_page) { ?>
+                        <a href="/visit.php?page=<?php echo $next_page_button_number ?>"><img src="/img/right-pagebtn.png" alt="before" class="p_btn"></a>
+                    <?php } ?>
                 </div>
             </div>
+
             <div class="menu-bar">
                 <div class="home"><a href="" class="home-tab">HOME</a></div>
                 <div class="todo"><a href="" class="todo-tab">TODO</a></div>
