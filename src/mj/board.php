@@ -56,9 +56,9 @@
                     </div>
 
                     <!-- todo card foreach로 2행 4열 -->
+                    <div class="to_main">
                     <?php
                     foreach ($result as $item) { ?>
-                        <div class="to_main">
                             <div class="to_list">
                                 <div class="to_post">
                                     <p class="to_title"><?php echo $item["input_id"] ?></p>
@@ -68,22 +68,8 @@
                                     <?php } ?>
                                 </div>
                             </div>
-                        </div>
-                    <?php } ?>
-
-                    <!-- <div class="to_main">
-                        <div class="to_list">
-                            <div class="to_post">
-                                <p class="to_title">여행- 여수1박...</p>
-                                <p class="to_date">수행일자 : 10.02</p>
-                                <div class="list_box">
-                                    <input class="list_box" type="checkbox" id="chk"><label for="chk">여행계획서 작성</label>
-                                    <input class="list_box" type="checkbox"> 맛집리스트 만들기<br>
-                                    <input class="list_box" type="checkbox"> 세면도구<br>
-                                    <input class="list_box" type="checkbox"> 고양이시터 구하기<br>
-                                </div>
-                            </div>
-                        </div> -->
+                        <?php } ?>
+                    </div>
                     <div class="to_pagination">
                         <a href="/"><img src="/img/left-pagebtn.png" alt="왼쪽" class="to_btn"></a>
                         <a href="/">

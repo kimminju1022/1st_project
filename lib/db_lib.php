@@ -28,13 +28,13 @@ function my_db_conn(){
 function is_manager_account(PDO $conn, int $id ){
 
   $sql = 
-  " SELECT          "
-  ." users.id       "
-  ." FROM           "
-  ." users          "
-  ." WHERE          " 
-  ." ismanager = 1; "
-  ;
+      " SELECT          "
+      ." users.id       "
+      ." FROM           "
+      ." users          "
+      ." WHERE          " 
+      ." ismanager = 1; "
+      ;
 
   $stmt = $conn->query($sql);
 
@@ -48,6 +48,57 @@ function is_manager_account(PDO $conn, int $id ){
 
   return false;
 }
+
+/**
+ * pagination 조회할 때 쓰는 함수
+ */
+function select_pagination_visit(PDO $conn, array $arr_param){
+  $sql =
+        " SELECT             "
+        ."               *   "
+        ." FROM              "
+        ."       guest_books "
+        ." ORDER BY          "
+        ."           id DESC "
+        ." , created_at DESC "
+        ."           id DESC "
+        ." LIMIT :list_cnt   "
+        ." OFFSET :offset    "
+        ;
+
+        $stmt = $conn->prepare($sql);
+        $result_flg = $stmt->execute($arr_param);
+        
+        if($result_flg === false){
+          throw new Exception("쿼리실행실패");
+        }
+        
+       return $stmt->fetch();
+      }
+
+function select_pagination_board(PDO $conn, array $arr_param){
+  $sql =
+        " SELECT             "
+        ."               *   "
+        ." FROM              "
+        ."         todolists "
+        ." ORDER BY          "
+        ."           id DESC "
+        ." , created_at DESC "
+        ."           id DESC "
+        ." LIMIT :list_cnt   "
+        ." OFFSET :offset    "
+        ;
+
+        $stmt = $conn->prepare($sql);
+        $result_flg = $stmt->execute($arr_param);
+        
+        if($result_flg === false){
+          throw new Exception("쿼리실행실패");
+        }
+        
+        return $stmt->fetch();
+      }
 
 /**
  * todo list 카드에 출력할 때 쓰는 함수.
