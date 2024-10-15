@@ -602,10 +602,6 @@ function save_checklists(PDO $conn, array $arr_todolist_id ,array $arr_checklist
     throw new Exception("Error : Query has problem -> save_checklist");
   }
 
-  if(!($result_cnt === 1)){
-    throw new Exception("Error : Query count has problem -> save_checklist");
-  }
-
   $sql =
   " UPDATE checklists "
   ." SET "
