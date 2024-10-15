@@ -31,38 +31,47 @@ try {
         $result = get_todolist_detail($conn, $arr_prepare);
 
     } else {
-        // POST 처리
-        // parameter 획득(id, page, title, content)
-        
-        $id = isset($_POST["id"]) ? (int)$_POST["id"] : 0;
-        $name = isset($_POST["title_bar"]) ? $_POST["title_bar"] : "";
-        
-        if($id < 1 ) {
-            throw new Exception("파라미터 오류 : P");
+        switch($_POST["posttype"]){
+            case "logout":
+                break;
+            case "delete":
+                // POST 처리
+                // parameter 획득(id, page, title, content)
+                
+                $id = isset($_POST["id"]) ? (int)$_POST["id"] : 0;
+                
+                if($id < 1 ) {
+                    throw new Exception("파라미터 오류 : P");
+                }
+
+                // PDO Instance
+                $conn = my_db_conn();
+
+                // beginTransaction / Transaction Start 
+                // 데이터에 변화가 생기니까 transactio을 하는것임
+                $conn->beginTransaction();
+
+                // 데이터 조회
+                $arr_prepare = [
+                    "id" => $id
+                ];
+
+                // 삭제 처리
+                delete_todolist($conn, $arr_prepare);
+
+                // commit
+                $conn->commit();
+
+                // 리스트 페이지로 이동
+                header("Location: /");
+                // 또는 header("Location: /index.php");
+                exit;
+                break;
+            default:
+                throw new Exception("posttype 정의가 필요합니다.");
+                break;
         }
 
-        // PDO Instance
-        $conn = my_db_conn();
-        
-        // beginTransaction / Transaction Start 
-        // 데이터에 변화가 생기니까 transactio을 하는것임
-        $conn->beginTransaction();
-
-        // 데이터 조회
-        $arr_prepare = [
-            "id" => $id
-        ];
-
-        // 삭제 처리
-        delete_todolist($conn, $arr_prepare);
-
-        // commit
-        $conn->commit();
-
-        // 리스트 페이지로 이동
-        header("Location: /");
-        // 또는 header("Location: /index.php");
-        exit;
     }
 } catch(Throwable $th) {
     if(!is_null($conn) && $conn->inTransaction()) {
@@ -105,7 +114,7 @@ try {
                             <p>울 수 있 ㄷㅏ는건.... </p>
                             <p>좋은ㄱ ㅓ ㅇ ㅑ..... </p>
                         </div>
-                        <form action="" method="post">
+                        <form action="#" method="post">
                             <input type="hidden" name="posttype" value="logout">
                             <div class="logout"><button type="submit" class="logout">로그아웃</button></div>
                         </form>
@@ -141,9 +150,10 @@ try {
                             <p class="write sub_p">정말 기억을 지우시겠습니까?</p>
                         </div>
                     </div>
-                    <form action="/todo_list_delete.html" method="post" class="">
+                    <form action="/todo_list_delete.php" method="post" class="">
                         <div class="btn-insert">
-                            <input type="hidden" name="posttype" value="<?php echo $result[0]["todolist_id"] ?>">
+                            <input type="hidden" name="posttype" value="delete">
+                            <input type="hidden" name="id" value="<?php echo $result[0]["todolist_id"] ?>">
                             <a href="/board.php?id=<?php echo $result[0]["todolist_id"]; ?>&page=<?php echo $page; ?>"><button type="button" class="btn">취소</button></a>
                             <button type="submit" class="btn">삭제하기</button>
                         </div>
