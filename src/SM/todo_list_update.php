@@ -154,13 +154,13 @@ try {
                                             <input type="text" name="text" maxlength="40" class="chk_text" value="<?php echo $item["content"] ?>">
                                             <hr class="bar">
                                         </div>
-                                    <?php } ?>                   
+                                    <?php } ?>           
                                 </div>
                             </div>
                         </div>
                         <div class="btn-insert">
                             <input type="hidden" name="posttype" value="logout">
-                            <a href="/photo.php?id=<?php echo $result[0]["todolist_id"] ?>&page=<?php echo $page ?>"><button type="button" class="btn">수정 취소</button></a>
+                            <a href="/todo_list_detail.php?id=<?php echo $result[0]["todolist_id"] ?>&page=<?php echo $page ?>"><button type="button" class="btn">수정 취소</button></a>
                             <button type="submit" class="btn">수정 완료</button>
                         </div>
                     </form>
