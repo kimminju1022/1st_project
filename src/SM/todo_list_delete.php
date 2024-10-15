@@ -144,7 +144,7 @@ try {
                     <form action="/todo_list_delete.html" method="post" class="">
                         <div class="btn-insert">
                             <input type="hidden" name="posttype" value="<?php echo $result[0]["todolist_id"] ?>">
-                            <a href="/board-01.php?id=<?php echo $result[0]["todolist_id"]; ?>&page=<?php echo $page; ?>"><button type="button" class="btn">취소</button></a>
+                            <a href="/board.php?id=<?php echo $result[0]["todolist_id"]; ?>&page=<?php echo $page; ?>"><button type="button" class="btn">취소</button></a>
                             <button type="submit" class="btn">삭제하기</button>
                         </div>
                     </form>
