@@ -712,10 +712,10 @@ function delete_todolist(PDO $conn, array | int $arr_param){
   $arr_prepare = [];
 
   if(gettype($id) === "integer" ){
-    $arr_prepare = $arr_param;
+    $arr_prepare["id"] = $id;
   }
   else{
-    $arr_prepare["id"] = $id;
+    $arr_prepare = $arr_param;
   }
 
   $stmt = $conn -> prepare($sql);
