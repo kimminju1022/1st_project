@@ -6,14 +6,6 @@ $conn = null;
 
 // try catch
 try {
-    $id = isset($_GET["id"]) ? (int)$_GET["id"] : 0;
-    $page = isset($_GET["page"]) ? (int)$_GET["page"] : 1;
-
-
-    if ($id < 1) {
-        throw new Exception("Param Error");
-    }
-
     $conn=my_db_conn();
 
     $arr_prepare = [
