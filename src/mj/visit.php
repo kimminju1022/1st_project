@@ -90,7 +90,9 @@ try {
 
                     <div class="visit_post">
                         <?php foreach ($result as $item) { ?>
-                            <form action="/src/mj/delete.php?<?php echo "id=".$item["id"] ?>" method="get">
+                            <form action="/src/mj/visit_delete.php" method="get">
+                                <input type="hidden" name="id" value="<?php echo $item["id"] ?>">
+                                <input type="hidden" name="page" value="<?php echo $page ?>">
                                 <div class="visit_box">
                                     <img src="/img/icon.png" alt="미니미" class="visit_icon">
                                     <p><?php echo $item["content"] ?></p>
