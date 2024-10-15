@@ -1,24 +1,9 @@
 <?php
 require_once($_SERVER["DOCUMENT_ROOT"] . "/config.php"); //config파일의 정보를 가져와 쓴다
 require_once(MY_ROOT_DB_LIB); //db_lib 파일의 정보를 가져와 쓴다
+require_once(MY_ROOT_UTILITY);
 
 $conn = null;
-
-// try catch
-try {
-    $conn = my_db_conn();
-
-    $arr_prepare = [
-        "limit" => 4,
-        "offset" => 0
-    ];
-
-    $result = get_guestbook_board($conn, $arr_prepare);
-} catch (Throwable $th) {
-    echo $th->getMessage();
-    exit;
-}
-
 // pagenation 관련-------------
 $conn = null;
 $max_board_cnt = 0;
@@ -26,7 +11,7 @@ $max_page = 0;
 try {
     // PDO Instance
     $conn = my_db_conn();
-    
+
     // max page 획득 처리
     $max_board_cnt = cnt_guestbook_board($conn); // 게시글 총 수 획득
     $max_page = (int)ceil($max_board_cnt / MY_VISIT_COUNT); // max page 획득
@@ -39,17 +24,16 @@ try {
 
     // pagination select 처리
     $arr_prepare = [
-        "list_cnt"  => MY_VISIT_COUNT
-        ,"offset"   => $offset
+        "list_cnt"  => MY_VISIT_COUNT,
+        "offset"   => $offset
     ];
 
-    $result = ($conn, $arr_prepare);
-} catch(Throwable $th) {
-    require_once(MY_ROOT_ERRORPAGE);
+    $result = select_pagination_visit($conn, $arr_prepare);
+} catch (Throwable $th) {
+    echo $th->getMessage();
     exit;
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -83,11 +67,10 @@ try {
                             <p>울 수 있 ㄷㅏ는건.... </p>
                             <p>좋은ㄱ ㅓ ㅇ ㅑ..... </p>
                         </div>
-                        <!-- 폼태그확인하기 -->
-                        <form action="/login.php">
-                            <div class="logout"><button class="logout">로그아웃</button></div>
+                        <!-- form해주기!!! -->
+                        <form action="#" method="post">
+                            <div class="logout"><button type="submit" class="logout">로그아웃</button></div>
                         </form>
-
                     </div>
                 </div>
             </div>
@@ -96,60 +79,44 @@ try {
                     <div class="main-title">
                         ブl억님으l ㅁıLI홈ㅍı
                     </div>
-
-                    <!-- visit_insert -->
-                    <form action="/visit_insert.php" class="" method="post">
+                    <form action="/src/mj/visit_insert.php" method="POST">
                         <div class="visit_comment">
-                            <textarea maxlength="300" cols="10" rows="3" placeholder="남길 말씀이 있다면 여기에 남겨주세요"></textarea>
-                            <!-- post -->
+                            <input type="hidden" name="user_id" value="1">
+                            <textarea maxlength="300" name="content" cols="10" rows="3" placeholder="남길 말씀이 있다면 여기에 남겨주세요"></textarea>
                             <button type="submit" class="post-btn">글남기기</button>
                         </div>
                     </form>
-                </div>
+                    <h3>방명록 <img src="/img/visit.png" alt="guest" id="g-icon"></h3>
 
-                <!-- visit_detail -->
-                <h3>방명록 <img src="/img/visit.png" alt="guest" id="g-icon"></h3>
-                <div class="visit_post">
-                    <!-- foreach로 4개 까지 표기 → 미니미,방명록,일자,삭제버튼 표시 -->
-                    <?php foreach ($result as $item) { ?>
-                        <div class="visit_box">
-                            <img src="/img/icon.png" alt="미니미" class="visit_icon">
-
-                            <form action="/delete.php?id=1">
+                    <div class="visit_post">
+                        <?php foreach ($result as $item) { ?>
+                            <form action="/src/mj/delete.php?<?php echo "id=".$item["id"] ?>" method="get">
                                 <div class="visit_box">
                                     <img src="/img/icon.png" alt="미니미" class="visit_icon">
-                                    <p class="visit-comment"><?php echo $item["content"] ?></p>
-                                    <p class="visit_date"><?php echo $item["updated_at"] ?></p>
-                                    <a href="/delete.php" class="delete-btn"><img src="/img/delete.png" alt="delete-btn"></a>
+                                    <p><?php echo $item["content"] ?></p>
+                                    <p class="visit_date"><?php echo $item["created_at"] ?></p>
+                                    <button type="submit" class="delete-btn"><img src="/img/delete.png" alt="delete-btn"></button>
                                 </div>
                             </form>
+                        <?php } ?>
 
-
-                            <form action="/visit.php" method="post">
-                                <input type="hidden" name="id" value="<?php echo $result["id"] ?>">
-                                <a href="/detail.php?id=<?php echo $result["id"] ?>&page=<?php echo $page ?>"><img src="/img/delete.png" alt="delete-btn"></a>
-                            </form>
-
-
-                        </div>
-                    <?php } ?>
-
+                    </div>
+                    <!-- pagenation → 유효페이지까지 가능하고, 전후, 현재만 표시 -->
+                    <div class="visit_footer">
+                        <?php if ($page !== 1) { ?>
+                            <a href="/visit.php?page=<?php echo $prev_page_button_number ?>"><img src="/img/left-pagebtn.png" alt="before" class="p_btn"></a>
+                        <?php } else { ?>
+                            <div class="p_btn"></div>
+                        <?php } ?>
+                        <button class="p_btn"><?php echo $page ?></button>
+                        <?php if ($page !== $max_page) { ?>
+                            <a href="/visit.php?page=<?php echo $next_page_button_number ?>"><img src="/img/right-pagebtn.png" alt="before" class="p_btn"></a>
+                        <?php } ?>
+                    </div>
                 </div>
 
-                <!-- pagenation → 유효페이지까지 가능하고, 전후, 현재만 표시 -->
-                <div class="visit_footer">
-                    <?php if ($page !== 1) { ?>
-                        <a href="/visit.php?page=<?php echo $prev_page_button_number ?>"><img src="/img/left-pagebtn.png" alt="before" class="p_btn"></a>
-                    <?php } else { ?>
-                        <div class="p_btn"></div>
-                    <?php } ?>
-                    <button class="p_btn"><?php echo $i ?></button>
-                    <?php if ($page !== $max_page) { ?>
-                        <a href="/visit.php?page=<?php echo $next_page_button_number ?>"><img src="/img/right-pagebtn.png" alt="before" class="p_btn"></a>
-                    <?php } ?>
-                </div>
+
             </div>
-
             <div class="menu-bar">
                 <div class="home"><a href="" class="home-tab">HOME</a></div>
                 <div class="todo"><a href="" class="todo-tab">TODO</a></div>
@@ -158,7 +125,6 @@ try {
                 <div class="credit"><a href="" class="credit-tab">CREDIT</a></div>
             </div>
         </div>
-
     </container>
 </body>
 

@@ -54,16 +54,17 @@ function is_manager_account(PDO $conn, int $id ){
  */
 function select_pagination_visit(PDO $conn, array $arr_param){
   $sql =
-        " SELECT             "
-        ."               *   "
-        ." FROM              "
-        ."       guest_books "
-        ." ORDER BY          "
-        ."           id DESC "
-        ." , created_at DESC "
-        ."           id DESC "
-        ." LIMIT :list_cnt   "
-        ." OFFSET :offset    "
+        " SELECT              "
+        ."               *    "
+        ." FROM               "
+        ."       guest_books  "
+        ." WHERE              "
+        ." deleted_at IS NULL "
+        ." ORDER BY           "
+        ."           id DESC  "
+        ." , created_at DESC  "
+        ." LIMIT :list_cnt    "
+        ." OFFSET :offset     "
         ;
 
         $stmt = $conn->prepare($sql);
@@ -73,7 +74,7 @@ function select_pagination_visit(PDO $conn, array $arr_param){
           throw new Exception("쿼리실행실패");
         }
         
-       return $stmt->fetch();
+       return $stmt->fetchAll();
       }
 
 function select_pagination_board(PDO $conn, array $arr_param){
@@ -399,6 +400,7 @@ function cnt_guestbook_board(PDO $conn){
   ."          COUNT(*)      "
   ." FROM                   "
   ."     guest_books        "
+  ." WHERE                  "
   ."     deleted_at IS NULL "
   ;
   $stmt = $conn->query($sql);
