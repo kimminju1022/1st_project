@@ -581,7 +581,7 @@ function insert_checklist(PDO $conn, array $arr_param){
 /**
  * 체크리스트 갱신할 때 쓰는 함수
  * 
- * @param $arr_param : :ischecked, :id
+ * @param $arr_param : :ischecked, :list_id, :input_id
  */
 function save_checklist(PDO $conn, array $arr_param){
 
@@ -591,8 +591,9 @@ function save_checklist(PDO $conn, array $arr_param){
   ." ischecked = :ischecked "
   ." ,updated_at = NOW() "
   ." WHERE "
-  ." id = :id "
-  ." ; ";
+  ." list_id = :list_id "
+  ." AND input_id = :input_id "
+  ; 
 
   $stmt = $conn -> prepare($sql);
   $result_flg = $stmt -> execute($arr_param);
