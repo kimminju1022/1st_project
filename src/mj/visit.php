@@ -6,27 +6,48 @@ $conn = null;
 
 // try catch
 try {
-    $conn=my_db_conn();
+    $conn = my_db_conn();
 
     $arr_prepare = [
-        "limit" => 4
-        ,"offset"=> 0
+        "limit" => 4,
+        "offset" => 0
     ];
 
     $result = get_guestbook_board($conn, $arr_prepare);
-
-}catch(Throwable $th) {
+} catch (Throwable $th) {
     echo $th->getMessage();
     exit;
 }
 
+// pagenation 관련-------------
+$conn = null;
+$max_board_cnt = 0;
+$max_page = 0;
+try {
+    // PDO Instance
+    $conn = my_db_conn();
+    
+    // max page 획득 처리
+    $max_board_cnt = cnt_guestbook_board($conn); // 게시글 총 수 획득
+    $max_page = (int)ceil($max_board_cnt / MY_VISIT_COUNT); // max page 획득
 
- // pagination
+    // pagination 설정
     $page = isset($_GET["page"]) ? (int)$_GET["page"] : 1; // 현재 페이지 획득
     $offset = ($page - 1) * MY_VISIT_COUNT; // 오프셋 설정
     $prev_page_button_number = $page - 1 < 1 ? 1 : $page - 1; // 이전 버튼
     $next_page_button_number = $page + 1 > $max_page ? $max_page : $page + 1; // 다음버튼
 
+    // pagination select 처리
+    $arr_prepare = [
+        "list_cnt"  => MY_VISIT_COUNT
+        ,"offset"   => $offset
+    ];
+
+    $result = ($conn, $arr_prepare);
+} catch(Throwable $th) {
+    require_once(MY_ROOT_ERRORPAGE);
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -64,7 +85,7 @@ try {
                         </div>
                         <!-- 폼태그확인하기 -->
                         <form action="/login.php">
-                        <div class="logout"><button class="logout">로그아웃</button></div>
+                            <div class="logout"><button class="logout">로그아웃</button></div>
                         </form>
 
                     </div>
@@ -75,7 +96,7 @@ try {
                     <div class="main-title">
                         ブl억님으l ㅁıLI홈ㅍı
                     </div>
-                    
+
                     <!-- visit_insert -->
                     <form action="/visit_insert.php" class="" method="post">
                         <div class="visit_comment">
@@ -117,13 +138,13 @@ try {
 
                 <!-- pagenation → 유효페이지까지 가능하고, 전후, 현재만 표시 -->
                 <div class="visit_footer">
-                    <?php if($page !== 1) { ?>
+                    <?php if ($page !== 1) { ?>
                         <a href="/visit.php?page=<?php echo $prev_page_button_number ?>"><img src="/img/left-pagebtn.png" alt="before" class="p_btn"></a>
                     <?php } else { ?>
                         <div class="p_btn"></div>
                     <?php } ?>
                     <button class="p_btn"><?php echo $i ?></button>
-                    <?php if($page !== $max_page) { ?>
+                    <?php if ($page !== $max_page) { ?>
                         <a href="/visit.php?page=<?php echo $next_page_button_number ?>"><img src="/img/right-pagebtn.png" alt="before" class="p_btn"></a>
                     <?php } ?>
                 </div>

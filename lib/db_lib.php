@@ -339,6 +339,25 @@ function insert_guestbook_board(PDO $conn, array $arr_param){
 }
 
 /**
+ * 방명록 총 게시글 조회할 때 쓰는 함수
+ * 필요정보
+ */
+function cnt_guestbook_board(PDO $conn){
+  $sql =
+  " SELECT                  "
+  ."          COUNT(*)      "
+  ." FROM                   "
+  ."     guest_books        "
+  ."     deleted_at IS NULL "
+  ;
+  $stmt = $conn->query($sql);
+  $result = $stmt->fetch();
+
+  return $result["COUNT(*)"];
+}
+
+
+/**
  * 방명록 삭제할 때 쓰는 함수
  * 
  * 필요한 정보
