@@ -589,7 +589,7 @@ function save_checklists(PDO $conn, array $arr_todolist_id ,array $arr_checklist
   $sql =
   " UPDATE checklists "
   ." SET "
-  ." ischecked = FALSE "
+  ." ischecked = 0 "
   ." ,updated_at = NOW() "
   ." WHERE "
   ." list_id = :list_id ";
@@ -605,7 +605,7 @@ function save_checklists(PDO $conn, array $arr_todolist_id ,array $arr_checklist
   $sql =
   " UPDATE checklists "
   ." SET "
-  ." ischecked = TRUE "
+  ." ischecked = 1 "
   ." ,updated_at = NOW() "
   ." WHERE "
   ." id IN ( :checklists_id ) "
