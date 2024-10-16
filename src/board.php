@@ -1,7 +1,7 @@
 <?php
-require_once($_SERVER["DOCUMENT_ROOT"] . "/config.php");
+require_once($_SERVER["DOCUMENT_ROOT"]."/config.php");
 require_once(MY_ROOT_DB_LIB);
-
+require_once(MY_ROOT_UTILITY);
 // pagenation 관련-------------
 $conn = null;
 $max_board_cnt = 0;

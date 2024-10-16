@@ -1,18 +1,23 @@
 <?php 
 require_once($_SERVER["DOCUMENT_ROOT"]."/config.php");
 require_once(MY_ROOT_DB_LIB);
+require_once(MY_ROOT_UTILITY);
 
 $conn=null;
+session_start();
+
+go_login();
 
 try{
-    // $id = isset($_GET["id"]) ? (int)$_GET["id"] : 0 ;
+    if(strtoupper($_SERVER["REQUEST_METHOD"] === "POST")){
+        $posttype = isset($_POST["posttype"]) ? $_POST["posttype"] : null;
 
-    // $page = isset($_GET["page"]) ? (int)$_GET["page"] : 1 ;
-
-    // if($id <1) {
-    //     throw new Exception("Param Error");
-    // }
-
+        if($posttype === "logout"){
+            logout();
+            exit;
+        }
+    }
+    else{
     $conn=my_db_conn();
 
     $arr_prepare = [
@@ -23,7 +28,7 @@ try{
     $result = get_todolist_board($conn, $arr_prepare);
 
     $result2 = get_guestbook_board($conn, $arr_prepare);
-
+    }
 }catch(Throwable $th) {
     echo $th->getMessage();
     exit;
@@ -59,7 +64,10 @@ try{
                             <p>울 수 있 ㄷㅏ는건.... </p>
                             <p>좋은ㄱ ㅓ ㅇ ㅑ..... </p>
                         </div>
-                        <button class="logout">로그아웃</button>
+                        <form action="/index.php" method="post">
+                        <div class="logout"><button class="logout">로그아웃</button></div>
+                            <input type="hidden" name="posttype" value="logout">
+                        </form>
                     </div>
                 </div>
             </div>
@@ -104,11 +112,11 @@ try{
                 </div>
             </div>
             <div class="menu-bar">
-                <div class="home"><a href="" class="home-tab">HOME</a></div>
-                <div class="todo"><a href="" class="todo-tab">TODO</a></div>
-                <div class="diary"><a href="" class="diary-tab">DIARY</a></div>
-                <div class="visit-btn"><a href="" class="visit-tab">VISIT</a></div>
-                <div class="credit"><a href="" class="credit-tab">CREDIT</a></div>
+                <div class="home"><a href="/index.php" class="home-tab">HOME</a></div>
+                <div class="todo"><a href="/board.php?page_checklist_today=1&page_todo=1" class="todo-tab">TODO</a></div>
+                <div class="diary"><a href="#" class="diary-tab">DIARY</a></div>
+                <div class="visit-btn"><a href="/visit.php" class="visit-tab">VISIT</a></div>
+                <div class="credit"><a href="#" class="credit-tab">CREDIT</a></div>
             </div>
         </div>
     </container>  

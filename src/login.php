@@ -75,7 +75,7 @@ try{
                         Lorem ipsum, dolor sit amet consectetur adipisicing elit.<br>
                         Lorem ipsum, dolor sit amet consectetur adipisicing elit.<br>
                     </div>
-                    <form action="" method="post">
+                    <form action="/login.php" method="post">
                         <div class="login-back">
                             <div class="login">
                                 <div class="id">
