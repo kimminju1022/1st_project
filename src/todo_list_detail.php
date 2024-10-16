@@ -129,7 +129,7 @@ try {
                                         </div>
                                     <?php } for(;$i<20; $i++) { ?>
                                         <div class="chk_content">
-                                            <input type="checkbox" class="check_btn" name="chk[]" value="<?php echo $i ?>"?>
+                                            <input type="checkbox" class="check_btn" name="chk[]" value="<?php echo $i ?>">
                                             <input type="text" name="text" maxlength="40" class="chk_text" value="" disabled>
                                             <hr class="bar">
                                         </div>

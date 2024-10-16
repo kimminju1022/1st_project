@@ -2,7 +2,11 @@
 
 require_once($_SERVER["DOCUMENT_ROOT"]."/config.php");
 require_once(MY_ROOT_DB_LIB);
+require_once(MY_ROOT_UTILITY);
+
 session_start();
+
+go_login();
 
 $conn = null;
 
@@ -11,7 +15,10 @@ try {
         // GET처리
         // page 획득
         $id = isset($_GET["id"]) ? (int)$_GET["id"] : 0;
-        $page = isset($_GET["page"]) ? (int)$_GET["page"] : 1;
+
+        $page_todo = isset($_GET["page_todo"]) ? (int)$_GET["page_todo"] : 1;
+
+        $page_checklist = isset($_GET["page_checklist"]) ? (int)$_GET["page_checklist"] : 1;
 
         if($id < 1) {
             throw new Exception("파라미터 오류 : G");
@@ -28,47 +35,55 @@ try {
         $result = get_todolist_detail($conn, $arr_prepare);
 
     } else {
-    // POST 처리
-        // parameter 획득(id, page, 제목, deadline)
-        // img는 밑에서 동적 처리를 하기 때문에 여기서 획득하지 않는다.
-        // id 획득
-        $id = isset($_POST["id"]) ? (int)$_POST["id"] : 0;
 
-        // page 획득
-        $page = isset($_POST["page"]) ? (int)$_POST["page"] : 1;
+        $posttype = isset($_POST["posttype"]) ? (int)$_POST["posttype"] : "";
 
-        // name, 제목 획득
-        $name = isset($_POST["title_bar"]) ? $_POST["title_bar"] : "";
-        
-        // deadline 획득
-        $deadline = isset($_POST["deadline"]) ? $_POST["deadline"] : date("Ymd");
-
-        $checklists = [];
-
-        if($id < 1 || $name ==="") {
-            throw new Exception("파라미터 오류 : P");
+        if($posttype === "logout"){
+            logout();
         }
-    
-        // PDO Instance
-        $conn = my_db_conn();
+        else{
+        // POST 처리
+            // parameter 획득(id, page, 제목, deadline)
+            // img는 밑에서 동적 처리를 하기 때문에 여기서 획득하지 않는다.
+            // id 획득
+            $id = isset($_POST["id"]) ? (int)$_POST["id"] : 0;
+
+            // page 획득
+            $page = isset($_POST["page"]) ? (int)$_POST["page"] : 1;
+
+            // name, 제목 획득
+            $name = isset($_POST["title_bar"]) ? $_POST["title_bar"] : "";
+            
+            // deadline 획득
+            $deadline = isset($_POST["deadline"]) ? $_POST["deadline"] : date("Ymd");
+
+            $checklists = [];
+
+            if($id < 1 || $name ==="") {
+                throw new Exception("파라미터 오류 : P");
+            }
         
-        // beginTransaction / Transaction Start
-        $conn->beginTransaction();
+            // PDO Instance
+            $conn = my_db_conn();
+            
+            // beginTransaction / Transaction Start
+            $conn->beginTransaction();
 
-        $arr_prepare = [
-            "id" => $id
-            ,"name" => $name
-            ,"deadline" => $deadline
-        ];
-       
-        update_todolist($conn, $arr_prepare, $checklists);
+            $arr_prepare = [
+                "id" => $id
+                ,"name" => $name
+                ,"deadline" => $deadline
+            ];
+        
+            update_todolist($conn, $arr_prepare, $checklists);
 
-        // commit
-        $conn->commit();
+            // commit
+            $conn->commit();
 
-        // detail 페이지로 이동
-        header("Location: /todo_list_detail.php?id=".$id."&page=".$page);
-        exit;
+            // detail 페이지로 이동
+            header("Location: /todo_list_detail.php?id=".$id."&page_todo=".$page_todo."&page_checklist=".$page_checklist);
+            exit;
+        }
     }
     } catch(Throwable $th) {
     if(!is_null($conn) && $conn -> inTransaction()) {
@@ -112,7 +127,7 @@ try {
                             <p>울 수 있 ㄷㅏ는건.... </p>
                             <p>좋은ㄱ ㅓ ㅇ ㅑ..... </p>
                         </div>
-                        <form method="post" action="#">
+                        <form method="post" action="/todo_list_update.php">
                             <input type="hidden" name="posttype" value="logout">
                             <div class="logout"><button type="submit" class="logout">로그아웃</button></div>
                         </form>
@@ -132,7 +147,8 @@ try {
 
                     <form action="/todo_list_update.php" method="post" class="">
                         <input type="hidden" name="id" value="<?php echo $result[0]["todolist_id"] ?>">
-                        <input type="hidden" name="page" value="<?php echo $page ?>">
+                        <input type="hidden" name="page_todo" value="<?php echo $page_todo ?>">
+                        <input type="hidden" name="page_checklist" value="<?php echo $page_checklist ?>">
                         <div>
                             <div class="calendar">
                                 <div class="sub_title">제목</div>
@@ -148,19 +164,25 @@ try {
                         <div class="sub_content">
                             <div class="chk_area">
                                 <div class="chk_list">
-                                    <?php foreach($result as $item) { ?>
-                                        <div>
-                                            <input type="checkbox" class="check_btn" value="<?php echo $item["checklist_id"] ?>" <?php if($item["ischecked"] === true) { echo "checked" ;} ?>>
-                                            <input type="text" name="text" maxlength="40" class="chk_text" value="<?php echo $item["content"] ?>">
+                                    <?php $i = 0; for(;$i<count($result); $i++) {?>
+                                        <div class="chk_content">
+                                            <input type="checkbox" class="check_btn" name="chk[]" value="<?php echo $result[$i]["checklist_id"] ?>" <?php if($result[$i]["ischecked"] === 1) { echo "checked" ;} ?> disabled>
+                                            <input type="text" name="text" maxlength="40" class="chk_text" value="<?php echo $result[$i]["content"] ?>">
                                             <hr class="bar">
                                         </div>
-                                    <?php } ?>           
+                                    <?php } for(;$i<20; $i++) { ?>
+                                        <div class="chk_content">
+                                            <input type="checkbox" class="check_btn" name="chk[]" value="<?php echo $i ?>" disabled>
+                                            <input type="text" name="text" maxlength="40" class="chk_text" value="" >
+                                            <hr class="bar">
+                                        </div>
+                                    <?php } ?>         
                                 </div>
                             </div>
                         </div>
                         <div class="btn-insert">
-                            <input type="hidden" name="posttype" value="logout">
-                            <a href="/todo_list_detail.php?id=<?php echo $result[0]["todolist_id"] ?>&page=<?php echo $page ?>"><button type="button" class="btn">수정 취소</button></a>
+                            <input type="hidden" name="posttype" value="logout">                            
+                            <a href="/todo_list_detail.php?<?php echo "id=".$result[0]["todolist_id"]."&page_todo=".$page_todo."&page_checklist=".$page_checklist; ?>"><button type="button" class="btn">수정 취소</button></a>
                             <button type="submit" class="btn">수정 완료</button>
                         </div>
                     </form>
