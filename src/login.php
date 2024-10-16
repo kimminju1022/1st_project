@@ -23,7 +23,8 @@ try{
       header("Location: /index.php");
     }
     else{
-      throw new Exception("아이디 또는 비밀번호가 맞지 않습니다.");
+        echo "id : ".$user_name." pw : ".$user_password;
+        throw new Exception("아이디 또는 비밀번호가 맞지 않습니다.");
     }
   }
 } catch(Throwable $th) {

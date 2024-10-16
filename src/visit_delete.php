@@ -50,7 +50,7 @@ try {
         $conn->commit();
 
         // 리스트페이지 이동
-        header("Location: /src/mj/visit.php?page=".$page );
+        header("Location: /visit.php?page=".$page );
         exit;
     }
 } catch (Throwable $th) {
@@ -120,12 +120,12 @@ try {
                             <p class="write">더 이상 다른 이에게 노출되지 않습니다.</p>
                             <p class="write sub_p">정말 기억을 지우시겠습니까?</p>
                         </div>
-                        <form action="/src/mj/visit_delete.php" class="" method="post">
+                        <form action="/visit_delete.php" class="" method="post">
                             <input type="hidden" name="id" value="<?php echo $id ?>">
                             <input type="hidden" name="page" value="<?php echo $page ?>">
                             <!-- php적용 -->
                             <div class="btn-insert">
-                                <a href="/src/mj/visit.php?page=<?php echo $page ?>"><button type="button" class="btn" >취소</button></a>
+                                <a href="/visit.php?page=<?php echo $page ?>"><button type="button" class="btn" >취소</button></a>
                                 <button type="submit" class="btn">삭제하기</button>
                             </div>
                         </form>
@@ -134,11 +134,11 @@ try {
             </div>
 
             <div class="menu-bar">
-                <div class="home"><a href="" class="home-tab">HOME</a></div>
-                <div class="todo"><a href="" class="todo-tab">TODO</a></div>
-                <div class="diary"><a href="" class="diary-tab">DIARY</a></div>
-                <div class="visit"><a href="" class="visit-tab">VISIT</a></div>
-                <div class="credit"><a href="" class="credit-tab">CREDIT</a></div>
+                <div class="home"><a href="/index.php" class="home-tab">HOME</a></div>
+                <div class="todo"><a href="/board.php?page_checklist_today=1&page_todo=1" class="todo-tab">TODO</a></div>
+                <div class="diary"><a href="#" class="diary-tab">DIARY</a></div>
+                <div class="visit-btn"><a href="/visit.php" class="visit-tab">VISIT</a></div>
+                <div class="credit"><a href="#" class="credit-tab">CREDIT</a></div>
             </div>
         </div>
 
