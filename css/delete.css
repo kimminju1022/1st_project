@@ -1,7 +1,0 @@
-.d_container{
-    display: grid;
-    grid-template-rows: 3fr 8fr 2fr;
-    height: 600px;
-    align-items: center;
-    justify-content: center;
-}
