@@ -11,6 +11,7 @@ try {
     $conn = my_db_conn();
     $id = isset($_SESSION["id"]) ? (int)$_SESSION["id"] : 0;
     $content = isset($_POST["content"]) ? $_POST["content"] : "";
+    $page = isset($_POST["page"]) ? $_POST["page"] : 1;
 
     if($id < 0){
         throw new Exception("error : id can't find.");
@@ -30,7 +31,6 @@ try {
     $conn->commit();
 
     header("Location: /visit.php");
-    exit;
 } catch (Throwable $th) {
     if (!is_null($conn) && $conn->inTransaction()) {
         $conn->rollBack();
