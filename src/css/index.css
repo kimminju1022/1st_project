@@ -61,54 +61,52 @@ container {
     margin-top: 25px;
 }
 
-.main-side-bar {
-    padding-top: 150px;
-}
-
 .emotion {
-    background-color: lightgray;
     width: 250px;
     height: 40px;
-    font-size: 1.5rem;
-    font-weight: 400;
-    justify-content: center;
-    margin: auto;
-    padding-left: 5px;
-    padding-top: 6px;
+    border-radius: 5px;
+    border: 1px solid black;
+    color: #5ccfe2;
+    font-size: 1.4rem;
+    margin-left: 15px;
+    text-indent: 30px;
+    line-height: 40px;
+    font-weight: 900;
 }
 
-.emotion_comment {
-    color: #5ccfe2;
-    font-size: 1.2rem;
-    font-weight: 700;
-    padding-left: 30px;
+.logo {
+    padding-left: 45px;
+    padding-top: 15px;
 }
+
 
 .profile {
     width: 250px;
-    height: 300px;
-    margin: auto;
+    height: 250px;
+    margin-left: 15px;
     padding-top: 10px;
 }
 
 .comment {
-    font-size: 1.2rem;
-    padding-left: 25px;
+    font-size: 1.15rem;
+    margin-left: 25px;
+    line-height: 35px;
 }
 
 .logout {
-    width: 250px;
-    height: 30px;
-    margin: auto;
+    width: 180px;
+    height: 40px;
     font-size: 1.2rem;
     font-weight: 800;
+    margin-top: 20px;
+    margin-left: 45px;
 
 }
 .main-title {
     font-size: 3rem;
     padding-top: 45px;
     color:   #1f455a;
-    font-weight: 700;
+    font-weight: 900;
 }
 
 .main-list {
@@ -157,16 +155,17 @@ container {
 
 .sec-content {
     display: grid;
-    grid-template-columns: 600px 310px;
+    grid-template-columns: 580px 310px;
     padding-left: 20px;
 }
 
 .sec-content-title {
     display: grid;
+    grid-template-rows: 35px 300px;
     font-size: 1.5rem;
     color: #5ccfe2;
     font-weight: 600;
-    padding-left: 20px;
+    padding-top: 10px;
 }
 
 .sec-content-visitor {
@@ -176,6 +175,7 @@ container {
     color: #5ccfe2;
     font-weight: 600;
     padding-left: 20px;
+    padding-top: 10px;
 }
 
 .visitor-title {
@@ -191,10 +191,8 @@ container {
     color: black;
     height: 70px;
     align-content: center;
-    line-height: 70px;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
-    text-indent: 5px;
 
    
 }
@@ -202,10 +200,12 @@ container {
 .visit {
     display: grid;
     grid-template-columns: 70px 220px;
-    background-color: #ffffff9a;
 
 }
-
+.visit-img {
+    padding-left: 20px;
+    padding-top: 5px;
+}
 .menu-bar {
     margin-top: 70px;
 }
