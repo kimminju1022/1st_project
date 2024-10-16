@@ -82,21 +82,20 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main-page</title>
-    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/common-design.css">
     <link rel="stylesheet" href="/css/board.css">
 </head>
-
 <body>
     <container>
         <div class="main-background">
             <div class="side-bar">
                 <div class="back-side-bar">
+                    <div class="logo"><img src="/img/logo.png" alt="" height="120px" width="180px"></div>
                     <div class="main-side-bar">
                         <div class="emotion">
                             <p class="emotion_comment">TODAY IS... </p>
                         </div>
-                        <div class="profile"><img class="profile-img" src="./img/profile.jpg" alt="" width="250px"
-                                height="300px"></div>
+                        <div class="profile"><img class="profile-img" src="/img/profile.jpg" alt="" width="250px" height="250px"></div>
                         <br>
                         <div class="comment">
                             <p>난... ㄱr끔... </p>
@@ -109,8 +108,7 @@ try {
                             <p>좋은ㄱ ㅓ ㅇ ㅑ..... </p>
                         </div>
                         <form action="/logout.php" method="post">
-                        <div class="logout"><button class="logout">로그아웃</button></div>
-                            <input type="hidden" name="posttype" value="logout">
+                            <button type="submit" class="logout">로그아웃</button>
                         </form>
                     </div>
                 </div>
@@ -120,33 +118,30 @@ try {
                     <div class="main-title">
                         ブl억님으l ㅁıLI홈ㅍı1
                     </div>
-
                     <div class="to_body">
                         <!-- todo-list-title style위치 일치할 것 -->
-                        <button class="todo-head"> 오늘까지 할 일</button>
-                        <form action="/src/mj/todo_list_insert.php" method="POST">
-                            <button type="submit" class="post-btn">글남기기</button>
-                        </form>
+                        <div class="insert-btn">
+                            <div class="todo-head"> 오늘까지 할 일</div>
+                            <form action="/src/mj/todo_list_insert.php" method="POST">
+                                <button type="submit" class="post-btn">글남기기</button>
+                            </form>
+                        </div>
                         <div class="todo-deadline">
-                        <a href="/board.php?<?php echo "page_checklist_today=".$prev_page_button_number_check."&page_todo=".$page_todo ?>"><img src="/img/left-pagebtn.png" alt="왼쪽" class="to_btn"></a>
-
-                           <!-- db lib에서 데이터 불러오기 -->
+                            <a href="/board.php?<?php echo "page_checklist_today=".$prev_page_button_number_check."&page_todo=".$page_todo ?>"><img src="/img/left-pagebtn.png" alt="왼쪽" class="to_btn"></a>
+                            <!-- db lib에서 데이터 불러오기 -->
                             <!-- 최대 카드 2개, 이상일 시 pagination -->
                             <div class="to_box">
                                 <?php foreach ($result1 as $item) { ?>
                                     <p><?php echo $item["content"] ?></p>
                                     <?php } ?>
                             </div>
-
                             <?php if ($page_checklist_today !== $max_page) { ?>
-                            <a href="/board.php?<?php echo "page_checklist_today=".$next_page_button_number_check."&page_todo=".$page_todo ?>"><img src="/img/right-pagebtn.png" alt="오른쪽" class="to_btn"></a>
+                                <a href="/board.php?<?php echo "page_checklist_today=".$next_page_button_number_check."&page_todo=".$page_todo ?>"><img src="/img/right-pagebtn.png" alt="오른쪽" class="to_btn"></a>
                             <?php } else { ?>
-                            <div class="p_btn"></div>
-                        <?php } ?>
+                                <div class="p_btn"></div>
+                            <?php } ?>    
                         </div>
                     </div>
-                </div>
-
                     <!-- todo card foreach로 2행 4열 -->
                     <div class="to_main">
                         <div class="to_list">
@@ -166,18 +161,18 @@ try {
                         </div>
                         <div class="to_pagination">
                             <?php if ($page_todo !== 1) { ?>
-                            <a href="/board.php?<?php echo "page_checklist_today=".$page_checklist_today."&page_todo=".$prev_page_button_number_todo ?>"><img src="/img/left-pagebtn.png" alt="before" class="p_btn"></a>
+                            <a href="/board.php?<?php echo "page_checklist_today=".$page_checklist_today."&page_todo=".$prev_page_button_number_todo ?>"><img src="/img/left-pagebtn.png" alt="before" class="p_btn" width="50px" height="50px"></a>
                         <?php } else { ?>
                             <div class="p_btn"></div>
                         <?php } ?>
                         <button class="p_btn"><?php echo $page_todo ?></button>
                         <?php if ($page_todo !== $max_page) { ?>
-                            <a href="/visit.php?<?php echo "page_checklist_today=".$page_checklist_today."&page_todo=".$next_page_button_number_todo ?>"><img src="/img/right-pagebtn.png" alt="before" class="p_btn"></a>
+                            <a href="/visit.php?<?php echo "page_checklist_today=".$page_checklist_today."&page_todo=".$next_page_button_number_todo ?>"><img src="/img/right-pagebtn.png" alt="before" class="p_btn" width="50px" height="50px"></a>
                         <?php } ?>
                     </div>
                 </div>
-
             </div>
+        </div>
             <div class="menu-bar">
                 <div class="home"><a href="/index.php" class="home-tab">HOME</a></div>
                 <div class="todo"><a href="/board.php?page_checklist_today=1&page_todo=1" class="todo-tab">TODO</a></div>

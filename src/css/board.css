@@ -10,9 +10,32 @@
     color: #eeeeee;
     border-radius: 10px 10px 0 0;
     width: 150px;
+    height: 35px;
+    line-height: 35px;
     text-align: center;
     font-size: 1.2rem;
     margin: 10px 0 0 20px;
+}
+
+.post-btn {
+    height: 35px;
+    width: 150px;
+    margin: 10px 20px 0 0 ;
+    background-color: #65a7bd;
+    color: #eeeeee;
+    border-radius: 10px 10px 0 0;
+    width: 150px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    font-size: 1.2rem;;
+    outline: none;
+    border: none;
+}
+
+.insert-btn {
+    display: flex;
+    justify-content: space-between;
 }
 
 .todo-deadline {
@@ -58,25 +81,6 @@
     margin: 10px;
     padding: 10px;
 } */
-
-.to_box{
-    display: grid;
-    grid-template-areas: 
-    "a e"
-    "b f"
-    "c g"
-    "d h";
-}
-
-    /* 각 아이템의 위치 조정 */
-    .to_box:nth-child(1) { grid-area: a; }
-    .to_box:nth-child(2) { grid-area: b; }
-    .to_box:nth-child(3) { grid-area: c; }
-    .to_box:nth-child(4) { grid-area: d; }
-    .to_box:nth-child(5) { grid-area: e; }
-    .to_box:nth-child(6) { grid-area: f; }
-    .to_box:nth-child(7) { grid-area: g; }
-    .to_box:nth-child(8) { grid-area: h; }
 
 
 .to_pagination {
@@ -165,4 +169,46 @@ input:checked+label{
 
 .to_post>p {
     line-clamp: 100px;
+}
+
+.home, .diary, .visit-btn, .credit {
+    width: 85px;
+    background-color: #65a7bd;
+    padding: 12px 0px 12px 0px;
+    margin-left: -30px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    margin-bottom: 5px;
+    border: 1px solid black;
+    border-left: none;
+}
+
+.home-tab , .diary-tab, .visit-tab, .credit-tab {
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: white;
+    font-weight: 700;
+    padding: 10px;
+    width: 85px;
+}
+
+div > .todo {
+    width: 85px;
+    background-color: #eeeeee;
+    padding: 12px 0px 12px 0px;
+    margin-left: -30px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    margin-bottom: 5px;
+    border: 1px solid black;
+    border-left: none;
+}
+
+.todo-tab {
+    color: black;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: 10px;
+    width: 85px;
 }
