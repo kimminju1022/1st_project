@@ -52,7 +52,7 @@ require_once($_SERVER["DOCUMENT_ROOT"]."/config.php");
                     </div>
                     <div class="error">
                         <p>기억에 오류가 발생했습니다.</p>
-                        <p>메인페이지로 돌아가 다시 시도해주세요</p>
+                        <p>메인페이지로 돌아가 다시 시도해주세요.</p>
                         <div>
                             <a href="/"><button type="button" class="btn btn-bottom">메인페이지로 이동하기</button></a>
                         </div>
