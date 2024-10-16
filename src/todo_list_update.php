@@ -7,6 +7,7 @@ require_once(MY_ROOT_UTILITY);
 session_start();
 
 go_login();
+check_manager();
 
 $conn = null;
 
@@ -59,7 +60,8 @@ try {
             $checklists = [];
 
             $is_all_empty = true;
-            for($i < 0; $i<20; $i++){
+            
+            for($i = 0; $i<20; $i++){
                 $content = isset($_POST[(string)$i]) ? $_POST[(string)$i] : "";
                 $checklists[$i] = $content;
 
@@ -144,7 +146,6 @@ try {
                             <p>좋은ㄱ ㅓ ㅇ ㅑ..... </p>
                         </div>
                         <form method="post" action="/logout.php">
-                            <input type="hidden" name="posttype" value="logout">
                             <div class="logout"><button type="submit" class="logout">로그아웃</button></div>
                         </form>
                     </div>
@@ -162,7 +163,6 @@ try {
                     </div>
 
                     <form action="/todo_list_update.php" method="post" class="">
-                        <input type="hidden" name="posttype" value="update">
                         <input type="hidden" name="id" value="<?php echo $result[0]["todolist_id"] ?>">
                         <input type="hidden" name="page_todo" value="<?php echo $page_todo ?>">
                         <input type="hidden" name="page_checklist" value="<?php echo $page_checklist ?>">
@@ -184,13 +184,13 @@ try {
                                     <?php $i = 0; for(;$i<count($result); $i++) {?>
                                         <div class="chk_content">
                                             <input type="checkbox" class="check_btn" name="chk[]" value="<?php echo $result[$i]["checklist_id"] ?>" <?php if($result[$i]["ischecked"] === 1) { echo "checked" ;} ?> disabled>
-                                            <input type="text" name="<?php (string)$i ?>" maxlength="40" class="chk_text" value="<?php echo $result[$i]["content"] ?>">
+                                            <input type="text" name="<?php echo (string)$i ?>" maxlength="40" class="chk_text" value="<?php echo $result[$i]["content"] ?>">
                                             <hr class="bar">
                                         </div>
                                     <?php } for(;$i<20; $i++) { ?>
                                         <div class="chk_content">
                                             <input type="checkbox" class="check_btn" name="chk[]" value="<?php echo $i ?>" disabled>
-                                            <input type="text" name="<?php (string)$i ?>" maxlength="40" class="chk_text" value="" >
+                                            <input type="text" name="<?php echo (string)$i ?>" maxlength="40" class="chk_text" value="" >
                                             <hr class="bar">
                                         </div>
                                     <?php } ?>         

@@ -59,7 +59,6 @@ try{
                         </div>
                         <form action="/logout.php" method="post">
                             <button type="submit" class="logout">로그아웃</button>
-                            <input type="hidden" name="posttype" value="logout">
                         </form>
                     </div>
                 </div>
