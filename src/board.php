@@ -82,7 +82,6 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main-page</title>
-    <link rel="stylesheet" href="/css/common-design.css">
     <link rel="stylesheet" href="/css/board.css">
 </head>
 <body>
@@ -122,9 +121,9 @@ try {
                         <!-- todo-list-title style위치 일치할 것 -->
                         <div class="insert-btn">
                             <div class="todo-head"> 오늘까지 할 일</div>
-                            <form action="/src/mj/todo_list_insert.php" method="POST">
+                            <a href="/todo_list_insert.php">
                                 <button type="submit" class="post-btn">글남기기</button>
-                            </form>
+                            </a>
                         </div>
                         <div class="todo-deadline">
                             <a href="/board.php?<?php echo "page_checklist_today=".$prev_page_button_number_check."&page_todo=".$page_todo ?>"><img src="/img/left-pagebtn.png" alt="왼쪽" class="to_btn"></a>
@@ -132,8 +131,8 @@ try {
                             <!-- 최대 카드 2개, 이상일 시 pagination -->
                             <div class="to_box">
                                 <?php foreach ($result1 as $item) { ?>
-                                    <p><?php echo $item["content"] ?></p>
-                                    <?php } ?>
+                                    <p class="for-today"><?php echo $item["content"] ?></p>
+                                <?php } ?>
                             </div>
                             <?php if ($page_checklist_today !== $max_page) { ?>
                                 <a href="/board.php?<?php echo "page_checklist_today=".$next_page_button_number_check."&page_todo=".$page_todo ?>"><img src="/img/right-pagebtn.png" alt="오른쪽" class="to_btn"></a>
@@ -146,9 +145,9 @@ try {
                     <div class="to_main">
                         <div class="to_list">
                             <?php foreach($result2 as $item) {?>                                
-                                <a href="/todo_list_detail.php?<?php echo "id=".$item["id"]."&page_todo=".$page_todo."&page_checklist=".$page_checklist_today?>">
                                 <div class="to_post">
-                                    <p class="to_title"><?php echo $item["name"] ?></p>
+                                    <a href="/todo_list_detail.php?<?php echo "id=".$item["id"]."&page_todo=".$page_todo."&page_checklist=".$page_checklist_today?>">
+                                    <p class="to_title"><?php echo $item["name"] ?></p></a>
                                     <p class="to_date"><?php echo $item["deadline"] ?></p>
                                     <div class="list_box">
                                     <?php foreach($item["contents"] as $chk_lists ){ ?>
@@ -156,7 +155,6 @@ try {
                                     <?php } ?>
                                     </div>
                                 </div>
-                                </a>
                             <?php } ?>
                         </div>
                         <div class="to_pagination">
@@ -167,7 +165,7 @@ try {
                         <?php } ?>
                         <button class="p_btn"><?php echo $page_todo ?></button>
                         <?php if ($page_todo !== $max_page) { ?>
-                            <a href="/visit.php?<?php echo "page_checklist_today=".$page_checklist_today."&page_todo=".$next_page_button_number_todo ?>"><img src="/img/right-pagebtn.png" alt="before" class="p_btn" width="50px" height="50px"></a>
+                            <a href="/board.php?<?php echo "page_checklist_today=".$page_checklist_today."&page_todo=".$next_page_button_number_todo ?>"><img src="/img/right-pagebtn.png" alt="before" class="p_btn" width="50px" height="50px"></a>
                         <?php } ?>
                     </div>
                 </div>
