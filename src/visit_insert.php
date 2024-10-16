@@ -29,7 +29,7 @@ try {
     // commit
     $conn->commit();
 
-    header("Location: /src/mj/visit.php");
+    header("Location: /visit.php");
     exit;
 } catch (Throwable $th) {
     if (!is_null($conn) && $conn->inTransaction()) {

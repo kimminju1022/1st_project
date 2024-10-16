@@ -3,6 +3,10 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/config.php"); //config파일의 정�
 require_once(MY_ROOT_DB_LIB); //db_lib 파일의 정보를 가져와 쓴다
 require_once(MY_ROOT_UTILITY);
 
+session_start();
+
+go_login();
+
 // pagenation 관련-------------
 $conn = null;
 $max_board_cnt = 0;
@@ -67,7 +71,7 @@ try {
                             <p>좋은ㄱ ㅓ ㅇ ㅑ..... </p>
                         </div>
                         <!-- form해주기!!! -->
-                        <form action="#" method="post">
+                        <form method="post" action="/logout.php">
                             <div class="logout"><button type="submit" class="logout">로그아웃</button></div>
                         </form>
                     </div>
@@ -78,9 +82,10 @@ try {
                     <div class="main-title">
                         ブl억님으l ㅁıLI홈ㅍı
                     </div>
-                    <form action="/src/mj/visit_insert.php" method="POST">
+                    <form action="/visit_insert.php" method="POST">
                         <div class="visit_comment">
-                            <input type="hidden" name="user_id" value="1">
+                            <input type="hidden" name="page" value="<?php $page ?>">
+                            <input type="hidden" name="user_id" value="<?php echo $_SESSION["id"] ?>">
                             <textarea maxlength="300" name="content" cols="10" rows="3" placeholder="남길 말씀이 있다면 여기에 남겨주세요"></textarea>
                             <button type="submit" class="post-btn">글남기기</button>
                         </div>
@@ -89,14 +94,16 @@ try {
 
                     <div class="visit_post">
                         <?php foreach ($result as $item) { ?>
-                            <form action="/src/mj/visit_delete.php" method="get">
+                            <form action="/visit_delete.php" method="get">
                                 <input type="hidden" name="id" value="<?php echo $item["id"] ?>">
                                 <input type="hidden" name="page" value="<?php echo $page ?>">
                                 <div class="visit_box">
                                     <img src="/img/icon.png" alt="미니미" class="visit_icon">
                                     <p><?php echo $item["content"] ?></p>
                                     <p class="visit_date"><?php echo $item["created_at"] ?></p>
-                                    <button type="submit" class="delete-btn"><img src="/img/delete.png" alt="delete-btn"></button>
+                                    <?php if($_SESSION["id"] === $item["user_id"] || $_SESSION["manager"]) { ?>
+                                        <button type="submit" class="delete-btn"><img src="/img/delete.png" alt="delete-btn"></button>
+                                    <?php } ?>
                                 </div>
                             </form>
                         <?php } ?>
@@ -119,11 +126,12 @@ try {
 
             </div>
             <div class="menu-bar">
-                <div class="home"><a href="" class="home-tab">HOME</a></div>
-                <div class="todo"><a href="" class="todo-tab">TODO</a></div>
-                <div class="diary"><a href="" class="diary-tab">DIARY</a></div>
-                <div class="visit"><a href="" class="visit-tab">VISIT</a></div>
-                <div class="credit"><a href="" class="credit-tab">CREDIT</a></div>
+                <div class="home"><a href="/index.php" class="home-tab">HOME</a></div>
+                <div class="todo"><a href="/board.php?page_checklist_today=1&page_todo=1" class="todo-tab">TODO</a></div>
+                <div class="diary"><a href="#" class="diary-tab">DIARY</a></div>
+                <div class="visit-btn"><a href="/visit.php" class="visit-tab">VISIT</a></div>
+                <div class="credit"><a href="#" class="credit-tab">CREDIT</a></div>
+            </div>   
             </div>
         </div>
     </container>

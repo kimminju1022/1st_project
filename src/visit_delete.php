@@ -98,8 +98,8 @@ try {
                             <p>좋은ㄱ ㅓ ㅇ ㅑ..... </p>
                         </div>
                         <!-- form태그 확인하기 -->
-                        <form action="/login.php">
-                        <div class="logout"><button class="logout">로그아웃</button></div>
+                        <form method="post" action="/logout.php">
+                            <div class="logout"><button type="submit" class="logout">로그아웃</button></div>
                         </form>
                         
                     </div>
