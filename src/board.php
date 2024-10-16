@@ -118,12 +118,15 @@ try {
             <div class="content">
                 <div class="main-content">
                     <div class="main-title">
-                        ブl억님으l ㅁıLI홈ㅍı
+                        ブl억님으l ㅁıLI홈ㅍı1
                     </div>
 
                     <div class="to_body">
                         <!-- todo-list-title style위치 일치할 것 -->
-                        <div class="todo-head"> 오늘까지 할 일 </div>
+                        <button class="todo-head"> 오늘까지 할 일</button>
+                        <form action="/src/mj/todo_list_insert.php" method="POST">
+                            <button type="submit" class="post-btn">글남기기</button>
+                        </form>
                         <div class="todo-deadline">
                         <a href="/board.php?<?php echo "page_checklist_today=".$prev_page_button_number_check."&page_todo=".$page_todo ?>"><img src="/img/left-pagebtn.png" alt="왼쪽" class="to_btn"></a>
 
@@ -132,7 +135,7 @@ try {
                             <div class="to_box">
                                 <?php foreach ($result1 as $item) { ?>
                                     <p><?php echo $item["content"] ?></p>
-                                <?php } ?>
+                                    <?php } ?>
                             </div>
 
                             <?php if ($page_checklist_today !== $max_page) { ?>
@@ -142,6 +145,7 @@ try {
                         <?php } ?>
                         </div>
                     </div>
+                </div>
 
                     <!-- todo card foreach로 2행 4열 -->
                     <div class="to_main">
