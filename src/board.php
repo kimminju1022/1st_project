@@ -126,7 +126,7 @@ try {
                             </a>
                         </div>
                         <div class="todo-deadline">
-                            <a href="/board.php?<?php echo "page_checklist_today=".$prev_page_button_number_check."&page_todo=".$page_todo ?>"><img src="/img/left-pagebtn.png" alt="왼쪽" class="to_btn"></a>
+                            <div class="arrow-to-left"><a href="/board.php?<?php echo "page_checklist_today=".$prev_page_button_number_check."&page_todo=".$page_todo ?>"><img src="/img/left-pagebtn.png" alt="왼쪽" class="to_btn"></a></div>
                             <!-- db lib에서 데이터 불러오기 -->
                             <!-- 최대 카드 2개, 이상일 시 pagination -->
                             <div class="to_box">
@@ -134,11 +134,10 @@ try {
                                     <p class="for-today"><?php echo $item["content"] ?></p>
                                 <?php } ?>
                             </div>
-                            <?php if ($page_checklist_today !== $max_page) { ?>
+                            <div class="arrow-to-right"><?php if ($page_checklist_today !== $max_page) { ?>
                                 <a href="/board.php?<?php echo "page_checklist_today=".$next_page_button_number_check."&page_todo=".$page_todo ?>"><img src="/img/right-pagebtn.png" alt="오른쪽" class="to_btn"></a>
-                            <?php } else { ?>
-                                <div class="p_btn"></div>
-                            <?php } ?>    
+                                <?php }?>
+                            </div>  
                         </div>
                     </div>
                     <!-- todo card foreach로 2행 4열 -->
@@ -151,7 +150,7 @@ try {
                                     <p class="to_date"><?php echo $item["deadline"] ?></p>
                                     <div class="list_box">
                                     <?php foreach($item["contents"] as $chk_lists ){ ?>
-                                        <input class="list_box" type="checkbox" disabled><?php echo $chk_lists["content"]?><br>
+                                        <input class="list_box" type="checkbox" disabled><span class="content-hidden"><?php echo $chk_lists["content"]?></span>
                                     <?php } ?>
                                     </div>
                                 </div>
