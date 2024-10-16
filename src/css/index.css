@@ -109,6 +109,11 @@ container {
     color:   #1f455a;
     font-weight: 900;
 }
+.list-box {
+    display: grid;
+    grid-template-columns: 1fr 6fr;
+    align-items: center;
+}
 
 .main-list {
     display: grid;
@@ -126,17 +131,30 @@ container {
 }
 
 .main-content-box {
-    background-color: lightyellow;
+    background-color: #fffbbdd8;
+    height: 270px;
+    padding: 10px;
 }
 
+.check-list{
+    width: 20px;
+    height: 20px;
+}
 .check-title {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     text-align: left;
     font-weight: 700;
-    padding-top: 20px;
-    padding-left: 20px;
+    padding-top: 15px;
     margin-bottom: 15px;
 }
+
+.content-hidden{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 1.1rem;
+}
+
 
 .check-date {
     font-size: 1rem;

@@ -150,7 +150,7 @@ try {
                                     <p class="to_date"><?php echo $item["deadline"] ?></p>
                                     <div class="list_box">
                                     <?php foreach($item["contents"] as $chk_lists ){ ?>
-                                        <input class="list_box" type="checkbox" disabled><span class="content-hidden"><?php echo $chk_lists["content"]?></span>
+                                        <input class="list_chkbox" type="checkbox" disabled><span class="content-hidden"><?php echo $chk_lists["content"]?></span>
                                     <?php } ?>
                                     </div>
                                 </div>
