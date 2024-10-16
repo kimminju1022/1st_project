@@ -1,54 +1,71 @@
 <?php
-require_once($_SERVER["DOCUMENT_ROOT"]."/config.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/config.php");
 require_once(MY_ROOT_DB_LIB);
 require_once(MY_ROOT_UTILITY);
+
+session_start();
+
+go_login();
+
 // pagenation 관련-------------
 $conn = null;
 $max_board_cnt = 0;
 $max_page = 0;
 try {
+    if(strtoupper($_SERVER["REQUEST_METHOD"] === "POST")){
+        $posttype = isset($_POST["posttype"]) ? $_POST["posttype"] : null;
+
+        if($posttype === "logout"){
+            logout();
+            exit;
+        }
+    } else {
+    
     // PDO Instance
     $conn = my_db_conn();
 
+    // http 주소 구조 설명
+    // localhost/board.php?page_checklist_today=1&page_todo=1
+    // checklist_today : 오늘 해야 할 일 관련 페이지네이션
+    // todo : todolist 관련 페이지네이션
+
     // get_checklist_today---------
     // max page 획득 처리
-    $max_board_cnt = cnt_checklist_today($conn); // 게시글 총 수 획득
-    $max_page = (int)ceil($max_board_cnt / MY_BOARD_CARD_COUNT); // max page 획득
+    $max_board_cnt_check = cnt_checklist_today($conn); // 게시글 총 수 획득
+    $max_page_check = (int)(ceil($max_board_cnt_check / MY_BOARD_CARD_COUNT)); // max page 획득
 
     // pagination 설정
-    $page = isset($_GET["page"]) ? (int)$_GET["page"] : 1; // 현재 페이지 획득
-    $offset = ($page - 1) * MY_VISIT_COUNT; // 오프셋 설정
-    $prev_page_button_number = $page - 1 < 1 ? 1 : $page - 1; // 이전 버튼
-    $next_page_button_number = $page + 1 > $max_page ? $max_page : $page + 1; // 다음버튼
+    $page_checklist_today = isset($_GET["page_checklist_today"]) ? (int)$_GET["page_checklist_today"] : 1; // 현재 페이지 획득
+    $offset_checklist_today = ($page_checklist_today - 1) * MY_BOARD_CARD_COUNT; // 오프셋 설정
+    $prev_page_button_number_check = $page_checklist_today - 1 < 1 ? 1 : $page_checklist_today - 1; // 이전 버튼
+    $next_page_button_number_check = $page_checklist_today + 1 > $max_page_check ? $max_page_check : $page_checklist_today + 1; // 다음버튼
 
     // pagination select 처리
-    $arr_prepare = [
-        "list_cnt"  => MY_VISIT_COUNT,
-        "offset"   => $offset
+    $arr_prepare_check = [
+        "limit"  => MY_BOARD_CARD_COUNT,
+        "offset"   => $offset_checklist_today
     ];
     
-    // cnt_checklist_todo---------
+    // cnt_todo---------
     // max page 획득 처리
-    $max_board_cnt1 = cnt_checklist_todo($conn); // 게시글 총 수 획득
-    $max_page1 = (int)ceil($max_board_cnt1 / MY_BOARD_CARD_COUNT); // max page 획득
+    $max_board_cnt_todo = cnt_checklist_todo($conn); // 게시글 총 수 획득
+    $max_page_todo = (int)(ceil($max_board_cnt_todo / MY_BOARD_CARD_COUNT)); // max page 획득
 
     // pagination 설정
-    $page1 = isset($_GET["page"]) ? (int)$_GET["page"] : 1; // 현재 페이지 획득
-    $offset1 = ($page - 1) * MY_VISIT_COUNT; // 오프셋 설정
-    $prev_page_button_number1 = $page - 1 < 1 ? 1 : $page - 1; // 이전 버튼
-    $next_page_button_number1 = $page + 1 > $max_page ? $max_page : $page + 1; // 다음버튼
+    $page_todo = isset($_GET["page_todo"]) ? (int)$_GET["page_todo"] : 1; // 현재 페이지 획득
+    $offset_todo = ($page_todo - 1) * MY_BOARD_CARD_COUNT; // 오프셋 설정
+    $prev_page_button_number_todo = $page_todo - 1 < 1 ? 1 : $page_todo - 1; // 이전 버튼
+    $next_page_button_number_todo = $page_todo + 1 > $max_page_todo ? $max_page_todo : $page_todo + 1; // 다음버튼
 
     // pagination select 처리
-    $arr_prepare1 = [
-        "list_cnt"  => MY_VISIT_COUNT,
-        "offset"   => $offset1
+    $arr_prepare_todo = [
+        "limit"  => MY_BOARD_CARD_COUNT,
+        "offset"   => $offset_todo
     ];
 
-    $result1 = get_checklist_today($conn, $arr_prepare);
-    $result2 = get_todolist_board($conn, $arr_prepare1);
-
-    $today_list_cnt = cnt_checklist_today($conn);
-    $todo_list_cnt = cnt_checklist_todo($conn);
+    $result1 = get_checklist_today($conn, $arr_prepare_check);
+    $result2 = get_todolist_board($conn, $arr_prepare_todo);
+    }
 
 } catch (Throwable $th) {
     echo $th->getMessage();
@@ -91,7 +108,10 @@ try {
                             <p>울 수 있 ㄷㅏ는건.... </p>
                             <p>좋은ㄱ ㅓ ㅇ ㅑ..... </p>
                         </div>
+                        <form action="/index.php" method="post">
                         <div class="logout"><button class="logout">로그아웃</button></div>
+                            <input type="hidden" name="posttype" value="logout">
+                        </form>
                     </div>
                 </div>
             </div>
@@ -105,7 +125,7 @@ try {
                         <!-- todo-list-title style위치 일치할 것 -->
                         <div class="todo-head"> 오늘까지 할 일 </div>
                         <div class="todo-deadline">
-                        <a href="/board.php?page=<?php echo $prev_page_button_number ?>"><img src="/img/left-pagebtn.png" alt="왼쪽" class="to_btn"></a>
+                        <a href="/board.php?<?php echo "page_checklist_today=".$prev_page_button_number_check."&page_todo=".$page_todo ?>"><img src="/img/left-pagebtn.png" alt="왼쪽" class="to_btn"></a>
 
                            <!-- db lib에서 데이터 불러오기 -->
                             <!-- 최대 카드 2개, 이상일 시 pagination -->
@@ -115,8 +135,8 @@ try {
                                 <?php } ?>
                             </div>
 
-                            <?php if ($page !== $max_page) { ?>
-                            <a href="/board.php?page=<?php echo $next_page_button_number ?>"><img src="/img/right-pagebtn.png" alt="오른쪽" class="to_btn"></a>
+                            <?php if ($page_checklist_today !== $max_page) { ?>
+                            <a href="/board.php?<?php echo "page_checklist_today=".$next_page_button_number_check."&page_todo=".$page_todo ?>"><img src="/img/right-pagebtn.png" alt="오른쪽" class="to_btn"></a>
                             <?php } else { ?>
                             <div class="p_btn"></div>
                         <?php } ?>
@@ -127,6 +147,7 @@ try {
                     <div class="to_main">
                         <div class="to_list">
                             <?php foreach($result2 as $item) {?>
+                                <a href="/todo_list_detail.php?<?php echo "id=".$item["id"]."&page=".$page_todo?>">
                                 <div class="to_post">
                                     <p class="to_title"><?php echo $item["name"] ?></p>
                                     <p class="to_date"><?php echo $item["deadline"] ?></p>
@@ -136,28 +157,29 @@ try {
                                     <?php } ?>
                                     </div>
                                 </div>
+                                </a>
                             <?php } ?>
                         </div>
                         <div class="to_pagination">
-                            <?php if ($page !== 1) { ?>
-                            <a href="/board.php?page=<?php echo $prev_page_button_number ?>"><img src="/img/left-pagebtn.png" alt="before" class="p_btn"></a>
+                            <?php if ($page_todo !== 1) { ?>
+                            <a href="/board.php?<?php echo "page_checklist_today=".$page_checklist_today."&page_todo=".$prev_page_button_number_todo ?>"><img src="/img/left-pagebtn.png" alt="before" class="p_btn"></a>
                         <?php } else { ?>
                             <div class="p_btn"></div>
                         <?php } ?>
-                        <button class="p_btn"><?php echo $page ?></button>
-                        <?php if ($page !== $max_page) { ?>
-                            <a href="/visit.php?page=<?php echo $next_page_button_number ?>"><img src="/img/right-pagebtn.png" alt="before" class="p_btn"></a>
+                        <button class="p_btn"><?php echo $page_todo ?></button>
+                        <?php if ($page_todo !== $max_page) { ?>
+                            <a href="/visit.php?<?php echo "page_checklist_today=".$page_checklist_today."&page_todo=".$next_page_button_number_todo ?>"><img src="/img/right-pagebtn.png" alt="before" class="p_btn"></a>
                         <?php } ?>
                     </div>
                 </div>
 
             </div>
             <div class="menu-bar">
-                <div class="home"><a href="" class="home-tab">HOME</a></div>
-                <div class="todo"><a href="" class="todo-tab">TODO</a></div>
-                <div class="diary"><a href="" class="diary-tab">DIARY</a></div>
-                <div class="visit"><a href="" class="visit-tab">VISIT</a></div>
-                <div class="credit"><a href="" class="credit-tab">CREDIT</a></div>
+                <div class="home"><a href="/index.php" class="home-tab">HOME</a></div>
+                <div class="todo"><a href="/board.php?page_checklist_today=1&page_todo=1" class="todo-tab">TODO</a></div>
+                <div class="diary"><a href="#" class="diary-tab">DIARY</a></div>
+                <div class="visit-btn"><a href="/visit.php" class="visit-tab">VISIT</a></div>
+                <div class="credit"><a href="#" class="credit-tab">CREDIT</a></div>
             </div>
         </div>
     </container>
