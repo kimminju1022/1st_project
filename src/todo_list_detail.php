@@ -121,10 +121,16 @@ try {
                         <div class="sub_content">
                             <div class="chk_area">
                                 <div class="chk_list">
-                                    <?php foreach($result as $item) { ?>
+                                    <?php $i = 0; for(;$i<count($result); $i++) {?>
                                         <div class="chk_content">
-                                            <input type="checkbox" class="check_btn" name="chk[]" value="<?php echo $item["checklist_id"] ?>" <?php if($item["ischecked"] === 1) { echo "checked" ;} ?>>
-                                            <input type="text" name="text" maxlength="40" class="chk_text" value="<?php echo $item["content"] ?>" disabled>
+                                            <input type="checkbox" class="check_btn" name="chk[]" value="<?php echo $result[$i]["checklist_id"] ?>" <?php if($result[$i]["ischecked"] === 1) { echo "checked" ;} ?>>
+                                            <input type="text" name="text" maxlength="40" class="chk_text" value="<?php echo $result[$i]["content"] ?>" disabled>
+                                            <hr class="bar">
+                                        </div>
+                                    <?php } for(;$i<20; $i++) { ?>
+                                        <div class="chk_content">
+                                            <input type="checkbox" class="check_btn" name="chk[]" value="<?php echo $i ?>"?>
+                                            <input type="text" name="text" maxlength="40" class="chk_text" value="" disabled>
                                             <hr class="bar">
                                         </div>
                                     <?php } ?>
