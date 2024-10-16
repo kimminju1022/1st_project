@@ -4,9 +4,8 @@
     
     session_start();
 
-    if(!isset($_SESSION["id"])){
-        header("Location: /index.php");
-    }
+    go_login();
+    check_manager();
 
     $conn = null;
     try{
@@ -14,7 +13,7 @@
             $conn = my_db_conn();
 
             $name = isset($_POST["sub_title"]) ? $_POST["sub_title"] : throw new Exception("제목을 입력하세요");
-            $deadline = isset($_POST["deadline"]) ? $_POST["deadline"] : date("Ymd");
+            $deadline = !empty($_POST["deadline"])  ? $_POST["deadline"] : date("Y-m-d");;
             $checklists = [];
 
             for($i = 0; $i < 20; $i++){
