@@ -9,15 +9,6 @@ session_start();
 go_login();
 
 try{
-    if(strtoupper($_SERVER["REQUEST_METHOD"] === "POST")){
-        $posttype = isset($_POST["posttype"]) ? $_POST["posttype"] : null;
-
-        if($posttype === "logout"){
-            logout();
-            exit;
-        }
-    }
-    else{
     $conn=my_db_conn();
 
     $arr_prepare = [
@@ -28,7 +19,7 @@ try{
     $result = get_todolist_board($conn, $arr_prepare);
 
     $result2 = get_guestbook_board($conn, $arr_prepare);
-    }
+    
 }catch(Throwable $th) {
     echo $th->getMessage();
     exit;
@@ -66,7 +57,7 @@ try{
                             <p>울 수 있 ㄷㅏ는건.... </p>
                             <p>좋은ㄱ ㅓ ㅇ ㅑ..... </p>
                         </div>
-                        <form action="/index.php" method="post">
+                        <form action="/logout.php" method="post">
                             <button type="submit" class="logout">로그아웃</button>
                             <input type="hidden" name="posttype" value="logout">
                         </form>

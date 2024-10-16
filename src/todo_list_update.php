@@ -34,14 +34,11 @@ try {
 
         $result = get_todolist_detail($conn, $arr_prepare);
 
-    } else {
+    } 
+    else {
 
-        $posttype = isset($_POST["posttype"]) ? (int)$_POST["posttype"] : "";
+        $posttype = isset($_POST["posttype"]) ? $_POST["posttype"] : "";
 
-        if($posttype === "logout"){
-            logout();
-        }
-        else if($posttype === "update"){
         // POST 처리
             // parameter 획득(id, page, 제목, deadline)
             // img는 밑에서 동적 처리를 하기 때문에 여기서 획득하지 않는다.
@@ -104,17 +101,13 @@ try {
             header("Location: /todo_list_detail.php?id=".$id."&page_todo=".$page_todo."&page_checklist=".$page_checklist);
             exit;
         }
-        else{
-            throw new Exception("잘못된 접근입니다.");
-        }
-    }
     } catch(Throwable $th) {
     if(!is_null($conn) && $conn -> inTransaction()) {
         $conn -> rollBack();
     }
 
-    header("Location: /error.php");
-    // echo $th ->getMessage();
+    // header("Location: /error.php");
+    echo $th ->getMessage();
     exit;
 }
 
@@ -150,7 +143,7 @@ try {
                             <p>울 수 있 ㄷㅏ는건.... </p>
                             <p>좋은ㄱ ㅓ ㅇ ㅑ..... </p>
                         </div>
-                        <form method="post" action="/todo_list_update.php">
+                        <form method="post" action="/logout.php">
                             <input type="hidden" name="posttype" value="logout">
                             <div class="logout"><button type="submit" class="logout">로그아웃</button></div>
                         </form>
@@ -169,6 +162,7 @@ try {
                     </div>
 
                     <form action="/todo_list_update.php" method="post" class="">
+                        <input type="hidden" name="posttype" value="update">
                         <input type="hidden" name="id" value="<?php echo $result[0]["todolist_id"] ?>">
                         <input type="hidden" name="page_todo" value="<?php echo $page_todo ?>">
                         <input type="hidden" name="page_checklist" value="<?php echo $page_checklist ?>">
