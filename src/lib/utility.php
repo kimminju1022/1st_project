@@ -44,3 +44,15 @@ function go_login(){
     exit;
   }
 }
+
+function check_manager(){
+  if(!session_id()) {
+    session_start();
+  }
+
+  $ismanager = isset($_SESSION["manager"]) ? $_SESSION["manager"] : null;
+
+  if(is_null($ismanager) || !$ismanager){
+    throw new Exception("당신은 수정할 권리가 없습니다.");
+  }
+}
