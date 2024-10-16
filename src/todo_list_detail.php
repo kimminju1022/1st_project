@@ -67,11 +67,12 @@ try {
         <div class="main-background">
             <div class="side-bar">
                 <div class="back-side-bar">
+                    <div class="logo"><img src="/img/logo.png" alt="" height="120px" width="180px"></div>
                     <div class="main-side-bar">
                         <div class="emotion">
                             <p class="emotion_comment">TODAY IS... </p>
                         </div>
-                        <div class="profile"><img class="profile-img" src="./img/profile.jpg" alt="" width="250px" height="300px"></div>
+                        <div class="profile"><img class="profile-img" src="/img/profile.jpg" alt="" width="250px" height="250px"></div>
                         <br>
                         <div class="comment">
                             <p>난... ㄱr끔... </p>
@@ -83,14 +84,13 @@ try {
                             <p>울 수 있 ㄷㅏ는건.... </p>
                             <p>좋은ㄱ ㅓ ㅇ ㅑ..... </p>
                         </div>
-                        <form action="#" method="post">
+                        <form action="/index.php" method="post">
+                            <button type="submit" class="logout">로그아웃</button>
                             <input type="hidden" name="posttype" value="logout">
-                            <div class="logout"><button class="logout">로그아웃</button></div>
                         </form>
                     </div>
                 </div>
             </div>
-        
             <div class="content">
                 <div class="main-content">
                     <div class="main-title">
@@ -109,10 +109,10 @@ try {
                         <div>
                             <div class="calendar">
                                 <div class="sub_title">제목</div>
-                                <input type="text" name="sub_title" class="input_area sub_title_area" value="<?php echo $result[0]["name"] ?>" disabled>
+                                <input type="text" name="sub_title" id="sub_title"class="input_area sub_title_area" value="<?php echo $result[0]["name"] ?>" disabled>
                                 <div class="sub_date">수행일자</div>
-                                <div class="input_area sub_date_area"></div>
-                                <input type="date" name="deadline" id="deadline" class="deadline" value="<?php echo $result[0]["deadline"] ?>" disabled>
+                                <div class="input_area sub_date_area">
+                                <input type="date" name="deadline" id="deadline" class="deadline" value="<?php echo $result[0]["deadline"] ?>" disabled></div>
                             </div>
                             <div class="nine_bar">
                                 <hr width="900px">

@@ -61,86 +61,56 @@ container {
     margin-top: 25px;
 }
 
-.main-side-bar {
-    padding-top: 150px;
-}
-
 .emotion {
-    background-color: lightgray;
     width: 250px;
     height: 40px;
-    font-size: 1.5rem;
-    font-weight: 400;
-    justify-content: center;
-    margin: auto;
-    padding-left: 5px;
-    padding-top: 6px;
+    border-radius: 5px;
+    border: 1px solid black;
+    color: #5ccfe2;
+    font-size: 1.4rem;
+    margin-left: 15px;
+    text-indent: 30px;
+    line-height: 40px;
+    font-weight: 900;
 }
 
-.emotion_comment {
-    color: #5ccfe2;
-    font-size: 1.2rem;
-    font-weight: 700;
-    padding-left: 30px;
+.logo {
+    padding-left: 45px;
+    padding-top: 15px;
 }
 
 .profile {
     width: 250px;
-    height: 300px;
-    margin: auto;
+    height: 250px;
+    margin-left: 15px;
     padding-top: 10px;
 }
 
 .comment {
-    font-size: 1.2rem;
-    padding-left: 25px;
+    font-size: 1.15rem;
+    margin-left: 25px;
+    line-height: 35px;
 }
 
 .logout {
-    width: 250px;
-    height: 30px;
-    margin: auto;
+    width: 180px;
+    height: 40px;
     font-size: 1.2rem;
     font-weight: 800;
-
+    margin-top: 20px;
+    margin-left: 45px;
 }
+
 .main-title {
     font-size: 3rem;
     padding-top: 45px;
     color:   #1f455a;
-    font-weight: 700;
+    font-weight: 900;
 }
 
 .menu-bar {
     margin-top: 70px;
 }
 
-.menu-bar > div {
-    width: 85px;
-    background-color: #65a7bd;
-    padding: 12px 0px 12px 0px;
-    margin-left: -30px;
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
-    margin-bottom: 5px;
-    border: 1px solid black;
-    border-left: none;
 
-}
-.home-tab , .todo-tab, .diary-tab, .visit-tab, .credit-tab {
-    text-decoration: none;
-    font-size: 1.2rem;
-    color: white;
-    font-weight: 700;
-    padding: 10px;
-    width: 85px;
-}
-
-.credit:hover , .home:hover ,.todo:hover, .diary:hover ,.visit:hover {
-    background-color: #eeeeee;
-}
-
-.home-tab:hover, .todo-tab:hover ,.diary-tab:hover, .visit-tab:hover, .credit-tab:hover {
-    color:   #1f455a;
-}
 
