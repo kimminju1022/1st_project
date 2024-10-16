@@ -146,8 +146,8 @@ try {
                     <!-- todo card foreach로 2행 4열 -->
                     <div class="to_main">
                         <div class="to_list">
-                            <?php foreach($result2 as $item) {?>
-                                <a href="/todo_list_detail.php?<?php echo "id=".$item["id"]."&page=".$page_todo?>">
+                            <?php foreach($result2 as $item) {?>                                
+                                <a href="/todo_list_detail.php?<?php echo "id=".$item["id"]."&page_todo=".$page_todo."&page_checklist=".$page_checklist_today?>">
                                 <div class="to_post">
                                     <p class="to_title"><?php echo $item["name"] ?></p>
                                     <p class="to_date"><?php echo $item["deadline"] ?></p>

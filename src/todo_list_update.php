@@ -41,7 +41,7 @@ try {
         if($posttype === "logout"){
             logout();
         }
-        else{
+        else if($posttype === "update"){
         // POST 처리
             // parameter 획득(id, page, 제목, deadline)
             // img는 밑에서 동적 처리를 하기 때문에 여기서 획득하지 않는다.
@@ -49,15 +49,35 @@ try {
             $id = isset($_POST["id"]) ? (int)$_POST["id"] : 0;
 
             // page 획득
-            $page = isset($_POST["page"]) ? (int)$_POST["page"] : 1;
+            $page_todo = isset($_POST["page_todo"]) ? (int)$_POST["page_todo"] : 1;
+
+            $page_checklist = isset($_POST["page_checklist"]) ? (int)$_POST["page_checklist"] : 1;
 
             // name, 제목 획득
-            $name = isset($_POST["title_bar"]) ? $_POST["title_bar"] : "";
+            $name = isset($_POST["title_bar"]) ? $_POST["title_bar"] : null;
             
             // deadline 획득
             $deadline = isset($_POST["deadline"]) ? $_POST["deadline"] : date("Ymd");
 
             $checklists = [];
+
+            $is_all_empty = true;
+            for($i < 0; $i<20; $i++){
+                $content = isset($_POST[(string)$i]) ? $_POST[(string)$i] : "";
+                $checklists[$i] = $content;
+
+                if($is_all_empty && !empty($content)){
+                    $is_all_empty = false;
+                }
+            }
+
+            if($is_all_empty){
+                throw new Exception("todolist를 하나 이상 채워주세요");
+            }
+
+            if(empty($name)){
+                throw new Exception("제목을 채워주세요");
+            }
 
             if($id < 1 || $name ==="") {
                 throw new Exception("파라미터 오류 : P");
@@ -83,6 +103,9 @@ try {
             // detail 페이지로 이동
             header("Location: /todo_list_detail.php?id=".$id."&page_todo=".$page_todo."&page_checklist=".$page_checklist);
             exit;
+        }
+        else{
+            throw new Exception("잘못된 접근입니다.");
         }
     }
     } catch(Throwable $th) {
@@ -167,13 +190,13 @@ try {
                                     <?php $i = 0; for(;$i<count($result); $i++) {?>
                                         <div class="chk_content">
                                             <input type="checkbox" class="check_btn" name="chk[]" value="<?php echo $result[$i]["checklist_id"] ?>" <?php if($result[$i]["ischecked"] === 1) { echo "checked" ;} ?> disabled>
-                                            <input type="text" name="text" maxlength="40" class="chk_text" value="<?php echo $result[$i]["content"] ?>">
+                                            <input type="text" name="<?php (string)$i ?>" maxlength="40" class="chk_text" value="<?php echo $result[$i]["content"] ?>">
                                             <hr class="bar">
                                         </div>
                                     <?php } for(;$i<20; $i++) { ?>
                                         <div class="chk_content">
                                             <input type="checkbox" class="check_btn" name="chk[]" value="<?php echo $i ?>" disabled>
-                                            <input type="text" name="text" maxlength="40" class="chk_text" value="" >
+                                            <input type="text" name="<?php (string)$i ?>" maxlength="40" class="chk_text" value="" >
                                             <hr class="bar">
                                         </div>
                                     <?php } ?>         
