@@ -61,22 +61,22 @@ container {
     margin-top: 25px;
 }
 
-.main-side-bar {
-    padding-top: 150px;
-}
-
 .emotion {
-    background-color: lightgray;
     width: 250px;
     height: 40px;
-    font-size: 1.5rem;
-    font-weight: 400;
-    justify-content: center;
-    margin: auto;
-    padding-left: 5px;
-    padding-top: 6px;
+    border-radius: 5px;
+    border: 1px solid black;
+    color: #5ccfe2;
+    font-size: 1.4rem;
+    margin-left: 15px;
+    text-indent: 30px;
+    line-height: 40px;
+    font-weight: 900;
 }
-
+.logo {
+    padding-left: 45px;
+    padding-top: 15px;
+}
 .emotion_comment {
     color: #5ccfe2;
     font-size: 1.2rem;
@@ -86,29 +86,32 @@ container {
 
 .profile {
     width: 250px;
-    height: 300px;
-    margin: auto;
+    height: 250px;
+    margin-left: 15px;
     padding-top: 10px;
 }
 
 .comment {
-    font-size: 1.2rem;
-    padding-left: 25px;
+    font-size: 1.15rem;
+    margin-left: 25px;
+    line-height: 35px;
 }
 
 .logout {
-    width: 250px;
-    height: 30px;
-    margin: auto;
+    width: 180px;
+    height: 40px;
     font-size: 1.2rem;
     font-weight: 800;
-
+    margin-top: 20px;
+    margin-left: 45px;
 }
+
 .main-title {
     font-size: 3rem;
     padding-top: 45px;
     color:   #1f455a;
     font-weight: 700;
+    margin-left: 15px;
 }
 
 .menu-bar {
@@ -134,14 +137,6 @@ container {
     font-weight: 700;
     padding: 10px;
     width: 85px;
-}
-
-.credit:hover , .home:hover ,.todo:hover, .diary:hover ,.visit:hover {
-    background-color: #eeeeee;
-}
-
-.home-tab:hover, .todo-tab:hover ,.diary-tab:hover, .visit-tab:hover, .credit-tab:hover {
-    color:   #1f455a;
 }
 
 .login-back {
