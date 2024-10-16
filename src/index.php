@@ -42,7 +42,7 @@ try{
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main-page</title>
-    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="/css/index.css">
 </head>
 <body>
     <container>
@@ -51,7 +51,9 @@ try{
                 <div class="back-side-bar">
                     <div class="logo"><img src="/img/logo.png" alt="" height="120px" width="180px"></div>
                     <div class="main-side-bar">
-                        <div class="emotion">TODAY IS...</div>
+                        <div class="emotion">
+                            <p class="emotion_comment">TODAY IS... </p>
+                        </div>
                         <div class="profile"><img class="profile-img" src="/img/profile.jpg" alt="" width="250px" height="250px"></div>
                         <br>
                         <div class="comment">
@@ -101,7 +103,7 @@ try{
                             <?php
                                 foreach($result2 as $item) { ?>
                                     <div class="visit">
-                                        <div class="visit-img"><img class="visitor" src="/img/icon.png" alt="" height="60px" width="30px"></div>
+                                    <div class="visit-img"><img class="visitor" src="/img/icon.png" alt="" height="60px" width="30px"></div>
                                         <p class="visit-comment"><?php echo $item["content"] ?></p>
                                     </div>
                                 <?php } ?>
