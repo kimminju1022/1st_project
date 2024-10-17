@@ -1,3 +1,4 @@
+
 <?php
 require_once($_SERVER["DOCUMENT_ROOT"] . "/config.php"); //config파일의 정보를 가져와 쓴다
 require_once(MY_ROOT_DB_LIB); //db_lib 파일의 정보를 가져와 쓴다
@@ -110,20 +111,19 @@ try {
                                 </div>
                             </form>
                         <?php } ?>
-
                     </div>
-                    <!-- pagenation → 유효페이지까지 가능하고, 전후, 현재만 표시 -->
-                    <div class="visit_footer">
-                        <?php if ($page !== 1) { ?>
-                            <a href="/visit.php?page=<?php echo $prev_page_button_number ?>"><img src="/img/left-pagebtn.png" alt="before" class="p_btn"></a>
-                        <?php } else { ?>
+                        <!-- pagenation → 유효페이지까지 가능하고, 전후, 현재만 표시 -->
+                        <div class="visit_footer">
+                            <?php if ($page !== 1) { ?>
+                                <a href="/visit.php?page=<?php echo $prev_page_button_number ?>"><img src="/img/arrow-left.png" alt="before" class="img_btn" width="30px" height="30px"></a>
+                            <?php } else { ?>
                             <div class="p_btn"></div>
-                        <?php } ?>
-                        <button class="p_btn"><?php echo $page ?></button>
-                        <?php if ($page !== $max_page) { ?>
-                            <a href="/visit.php?page=<?php echo $next_page_button_number ?>"><img src="/img/right-pagebtn.png" alt="before" class="p_btn"></a>
-                        <?php } ?>
-                    </div>
+                                <?php } ?>
+                            <button class="p_btn"><?php echo $page ?></button>
+                                <?php if ($page !== $max_page) { ?>
+                                    <a href="/visit.php?page=<?php echo $next_page_button_number ?>"><img src="/img/arrow-right.png" alt="before" class="img_btn" width="30px" height="30px"></a>
+                                <?php } ?>
+                        </div>
                 </div>
 
 

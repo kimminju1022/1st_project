@@ -54,10 +54,10 @@ textarea{
     border-radius: 20px;
     margin: auto 60px;
     padding: 20px 30px;
-    display: flex;
+    display: grid;
+    grid-template-rows: 80px 80px 80px 80px;
     flex-flow: wrap;
-    /* justify-content: center;
-    align-content: center; */
+    gap: 10px;
     line-height: 20px;
 }
 .visit_box{
@@ -95,9 +95,13 @@ textarea{
 width: 50px;
 }
 
-.visit_footer{
-    text-align: center;
-    margin-top: 30px;
+.visit_footer {
+    display: inline-flex;
+    align-items: center;
+    justify-content:center;
+    margin: 20px 0 0 50px;
+    line-height: 36px;
+    width: 860px;
 }
 
 #g-icon{
@@ -112,17 +116,15 @@ width: 50px;
     margin-left: 20px;
 }
 
-.p_btn{
-    display: inline-block;
-
-    width: 20px;
-    height: 20px;
-    background-color: transparent;
+.p_btn {
+    width: 30px;
+    height: 30px;
+    font-size: 1.5rem;
     border: none;
-}
-
-.p_btn:hover{
-    border-bottom: 2px solid #65a7bd;
+    outline: none;
+    line-height: 40px;
+    align-items: center;
+    margin-bottom: 15px;
 }
 
 .home, .diary, .todo, .credit {
@@ -165,4 +167,8 @@ div > .visit-btn {
     font-weight: 700;
     padding: 10px;
     width: 85px;
+}
+
+.img_btn{
+    margin-top: 5px;
 }
