@@ -11,61 +11,28 @@ go_login();
 $conn = null;
 $max_board_cnt = 0;
 $max_page = 0;
-try {
-    if(strtoupper($_SERVER["REQUEST_METHOD"] === "POST")){
-        $posttype = isset($_POST["posttype"]) ? $_POST["posttype"] : null;
-
-        if($posttype === "logout"){
-            logout();
-            exit;
-        }
-    } else {
-    
+try {  
     // PDO Instance
     $conn = my_db_conn();
-
-    // http 주소 구조 설명
-    // localhost/board.php?page_checklist_today=1&page_todo=1
-    // checklist_today : 오늘 해야 할 일 관련 페이지네이션
-    // todo : todolist 관련 페이지네이션
-
-    // get_checklist_today---------
-    // max page 획득 처리
-    $max_board_cnt_check = cnt_checklist_today($conn); // 게시글 총 수 획득
-    $max_page_check = (int)(ceil($max_board_cnt_check / MY_BOARD_CARD_COUNT)); // max page 획득
-
-    // pagination 설정
-    $page_checklist_today = isset($_GET["page_checklist_today"]) ? (int)$_GET["page_checklist_today"] : 1; // 현재 페이지 획득
-    $offset_checklist_today = ($page_checklist_today - 1) * MY_BOARD_CARD_COUNT; // 오프셋 설정
-    $prev_page_button_number_check = $page_checklist_today - 1 < 1 ? 1 : $page_checklist_today - 1; // 이전 버튼
-    $next_page_button_number_check = $page_checklist_today + 1 > $max_page_check ? $max_page_check : $page_checklist_today + 1; // 다음버튼
-
-    // pagination select 처리
-    $arr_prepare_check = [
-        "limit"  => MY_BOARD_CARD_COUNT,
-        "offset"   => $offset_checklist_today
-    ];
     
-    // cnt_todo---------
+    // cnt---------
     // max page 획득 처리
-    $max_board_cnt_todo = cnt_checklist_todo($conn); // 게시글 총 수 획득
-    $max_page_todo = (int)(ceil($max_board_cnt_todo / MY_BOARD_CARD_COUNT)); // max page 획득
+    $max_board_cnt = cnt_checklist_todo($conn); // 게시글 총 수 획득
+    $max_page = (int)(ceil($max_board_cnt / MY_BOARD_CARD_COUNT)); // max page 획득
 
     // pagination 설정
-    $page_todo = isset($_GET["page_todo"]) ? (int)$_GET["page_todo"] : 1; // 현재 페이지 획득
-    $offset_todo = ($page_todo - 1) * MY_BOARD_CARD_COUNT; // 오프셋 설정
-    $prev_page_button_number_todo = $page_todo - 1 < 1 ? 1 : $page_todo - 1; // 이전 버튼
-    $next_page_button_number_todo = $page_todo + 1 > $max_page_todo ? $max_page_todo : $page_todo + 1; // 다음버튼
+    $page = isset($_GET["page"]) ? (int)$_GET["page"] : 1; // 현재 페이지 획득
+    $offset = ($page - 1) * MY_BOARD_CARD_COUNT; // 오프셋 설정
+    $prev_page_button_number = $page - 1 < 1 ? 1 : $page - 1; // 이전 버튼
+    $next_page_button_number = $page + 1 > $max_page ? $max_page : $page + 1; // 다음버튼
 
     // pagination select 처리
-    $arr_prepare_todo = [
+    $arr_prepare = [
         "limit"  => MY_BOARD_CARD_COUNT,
-        "offset"   => $offset_todo
+        "offset"   => $offset
     ];
 
-    $result1 = get_checklist_today($conn, $arr_prepare_check);
-    $result2 = get_todolist_board($conn, $arr_prepare_todo);
-    }
+    $result2 = get_todolist_board($conn, $arr_prepare);
 
 } catch (Throwable $th) {
     echo $th->getMessage();
@@ -123,7 +90,7 @@ try {
                             <div class="to_list">
                                 <?php foreach($result2 as $item) {?>                                
                                     <div class="to_post">
-                                        <a href="/todo_list_detail.php?<?php echo "id=".$item["id"]."&page_todo=".$page_todo."&page_checklist=".$page_checklist_today?>">
+                                        <a href="/todo_list_detail.php?<?php echo "id=".$item["id"]."&page=".$page."&page_checklist=".$page_checklist_today?>">
                                         <p class="to_title"><span class="title-hidden"><?php echo $item["name"] ?></span></p></a>
                                         <p class="to_date"><?php echo $item["deadline"] ?></p>
                                         <div class="list_box">
@@ -135,14 +102,14 @@ try {
                                 <?php } ?>
                             </div>
                             <div class="to_pagination">
-                                <?php if ($page_todo !== 1) { ?>
-                                <a href="/history.php?<?php echo "page_checklist_today=".$page_checklist_today."&page_todo=".$prev_page_button_number_todo ?>"><img src="/img/arrow-left.png" alt="before" class="img_btn" width="30px" height="30px"></a>
+                                <?php if ($page !== 1) { ?>
+                                <a href="/history.php?<?php echo "page_checklist_today=".$page_checklist_today."&page=".$prev_page_button_number ?>"><img src="/img/arrow-left.png" alt="before" class="img_btn" width="30px" height="30px"></a>
                                 <?php } else { ?>
                                 <div class="p_btn"></div>
                                 <?php } ?>
-                                <button class="p_btn"><?php echo $page_todo ?></button>
-                                <?php if ($page_todo !== $max_page_todo) { ?>
-                                <a href="/history.php?<?php echo "page_checklist_today=".$page_checklist_today."&page_todo=".$next_page_button_number_todo ?>"><img src="/img/arrow-right.png" alt="before" class="img_btn" width="30px" height="30px"></a>
+                                <button class="p_btn"><?php echo $page ?></button>
+                                <?php if ($page !== $max_page) { ?>
+                                <a href="/history.php?<?php echo "page_checklist_today=".$page_checklist_today."&page=".$next_page_button_number ?>"><img src="/img/arrow-right.png" alt="before" class="img_btn" width="30px" height="30px"></a>
                                 <?php } ?>
                             </div>
                         </div>
@@ -151,8 +118,8 @@ try {
             </div>
             <div class="menu-bar">
                 <div class="home"><a href="/index.php" class="home-tab">HOME</a></div>
-                <div class="todo"><a href="/board.php?page_checklist_today=1&page_todo=1" class="todo-tab">TODO</a></div>
-                <div class="history"><a href="/history.php" class="history-tab">HISTORY</a></div>
+                <div class="todo"><a href="/board.php?page_checklist_today=1&page=1" class="todo-tab">TODO</a></div>
+                <div class="history"><a href="/history.php?page=1" class="history-tab">HISTORY</a></div>
                 <div class="visit-btn"><a href="/visit.php" class="visit-tab">VISIT</a></div>
                 <div class="credit"><a href="#" class="credit-tab">CREDIT</a></div>
             </div>

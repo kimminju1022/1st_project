@@ -867,3 +867,31 @@ function update_checklist(PDO $conn, array $arr_param){
 
   return;
 }
+
+function get_todolist_board_beforeDeadline(PDO $conn, array $arr_param){
+  $sql = 
+  " SELECT id, name, deadline  "
+  ." FROM todolists            "
+  ." WHERE deleted_at IS NULL  "
+  ." AND deadline < CURDATE() "
+  ." ORDER BY deadline ASC     "
+  ." LIMIT :limit              "
+  ." OFFSET :offset            "
+  ; 
+
+  $stmt = $conn -> prepare($sql);
+  $stmt -> execute($arr_param);
+
+  $result_todo = $stmt -> fetchAll();
+
+  foreach($result_todo as $key => $item) {
+    $arr_prepare = [
+      "list_id" => $item["id"]
+    ];
+
+    $result_chk_list = get_checklist_forboard($conn, $arr_prepare);
+    $result_todo[$key]["contents"] = $result_chk_list;
+  }
+
+  return $result_todo;
+}
