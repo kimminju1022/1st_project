@@ -28,9 +28,7 @@
     padding: 20px;
     font-size: 1.2rem;
 }
-.visit-post{
-    font-size: 1.2rem;
-}
+
 textarea{
     border-radius: 10px;
     border-style: 10px double;
@@ -63,21 +61,27 @@ textarea{
     line-height: 20px;
 }
 .visit_box{
-background-color: rgba(240, 255, 255, 0.618);
-width: 740px;
-height: 70px;
-margin: 10px 20px;
-padding: 10px;
-display: grid;
-align-items: center;
-grid-template-columns: 1fr 8fr 3fr 1fr;
-border-radius: 10px;
+    background-color: rgba(240, 255, 255, 0.618);
+    width: 740px;
+    height: 70px;
+    margin: 10px 20px;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 8fr 3fr 1fr;
+    border-radius: 10px;
 }
 
-.visit_date{
-    /* display */
-    margin-top: 25px;
-    margin-left: 20px;
+.writer_with_date{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.writer {
+    text-align: center;
+    padding-bottom: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
 }
 
 .delete-btn{
@@ -105,7 +109,7 @@ width: 50px;
 .visit_icon{
     width: 25px;
     height: auto;
-    margin-left: 10px;
+    margin-left: 20px;
 }
 
 .p_btn{
@@ -119,4 +123,46 @@ width: 50px;
 
 .p_btn:hover{
     border-bottom: 2px solid #65a7bd;
+}
+
+.home, .diary, .todo, .credit {
+    width: 85px;
+    background-color: #65a7bd;
+    padding: 12px 0px 12px 0px;
+    margin-left: -30px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    margin-bottom: 5px;
+    border: 1px solid black;
+    border-left: none;
+}
+
+.home-tab , .diary-tab, .todo-tab, .credit-tab {
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: white;
+    font-weight: 700;
+    padding: 10px;
+    width: 85px;
+}
+
+div > .visit-btn {
+    width: 85px;
+    background-color: #EEEEEE;
+    padding: 12px 0px 12px 0px;
+    margin-left: -30px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    margin-bottom: 5px;
+    border: 1px solid black;
+    border-left: none;
+}
+
+.visit-tab {
+    color: black;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: 10px;
+    width: 85px;
 }

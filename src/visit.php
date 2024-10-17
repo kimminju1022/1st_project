@@ -44,7 +44,7 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main-page</title>
-    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/common-design.css">
     <link rel="stylesheet" href="/css/visit.css">
 </head>
 <body>
@@ -84,7 +84,7 @@ try {
                         <div class="visit_comment">
                             <input type="hidden" name="page" value="<?php $page ?>">
                             <input type="hidden" name="user_id" value="<?php echo $_SESSION["id"] ?>">
-                            <textarea maxlength="50" name="content" cols="10" rows="3" placeholder="남길 말씀이 있다면 여기에 남겨주세요"></textarea>
+                            <textarea maxlength="40" name="content" cols="10" rows="3" placeholder="남길 말씀이 있다면 여기에 남겨주세요"></textarea>
                             <button type="submit" class="post-btn">글남기기</button>
                         </div>
                     </form>
@@ -98,12 +98,15 @@ try {
                                 <div class="visit_box">
                                     <img src="/img/icon.png" alt="미니미" class="visit_icon">
                                     <p class="visit-post"><?php echo $item["content"] ?></p>
-                                    <p class="visit_date"><?php echo $item["created_at"] ?></p>
+                                    <div class="writer_with_date">
+                                        <!-- 작성자 이름 나오는 부분  -->
+                                        <p class="writer"><?php echo $item["user_name"] ?></p>
+                                        <p class="visit_date"><?php echo $item["created_at"] ?></p>
+                                    </div>
                                     <?php if($_SESSION["id"] === $item["user_id"] || $_SESSION["manager"]) { ?>
                                         <button type="submit" class="delete-btn"><img src="/img/delete.png" alt="delete-btn" height="50px" width="40px"></button>
                                     <?php } ?>
-                                    <!-- 작성자 이름 나오는 부분  -->
-                                     <p><?php echo $item["user_name"] ?></p>
+                                
                                 </div>
                             </form>
                         <?php } ?>

@@ -74,11 +74,11 @@ try{
                         foreach($result as $item) { ?>
                             <div class="main-content-box">
                                 <div class="main-checkbox">
-                                    <p class="check-title"><?php echo $item["name"] ?></p>
+                                    <p class="check-title"><span class="title-hidden"><?php echo $item["name"] ?></span></p>
                                     <p class="check-date"><?php echo $item["deadline"] ?></p>
                                     <div class="list-box">
                                         <?php foreach($item["contents"] as $chk_list_item) { ?>
-                                        <input class="check-list check-first" type="checkbox"><span class="content-hidden"><?php echo $chk_list_item["content"] ?></span>
+                                        <input class="check-list check-first" type="checkbox" disabled><span class="content-hidden"><?php echo $chk_list_item["content"] ?></span>
                                         <?php } ?>
                                     </div>
                                 </div>
