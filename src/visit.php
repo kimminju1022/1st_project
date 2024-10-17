@@ -27,11 +27,11 @@ try {
 
     // pagination select 처리
     $arr_prepare = [
-        "list_cnt"  => MY_VISIT_COUNT,
+        "limit"  => MY_VISIT_COUNT,
         "offset"   => $offset
     ];
 
-    $result = select_pagination_visit($conn, $arr_prepare);
+    $result = get_guestbook_board($conn, $arr_prepare);
 } catch (Throwable $th) {
     echo $th->getMessage();
     exit;
@@ -102,6 +102,8 @@ try {
                                     <?php if($_SESSION["id"] === $item["user_id"] || $_SESSION["manager"]) { ?>
                                         <button type="submit" class="delete-btn"><img src="/img/delete.png" alt="delete-btn" height="50px" width="40px"></button>
                                     <?php } ?>
+                                    <!-- 작성자 이름 나오는 부분  -->
+                                     <p><?php echo $item["user_name"] ?></p>
                                 </div>
                             </form>
                         <?php } ?>
