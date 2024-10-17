@@ -27,7 +27,8 @@
     if(!is_null($conn) && $conn -> inTransaction()){
       $conn -> rollBack();
     }
-
+    
+    header("Location: /error_membership.php");
     echo $th-> getMessage();
     exit;
   }

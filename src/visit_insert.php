@@ -40,6 +40,7 @@ try {
         $conn->rollBack();
     }
 
+    header("Location: /error.php");
     echo $th->getMessage();
     exit;
 }

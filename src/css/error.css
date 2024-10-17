@@ -39,6 +39,11 @@ container {
     border-right: 0;
 }
 
+.logo {
+    padding-left: 45px;
+    padding-top: 15px;
+}
+
 .content {
     border-left: 0;
 }
@@ -61,28 +66,25 @@ container {
     margin-top: 25px;
 }
 
-.main-side-bar {
-    padding-top: 150px;
-}
-
 .emotion {
-    background-color: lightgray;
     width: 250px;
     height: 40px;
-    font-size: 1.5rem;
-    font-weight: 400;
-    justify-content: center;
-    margin: auto;
-    padding-left: 5px;
-    padding-top: 6px;
+    border-radius: 5px;
+    border: 1px solid black;
+    color: #5ccfe2;
+    font-size: 1.4rem;
+    margin-left: 15px;
+    text-indent: 30px;
+    line-height: 40px;
+    font-weight: 900;
 }
 
-.emotion_comment {
+/* .emotion_comment {
     color: #5ccfe2;
     font-size: 1.2rem;
     font-weight: 700;
     padding-left: 30px;
-}
+} */
 
 .profile {
     width: 250px;
