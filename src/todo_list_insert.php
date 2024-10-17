@@ -37,7 +37,7 @@
 
             $page_checklist = isset($_POST["page_checklist"]) ? (int)$_POST["page_checklist"] : 1;
 
-            header("Location: /detail.php?id=".$id."&page_todo=".$page_todo."&page_checklist=".$page_checklist);
+            header("Location: /todo_list_detail.php?id=".$id."&page_todo=".$page_todo."&page_checklist=".$page_checklist);
         }
 
         else{
@@ -105,8 +105,8 @@
                     </div>
                     
                     <form action="/todo_list_insert.php" method="post" class="">
-                        <input type="hidden" name="page_todo" value="<?php $page_todo ?>">
-                        <input type="hidden" name="page_checklist" value="<?php $page_checklist ?>">
+                        <input type="hidden" name="page_todo" value="<?php echo $page_todo ?>">
+                        <input type="hidden" name="page_checklist" value="<?php echo $page_checklist ?>">
                             <div class="calendar">
                                 <div class="sub_title">제목</div>
                                 <input type="text" name="sub_title" class="sub_title_area" maxlength="20">
