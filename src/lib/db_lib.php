@@ -341,6 +341,7 @@ function get_guestbook_board(PDO $conn, array $arr_param){
   ." FROM guest_books                     "
   ." JOIN users                           "
   ." ON guest_books.user_id = users.id    "
+  ." AND guest_books.deleted_at IS NULL   "
   ." ORDER BY guest_books.id DESC         "
   ." ,guest_books.created_at DESC         "
   ." LIMIT :limit                         "
