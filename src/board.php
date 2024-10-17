@@ -116,14 +116,14 @@ try {
                 <div class="main-content">
                     <div class="main-title">
                         ブl억님으l ㅁıLI홈ㅍı
+                        <a href="/todo_list_insert.php?<?php echo "page_todo=".$page_todo."&page_checklist=".$page_checklist_today ?>">
+                                <?php if($_SESSION["manager"]) { ?><button type="submit" class="post-btn"><img src="/img/penicon.png" alt="" width="60px" height="60px"></button> <?php } ?>
+                        </a>
                     </div>
                     <div class="to_body">
                         <!-- todo-list-title style위치 일치할 것 -->
                         <div class="insert-btn">
                             <div class="todo-head"> 오늘까지 할 일</div>
-                            <a href="/todo_list_insert.php?<?php echo "page_todo=".$page_todo."&page_checklist=".$page_checklist_today ?>">
-                                <?php if($_SESSION["manager"]) { ?><button type="submit" class="post-btn">글남기기</button> <?php } ?>
-                            </a>
                         </div>
                         <div class="todo-deadline">
                             <div class="arrow-to-left"><?php if($page_checklist_today !== 1) {?>
