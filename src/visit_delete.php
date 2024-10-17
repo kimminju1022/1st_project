@@ -69,23 +69,21 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/common-design.css">
-    <link rel="stylesheet" href="/css/todo-list_delete.css">
     <link rel="stylesheet" href="/css/delete.css">
     <title>Todo list 삭제페이지</title>
 </head>
 
 <body>
     <container>
-
         <div class="main-background">
             <div class="side-bar">
                 <div class="back-side-bar">
+                    <div class="logo"><img src="/img/logo.png" alt="" height="120px" width="150px"></div>
                     <div class="main-side-bar">
                         <div class="emotion">
                             <p class="emotion_comment">TODAY IS... </p>
                         </div>
-                        <div class="profile"><img class="profile-img" src="/img/profile.jpg" alt="" width="250px"
-                                height="300px"></div>
+                        <div class="profile"><img class="profile-img" src="/img/profile.jpg" alt="" width="250px" height="250px"></div>
                         <br>
                         <div class="comment">
                             <p>난... ㄱr끔... </p>
@@ -97,25 +95,30 @@ try {
                             <p>울 수 있 ㄷㅏ는건.... </p>
                             <p>좋은ㄱ ㅓ ㅇ ㅑ..... </p>
                         </div>
-                        <!-- form태그 확인하기 -->
-                        <form method="post" action="/logout.php">
-                            <div class="logout"><button type="submit" class="logout">로그아웃</button></div>
-                        </form>
-                        
+                        <!-- <form action="/index.php" method="post">
+                            <button type="submit" class="logout">로그아웃</button>
+                            <input type="hidden" name="posttype" value="logout">
+                        </form> -->
                     </div>
                 </div>
             </div>
-
             <div class="content">
                 <div class="main-content">
                     <div class="main-title">
                         ブl억님으l ㅁıLI홈ㅍı
                     </div>
+                    <div class="update_title">
+                        Visit 삭제페이지
+                        <br>
+                        <hr width="160px">
+                    </div>
                     <div class="d_container">
                         <div class="title_bar">
                             <h1>삭제하시겠습니까?</h1>
                         </div>
-
+                        <div class="nine_bar">
+                            <hr width="900px">
+                        </div>
                         <div class="white_board">
                             <p class="write">더 이상 다른 이에게 노출되지 않습니다.</p>
                             <p class="write sub_p">정말 기억을 지우시겠습니까?</p>

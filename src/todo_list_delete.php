@@ -107,9 +107,10 @@ try {
                             <p>울 수 있 ㄷㅏ는건.... </p>
                             <p>좋은ㄱ ㅓ ㅇ ㅑ..... </p>
                         </div>
-                        <form action="/logout.php" method="post">
+                        <!-- <form action="/index.php" method="post">
                             <button type="submit" class="logout">로그아웃</button>
-                        </form>
+                            <input type="hidden" name="posttype" value="logout">
+                        </form> -->
                     </div>
                 </div>
             </div>
@@ -144,7 +145,7 @@ try {
                     <form action="/todo_list_delete.php" method="post" class="">
                         <div class="btn-insert">
                             <input type="hidden" name="id" value="<?php echo $result[0]["todolist_id"] ?>">
-                            <a href="/detil.php?<?php echo "id=".$result[0]["todolist_id"]."&page_todo=".$page_todo."&page_checklist=".$page_checklist; ?>"><button type="button" class="btn">취소</button></a>
+                            <a href="/detail.php?<?php echo "id=".$result[0]["todolist_id"]."&page_todo=".$page_todo."&page_checklist=".$page_checklist; ?>"><button type="button" class="btn">취소</button></a>
                             <button type="submit" class="btn">삭제하기</button>
                         </div>
                     </form>
