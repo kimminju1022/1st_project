@@ -11,7 +11,9 @@ try {
         // GET 처리
         // 파라미터 획득(id, page)
         $id = isset($_GET["id"]) ? (int)$_GET["id"] : 0;
-        $page = isset($_GET["page"]) ? (int)$_GET["page"] : 1;
+        $page_todo = isset($_GET["page_todo"]) ? (int)$_GET["page_todo"] : 1;
+
+        $page_checklist = isset($_GET["page_checklist"]) ? (int)$_GET["page_checklist"] : 1;
 
         if($id < 1) {
             throw new Exception("파라미터 오류 : G");
@@ -142,7 +144,7 @@ try {
                     <form action="/todo_list_delete.php" method="post" class="">
                         <div class="btn-insert">
                             <input type="hidden" name="id" value="<?php echo $result[0]["todolist_id"] ?>">
-                            <a href="/board.php?id=<?php echo $result[0]["todolist_id"]; ?>&page=<?php echo $page; ?>"><button type="button" class="btn">취소</button></a>
+                            <a href="/detil.php?<?php echo "id=".$result[0]["todolist_id"]."&page_todo=".$page_todo."&page_checklist=".$page_checklist; ?>"><button type="button" class="btn">취소</button></a>
                             <button type="submit" class="btn">삭제하기</button>
                         </div>
                     </form>

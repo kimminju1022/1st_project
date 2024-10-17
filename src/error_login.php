@@ -10,14 +10,14 @@ require_once($_SERVER["DOCUMENT_ROOT"]."/config.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/error.css">
-    <title>에러페이지</title>
+    <title>로그인 에러페이지</title>
 </head>
 <body>
     <container>
         <div class="main-background">
             <div class="side-bar">
-                <div class="logo"><img src="/img/logo.png" alt="" height="120px" width="150px"></div>
                 <div class="back-side-bar">
+                    <div class="logo"><img src="/img/logo.png" alt="" height="120px" width="150px"></div>
                     <div class="main-side-bar">
                         <div class="emotion">
                             <p class="emotion_comment">TODAY IS... </p>
@@ -34,10 +34,7 @@ require_once($_SERVER["DOCUMENT_ROOT"]."/config.php");
                             <p>울 수 있 ㄷㅏ는건.... </p>
                             <p>좋은ㄱ ㅓ ㅇ ㅑ..... </p>
                         </div>
-                        <!-- <form action="#" method="post">
-                            <input type="hidden" name="posttype" value="logout">
-                            <div class="logout"><button type="submit" class="logout">로그아웃</button></div>
-                        </form> -->
+                        <!-- <div class="logout"><button class="logout">로그아웃</button></div> -->
                     </div>
                 </div>
             </div>
@@ -47,13 +44,13 @@ require_once($_SERVER["DOCUMENT_ROOT"]."/config.php");
                         ブl억님으l ㅁıLI홈ㅍı
                     </div>
                     <div class="error_title">
-                        에러페이지
+                        로그인 에러페이지
                         <br>
                         <hr width="110px">
                     </div>
                     <div class="error">
-                        <p>기억에 오류가 발생했습니다.</p>
-                        <p>메인페이지로 돌아가 다시 시도해주세요.</p>
+                        <p>아이디 또는 비밀번호가 일치하지 않습니다.</p>
+                        
                         <div>
                             <a href="/"><button type="button" class="btn btn-bottom">메인페이지로 이동하기</button></a>
                         </div>

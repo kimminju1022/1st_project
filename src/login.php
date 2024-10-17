@@ -27,6 +27,8 @@ try{
     }
   }
 } catch(Throwable $th) {
+
+  header("Location: /error_login.php");
   echo $th -> getMessage();
   exit;
 }
