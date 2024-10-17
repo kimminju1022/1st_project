@@ -16,6 +16,10 @@ try {
     if($id < 0){
         throw new Exception("error : id can't find.");
     }
+    
+    if(empty(trim($_POST["content"]))) { // null || ""
+        throw new Exception("error : Content not founded.");
+    }
 
     $arr_prepare = [
         "user_id" => $id,
