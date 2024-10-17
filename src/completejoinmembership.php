@@ -55,11 +55,11 @@
 
             </div>
             <div class="menu-bar">
-                <div class="home"><a href="" class="home-tab">HOME</a></div>
-                <div class="todo"><a href="" class="todo-tab">TODO</a></div>
-                <div class="diary"><a href="" class="diary-tab">DIARY</a></div>
-                <div class="visit"><a href="" class="visit-tab">VISIT</a></div>
-                <div class="credit"><a href="" class="credit-tab">CREDIT</a></div>
+                <div class="home"><a href="/index.php" class="home-tab">HOME</a></div>
+                <div class="todo"><a href="/board.php?page_checklist_today=1&page=1" class="todo-tab">TODO</a></div>
+                <div class="history"><a href="/history.php?page=1" class="history-tab">HISTORY</a></div>
+                <div class="visit-btn"><a href="/visit.php" class="visit-tab">VISIT</a></div>
+                <div class="credit"><a href="#" class="credit-tab">CREDIT</a></div>
             </div>
         </div>
     </container>  
