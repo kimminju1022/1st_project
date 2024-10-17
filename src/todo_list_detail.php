@@ -84,9 +84,8 @@ try {
                             <p>울 수 있 ㄷㅏ는건.... </p>
                             <p>좋은ㄱ ㅓ ㅇ ㅑ..... </p>
                         </div>
-                        <form action="/index.php" method="post">
+                        <form action="/logout.php" method="post">
                             <button type="submit" class="logout">로그아웃</button>
-                            <input type="hidden" name="posttype" value="logout">
                         </form>
                     </div>
                 </div>

@@ -18,16 +18,35 @@
             
             $checklists = [];
 
-            for($i = 0; $i < 20; $i++){
-                $checklists[$i] = isset($_POST[(string)($i)]) ? $_POST[(string)($i)] : "";
+            $is_all_empty = true;
+
+            for($i = 0; $i<20; $i++){
+                $content = isset($_POST[(string)$i]) ? $_POST[(string)$i] : "";
+                $checklists[$i] = $content;
+
+                if($is_all_empty && !empty(trim($content))){
+                    $is_all_empty = false;
+                }
             }
 
-            $conn -> beginTransaction();
+            if(empty(trim($name))){
+                throw new Exception("제목을 채워주세요");
+            }
+
+            if($is_all_empty){
+                throw new Exception("todolist를 하나 이상 채워주세요");
+            }
+
+            
 
             $arr_prepare = [
                 "name" => $name
                 ,"deadline" => $deadline
             ];
+
+
+            $conn -> beginTransaction();
+
 
             $id = insert_todolist($conn, $arr_prepare, $checklists);
 
@@ -49,6 +68,8 @@
         if(!is_null($conn) && $conn -> inTransaction()){
             $conn -> rollBack();
         }
+
+        header("Loaction: /error.php");
 
         echo $th -> getMessage();
         exit;
@@ -86,9 +107,8 @@
                             <p>울 수 있 ㄷㅏ는건.... </p>
                             <p>좋은ㄱ ㅓ ㅇ ㅑ..... </p>
                         </div>
-                        <form action="/index.php" method="post">
+                        <form action="/logout.php" method="post">
                             <button type="submit" class="logout">로그아웃</button>
-                            <input type="hidden" name="posttype" value="logout">
                         </form>
                     </div>
                 </div>

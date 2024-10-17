@@ -420,9 +420,10 @@ function cnt_checklist_today(PDO $conn){
 
 function cnt_checklist_todo(PDO $conn){
   $sql =
- " SELECT COUNT(*) AS COUNT "
-  ." FROM todolists "
-  ." WHERE deleted_at IS NULL "
+ " SELECT COUNT(*) AS COUNT    "
+  ." FROM todolists            "
+  ." WHERE deleted_at IS NULL  "
+  ." AND deadline >= CURDATE() "
   ;
 
   $stmt = $conn -> query($sql);
