@@ -14,7 +14,8 @@
             $conn = my_db_conn();
 
             $name = isset($_POST["sub_title"]) ? $_POST["sub_title"] : throw new Exception("제목을 입력하세요");
-            $deadline = !empty($_POST["deadline"])  ? $_POST["deadline"] : date("Y-m-d");;
+            $deadline = !empty($_POST["deadline"])  ? $_POST["deadline"] : date("Y-m-d");
+            
             $checklists = [];
 
             for($i = 0; $i < 20; $i++){
@@ -28,11 +29,20 @@
                 ,"deadline" => $deadline
             ];
 
-            insert_todolist($conn, $arr_prepare, $checklists);
+            $id = insert_todolist($conn, $arr_prepare, $checklists);
 
             $conn -> commit();
 
-            header("Location: /detail.php");
+            $page_todo = isset($_POST["page_todo"]) ? (int)$_POST["page_todo"] : 1;
+
+            $page_checklist = isset($_POST["page_checklist"]) ? (int)$_POST["page_checklist"] : 1;
+
+            header("Location: /detail.php?id=".$id."&page_todo=".$page_todo."&page_checklist=".$page_checklist);
+        }
+
+        else{
+            $page_todo = isset($_GET["page_todo"]) ? (int)$_GET["page_todo"] : 1;
+            $page_checklist = isset($_GET["page_checklist"]) ? (int)$_GET["page_checklist"] : 1;
         }
     }
     catch(Throwable $th){
@@ -95,6 +105,8 @@
                     </div>
                     
                     <form action="/todo_list_insert.php" method="post" class="">
+                        <input type="hidden" name="page_todo" value="<?php $page_todo ?>">
+                        <input type="hidden" name="page_checklist" value="<?php $page_checklist ?>">
                             <div class="calendar">
                                 <div class="sub_title">제목</div>
                                 <input type="text" name="sub_title" class="sub_title_area" maxlength="20">

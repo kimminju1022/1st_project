@@ -653,7 +653,7 @@ function insert_todolist(PDO $conn, array $arr_param, array $checklists){
   }
   
   
-  return null;
+  return $conn->lastInsertId();
 }
 
 /**
