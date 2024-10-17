@@ -301,7 +301,9 @@ input:checked+label{
     width: 20px;
     height: 20px;
 }
-
+.insert-commnet {
+    outline: none;
+}
 .home, .diary, .visit-btn, .credit {
     width: 85px;
     background-color: #65a7bd;

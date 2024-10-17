@@ -85,7 +85,7 @@ try {
                         <div class="visit_comment">
                             <input type="hidden" name="page" value="<?php $page ?>">
                             <input type="hidden" name="user_id" value="<?php echo $_SESSION["id"] ?>">
-                            <textarea maxlength="40" name="content" cols="10" rows="3" placeholder="남길 말씀이 있다면 여기에 남겨주세요"></textarea>
+                            <textarea class="insert-comment" maxlength="40" name="content" cols="10" rows="3" placeholder="남길 말씀이 있다면 여기에 남겨주세요"></textarea>
                             <button type="submit" class="post-btn">글남기기</button>
                         </div>
                     </form>
