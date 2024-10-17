@@ -121,7 +121,7 @@ try {
                         <!-- todo-list-title style위치 일치할 것 -->
                         <div class="insert-btn">
                             <div class="todo-head"> 오늘까지 할 일</div>
-                            <a href="/todo_list_insert.php">
+                            <a href="/todo_list_insert.php?<?php echo "page_todo=".$page_todo."&page_checklist=".$page_checklist_today ?>">
                                 <button type="submit" class="post-btn">글남기기</button>
                             </a>
                         </div>
@@ -146,7 +146,7 @@ try {
                             <?php foreach($result2 as $item) {?>                                
                                 <div class="to_post">
                                     <a href="/todo_list_detail.php?<?php echo "id=".$item["id"]."&page_todo=".$page_todo."&page_checklist=".$page_checklist_today?>">
-                                    <p class="to_title"><?php echo $item["name"] ?></p></a>
+                                    <p class="to_title"><span class="title-hidden"><?php echo $item["name"] ?></span></p></a>
                                     <p class="to_date"><?php echo $item["deadline"] ?></p>
                                     <div class="list_box">
                                     <?php foreach($item["contents"] as $chk_lists ){ ?>
