@@ -32,7 +32,7 @@
 
             $conn -> commit();
 
-            header("Location: /index.php");
+            header("Location: /detail.php");
         }
     }
     catch(Throwable $th){

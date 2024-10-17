@@ -113,12 +113,13 @@ function select_pagination_board(PDO $conn, array $arr_param){
  */
 function get_todolist_board(PDO $conn, array $arr_param){
   $sql = 
-  " SELECT id, name, deadline "
-  ." FROM todolists           "
-  ." WHERE deleted_at IS NULL "
-  ." ORDER BY deadline ASC    "
-  ." LIMIT :limit             "
-  ." OFFSET :offset           "
+  " SELECT id, name, deadline  "
+  ." FROM todolists            "
+  ." WHERE deleted_at IS NULL  "
+  ." AND deadline >= CURDATE() "
+  ." ORDER BY deadline ASC     "
+  ." LIMIT :limit              "
+  ." OFFSET :offset            "
   ; 
 
   $stmt = $conn -> prepare($sql);
@@ -539,19 +540,17 @@ function check_user_name(PDO $conn, array | string $arr_param){
  */
 function check_account(PDO $conn, array $arr_param, array &$user_data){
   
-  if(check_user_name($conn, $arr_param["user_name"]) === false){
-    return false;
-  }
-  
   $sql =
   " SELECT user_password, ismanager, id   "
   ." FROM users                           "
   ." WHERE user_password = :user_password "
+  ." AND user_name = :user_name           "
   ." ; "
   ;
 
   $arr_prepare = [
     "user_password" => $arr_param["user_password"]
+    ,"user_name" => $arr_param["user_name"]
   ];
   
   $stmt = $conn -> prepare($sql);
