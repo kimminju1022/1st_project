@@ -64,6 +64,8 @@
     text-align: center;
     height: 300px;
     gap: 3rem;
+    margin-left: 35px;
+    margin-top: 110px;
 }
 
 .write {

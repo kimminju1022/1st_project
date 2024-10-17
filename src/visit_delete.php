@@ -110,7 +110,7 @@ try {
                     <div class="update_title">
                         Visit 삭제페이지
                         <br>
-                        <hr width="220px">
+                        <hr width="160px">
                     </div>
                     <div class="d_container">
                         <div class="title_bar">
