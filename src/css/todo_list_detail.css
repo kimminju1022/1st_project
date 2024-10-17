@@ -3,14 +3,11 @@
     outline: none;
     border: none;
     background-color: transparent;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     line-height: 50px;
     height: 50px;
 }
 
-#sub_title {
-    font-size: 1.5rem;
-}
 .insert_title {
     font-size: 1.5rem;
     color: #5ccfe2;
@@ -38,19 +35,18 @@
 }
 
 .sub_title {
-    font-size: 1.5rem;
     padding-left: 30px;
 }
 
 .input_area {
     border: none;
     outline: none;
-    height: 45px;
+    height: 50px;
+    font-size: 1.2rem;
     background-color: white;
 }
 
 .sub_title_area{
-    width: 250px;  
     padding-left: 1rem;
 }
 

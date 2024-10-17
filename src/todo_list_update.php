@@ -167,18 +167,17 @@ try {
                         <input type="hidden" name="id" value="<?php echo $result[0]["todolist_id"] ?>">
                         <input type="hidden" name="page_todo" value="<?php echo $page_todo ?>">
                         <input type="hidden" name="page_checklist" value="<?php echo $page_checklist ?>">
-                        <div>
+                        
                             <div class="calendar">
                                 <div class="sub_title">제목</div>
-                                <input type="text" id="title_bar" name="title_bar" class="input_area sub_title_area" value="<?php echo $result[0]["name"] ?>">
+                                <input type="text" id="title_bar" name="title_bar" maxlength="20" class="input_area sub_title_area" value="<?php echo $result[0]["name"] ?>">
                                 <div class="sub_date">수행일자</div>
-                                <div class="input_area sub_date_area"></div>
                                 <input type="date" name="deadline" id="deadline" class="deadline" value="<?php echo $result[0]["deadline"] ?>">
                             </div>
                             <div class="nine_bar">
                                 <hr width="900px">
                             </div>
-                        </div>
+                        
                         <div class="sub_content">
                             <div class="chk_area">
                                 <div class="chk_list">

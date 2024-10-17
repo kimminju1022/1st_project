@@ -97,7 +97,7 @@
                     <form action="/todo_list_insert.php" method="post" class="">
                             <div class="calendar">
                                 <div class="sub_title">제목</div>
-                                <input type="text" name="sub_title" class="sub_title_area">
+                                <input type="text" name="sub_title" class="sub_title_area" maxlength="20">
                                 <div class="sub_date">수행일자</div>
                                 <div class="deadline-area"><input type="date" name="deadline" id="deadline" class="deadline"></div>
                             </div>
