@@ -32,7 +32,7 @@ try {
         "offset"   => $offset
     ];
 
-    $result2 = get_todolist_board($conn, $arr_prepare);
+    $result = get_todolist_board($conn, $arr_prepare);
 
 } catch (Throwable $th) {
     echo $th->getMessage();
@@ -88,9 +88,9 @@ try {
                         <!-- todo card foreach로 2행 4열 -->
                         <div class="to_main">
                             <div class="to_list">
-                                <?php foreach($result2 as $item) {?>                                
+                                <?php foreach($result as $item) {?>                                
                                     <div class="to_post">
-                                        <a href="/todo_list_detail.php?<?php echo "id=".$item["id"]."&page=".$page."&page_checklist=".$page_checklist_today?>">
+                                        <a href="/todo_list_detail.php?<?php echo "id=".$item["id"]."&page=".$page?>">
                                         <p class="to_title"><span class="title-hidden"><?php echo $item["name"] ?></span></p></a>
                                         <p class="to_date"><?php echo $item["deadline"] ?></p>
                                         <div class="list_box">
@@ -103,13 +103,13 @@ try {
                             </div>
                             <div class="to_pagination">
                                 <?php if ($page !== 1) { ?>
-                                <a href="/history.php?<?php echo "page_checklist_today=".$page_checklist_today."&page=".$prev_page_button_number ?>"><img src="/img/arrow-left.png" alt="before" class="img_btn" width="30px" height="30px"></a>
+                                <a href="/history.php?<?php echo "&page=".$prev_page_button_number ?>"><img src="/img/arrow-left.png" alt="before" class="img_btn" width="30px" height="30px"></a>
                                 <?php } else { ?>
                                 <div class="p_btn"></div>
                                 <?php } ?>
                                 <button class="p_btn"><?php echo $page ?></button>
                                 <?php if ($page !== $max_page) { ?>
-                                <a href="/history.php?<?php echo "page_checklist_today=".$page_checklist_today."&page=".$next_page_button_number ?>"><img src="/img/arrow-right.png" alt="before" class="img_btn" width="30px" height="30px"></a>
+                                <a href="/history.php?<?php echo"&page=".$next_page_button_number ?>"><img src="/img/arrow-right.png" alt="before" class="img_btn" width="30px" height="30px"></a>
                                 <?php } ?>
                             </div>
                         </div>
