@@ -1,6 +1,11 @@
 .deadline {
     border-radius: 5px;
     margin-right: 15px;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    font-size: 1.5rem;
+    line-height: 45px;
 }
 
 .update_title {

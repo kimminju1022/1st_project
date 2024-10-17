@@ -129,11 +129,12 @@ try {
         <div class="main-background">
             <div class="side-bar">
                 <div class="back-side-bar">
+                    <div class="logo"><img src="/img/logo.png" alt="" height="120px" width="150px"></div>
                     <div class="main-side-bar">
                         <div class="emotion">
                             <p class="emotion_comment">TODAY IS... </p>
                         </div>
-                        <div class="profile"><img class="profile-img" src="./img/profile.jpg" alt="" width="250px" height="300px"></div>
+                        <div class="profile"><img class="profile-img" src="/img/profile.jpg" alt="" width="250px" height="250px"></div>
                         <br>
                         <div class="comment">
                             <p>난... ㄱr끔... </p>
@@ -145,8 +146,8 @@ try {
                             <p>울 수 있 ㄷㅏ는건.... </p>
                             <p>좋은ㄱ ㅓ ㅇ ㅑ..... </p>
                         </div>
-                        <form method="post" action="/logout.php">
-                            <div class="logout"><button type="submit" class="logout">로그아웃</button></div>
+                        <form action="/logout.php" method="post">
+                            <button type="submit" class="logout">로그아웃</button>
                         </form>
                     </div>
                 </div>
