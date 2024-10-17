@@ -47,18 +47,17 @@ try {
     <link rel="stylesheet" href="/css/index.css">
     <link rel="stylesheet" href="/css/visit.css">
 </head>
-
 <body>
     <container>
         <div class="main-background">
             <div class="side-bar">
                 <div class="back-side-bar">
+                    <div class="logo"><img src="/img/logo.png" alt="" height="120px" width="150px"></div>
                     <div class="main-side-bar">
                         <div class="emotion">
                             <p class="emotion_comment">TODAY IS... </p>
                         </div>
-                        <div class="profile"><img class="profile-img" src="/img/profile.jpg" alt="" width="250px"
-                                height="300px"></div>
+                        <div class="profile"><img class="profile-img" src="/img/profile.jpg" alt="" width="250px" height="250px"></div>
                         <br>
                         <div class="comment">
                             <p>난... ㄱr끔... </p>
@@ -70,9 +69,8 @@ try {
                             <p>울 수 있 ㄷㅏ는건.... </p>
                             <p>좋은ㄱ ㅓ ㅇ ㅑ..... </p>
                         </div>
-                        <!-- form해주기!!! -->
-                        <form method="post" action="/logout.php">
-                            <div class="logout"><button type="submit" class="logout">로그아웃</button></div>
+                        <form action="/logout.php" method="post">
+                            <button type="submit" class="logout">로그아웃</button>
                         </form>
                     </div>
                 </div>
@@ -86,7 +84,7 @@ try {
                         <div class="visit_comment">
                             <input type="hidden" name="page" value="<?php $page ?>">
                             <input type="hidden" name="user_id" value="<?php echo $_SESSION["id"] ?>">
-                            <textarea maxlength="300" name="content" cols="10" rows="3" placeholder="남길 말씀이 있다면 여기에 남겨주세요"></textarea>
+                            <textarea maxlength="50" name="content" cols="10" rows="3" placeholder="남길 말씀이 있다면 여기에 남겨주세요"></textarea>
                             <button type="submit" class="post-btn">글남기기</button>
                         </div>
                     </form>
@@ -99,10 +97,10 @@ try {
                                 <input type="hidden" name="page" value="<?php echo $page ?>">
                                 <div class="visit_box">
                                     <img src="/img/icon.png" alt="미니미" class="visit_icon">
-                                    <p><?php echo $item["content"] ?></p>
+                                    <p class="visit-post"><?php echo $item["content"] ?></p>
                                     <p class="visit_date"><?php echo $item["created_at"] ?></p>
                                     <?php if($_SESSION["id"] === $item["user_id"] || $_SESSION["manager"]) { ?>
-                                        <button type="submit" class="delete-btn"><img src="/img/delete.png" alt="delete-btn"></button>
+                                        <button type="submit" class="delete-btn"><img src="/img/delete.png" alt="delete-btn" height="50px" width="40px"></button>
                                     <?php } ?>
                                 </div>
                             </form>
