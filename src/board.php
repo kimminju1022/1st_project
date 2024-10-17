@@ -115,7 +115,7 @@ try {
             <div class="content">
                 <div class="main-content">
                     <div class="main-title">
-                        ブl억님으l ㅁıLI홈ㅍı1
+                        ブl억님으l ㅁıLI홈ㅍı
                     </div>
                     <div class="to_body">
                         <!-- todo-list-title style위치 일치할 것 -->
