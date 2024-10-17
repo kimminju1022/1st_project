@@ -142,8 +142,8 @@ try {
                             <?php if($_SESSION["manager"] === true) {?>
                                 <a href="/todo_list_delete.php?<?php echo "id=".$id."&page_checklist_today=".$page_checklist."&page_todo=".$page_todo ?>"><button type="button" class="btn">삭제하기</button></a>                            
                                 <a href="/todo_list_update.php?<?php echo "id=".$id."&page_checklist_today=".$page_checklist."&page_todo=".$page_todo ?>"><button type="button" class="btn">수정하기</button></a>
-                            <?php } ?>
-                            <button type="submit" class="btn">저장하기</button>
+                                <button type="submit" class="btn">저장하기</button>
+                                <?php } ?>                            
                             <input type="hidden" name="posttype" value="insert">
                         </div>
                     </form>
