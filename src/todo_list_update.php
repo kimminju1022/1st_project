@@ -183,7 +183,7 @@ try {
                                 <div class="chk_list">
                                     <?php $i = 0; for(;$i<count($result); $i++) {?>
                                         <div class="chk_content">
-                                            <input type="checkbox" class="check_btn" name="chk[]" value="<?php echo $result[$i]["checklist_id"] ?>" <?php if($result[$i]["ischecked"] === 1) { echo "checked" ;} ?> disabled>
+                                            <input type="checkbox" class="check_btn" name="chk[]" value="<?php echo $result[$i]["checklist_id"] ?>" disabled>
                                             <input type="text" name="<?php echo (string)$i ?>" maxlength="40" class="chk_text" value="<?php echo $result[$i]["content"] ?>">
                                             <hr class="bar">
                                         </div>
