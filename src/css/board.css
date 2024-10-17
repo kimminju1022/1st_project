@@ -212,6 +212,7 @@ line-height: 24px;
     align-items: center;
     justify-content:center;
     margin: auto 20px;
+    line-height: 36px;
 }
 
 
@@ -353,7 +354,13 @@ div > .todo {
     width: 30px;
     height: 30px;
     font-size: 1.5rem;
-    line-height: 30px;
     border: none;
     outline: none;
+    line-height: 40px;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.img_btn{
+    margin-top: 5px;
 }
