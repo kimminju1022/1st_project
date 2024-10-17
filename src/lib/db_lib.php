@@ -405,6 +405,7 @@ function cnt_checklist_today(PDO $conn){
   ." WHERE checklists.content != '' "
   ." AND checklists.content IS NOT NULL "
   ." AND checklists.deleted_at IS NULL "
+  ." AND checklists.ischecked = 0     "
   ." AND checklists.list_id IN  "
   ." ( SELECT todolists.id "
   ." FROM todolists "
