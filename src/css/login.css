@@ -131,7 +131,7 @@ container {
     border-left: none;
 
 }
-.home-tab , .todo-tab, .diary-tab, .visit-tab, .credit-tab {
+.home-tab , .todo-tab, .history-tab, .visit-tab, .credit-tab {
     text-decoration: none;
     font-size: 1.2rem;
     color: white;

@@ -241,7 +241,7 @@ container {
     margin-top: 70px;
 }
 
-.todo , .diary, .visit-btn, .credit {
+.todo , .history, .visit-btn, .credit {
     width: 85px;
     background-color: #65a7bd;
     padding: 12px 0px 12px 0px;
@@ -253,7 +253,7 @@ container {
     border-left: none;
 }
 
-.todo-tab , .diary-tab, .visit-tab, .credit-tab {
+.todo-tab , .history-tab, .visit-tab, .credit-tab {
     text-decoration: none;
     font-size: 1.2rem;
     color: white;

@@ -128,7 +128,7 @@ a:visited {
     text-decoration: line-through;
 } */
 
-.home, .diary, .visit-btn, .credit {
+.home, .history, .visit-btn, .credit {
     width: 85px;
     background-color: #65a7bd;
     padding: 12px 0px 12px 0px;
@@ -140,7 +140,7 @@ a:visited {
     border-left: none;
 }
 
-.home-tab , .diary-tab, .visit-tab, .credit-tab {
+.home-tab , .history-tab, .visit-tab, .credit-tab {
     text-decoration: none;
     font-size: 1.2rem;
     color: white;

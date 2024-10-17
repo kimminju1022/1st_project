@@ -128,7 +128,7 @@ width: 50px;
     margin-bottom: 15px;
 }
 
-.home, .diary, .todo, .credit {
+.home, .history, .todo, .credit {
     width: 85px;
     background-color: #65a7bd;
     padding: 12px 0px 12px 0px;
@@ -140,7 +140,7 @@ width: 50px;
     border-left: none;
 }
 
-.home-tab , .diary-tab, .todo-tab, .credit-tab {
+.home-tab , .history-tab, .todo-tab, .credit-tab {
     text-decoration: none;
     font-size: 1.2rem;
     color: white;
