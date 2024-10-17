@@ -325,23 +325,26 @@ function get_checklist_today(PDO $conn, array $arr_param){
  * , user_id
  * , content
  * , created_at
+ * , user_name
  * 
  * @param $arr_param : :limit, :offset 
  */
 function get_guestbook_board(PDO $conn, array $arr_param){
 
   $sql = 
-  " SELECT                    "
-  ." id                       "
-  ." ,user_id                 "
-  ." ,content                 "
-  ." ,created_at              "
-  ." FROM guest_books         "
-  ." WHERE deleted_at IS NULL "
-  ." ORDER BY created_at DESC "
-  ." LIMIT :limit             "
-  ." OFFSET :offset           "
-  ." ;                        "
+  " SELECT                                "                   
+  ." guest_books.id                       "                      
+  ." ,guest_books.user_id                 "                 
+  ." ,guest_books.content                 "                
+  ." ,guest_books.created_at              "
+  ." ,users.user_name                     "            
+  ." FROM guest_books                     "
+  ." JOIN users                           "
+  ." ON guest_books.user_id = users.id    "
+  ." ORDER BY guest_books.id DESC         "
+  ." ,guest_books.created_at DESC         "
+  ." LIMIT :limit                         "
+  ." OFFSET :offset                       "          
   ;
 
   $stmt = $conn -> prepare($sql);
