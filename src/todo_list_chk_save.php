@@ -13,7 +13,9 @@ try {
         $id = isset($_POST["id"]) ? (int)$_POST["id"] : 0;
 
         // page 획득
-        $page = isset($_POST["page"]) ? (int)$_POST["page"] : 1;
+        $page_todo = isset($_GET["page_todo"]) ? (int)$_GET["page_todo"] : 1;
+
+        $page_checklist = isset($_GET["page_checklist"]) ? (int)$_GET["page_checklist"] : 1;
 
         //
         $checked = $_POST["chk"];
@@ -25,25 +27,30 @@ try {
     
         // PDO Instance
         $conn = my_db_conn();
-        
-        // beginTransaction / Transaction Start
-        $conn->beginTransaction();
 
         $arr_todolist_id = [
             "list_id" =>  $id
         ];
 
+        $checked_ids = empty($checked) ? -1 : implode(", ", $checked);
         $arr_checklists_input_id = [
-            "checklists_id" => empty($checked) ? -1 : implode(", ", $checked)
+            "checklists_id" => $checked_ids
         ];
-       
+
+        // var_dump($checked_ids);
+        // exit;
+
+        // beginTransaction / Transaction Start
+        $conn->beginTransaction();
+
+
         save_checklists($conn, $arr_todolist_id, $arr_checklists_input_id);
 
         // commit
         $conn->commit();
 
         // detail 페이지로 이동
-        header("Location: /todo_list_detail.php?id=".$id."&page=".$page);
+        header("Location: /todo_list_detail.php?id=".$id."&page_todo=".$page_todo."&page_checklist=".$page_checklist);
         exit;
     } catch(Throwable $th) {
     if(!is_null($conn) && $conn -> inTransaction()) {

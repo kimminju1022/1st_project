@@ -716,17 +716,20 @@ function save_checklists(PDO $conn, array $arr_todolist_id ,array $arr_checklist
     throw new Exception("Error : Query has problem -> save_checklist");
   }
 
+
+  $checklists_id = $arr_checklists_id["checklists_id"];
   $sql =
   " UPDATE checklists "
   ." SET "
   ." ischecked = 1 "
   ." ,updated_at = NOW() "
   ." WHERE "
-  ." id IN ( :checklists_id ) "
+  ." id IN ( $checklists_id ) "
   ;
 
   $stmt = $conn -> prepare($sql);
-  $result_flg = $stmt -> execute($arr_checklists_id);
+  $result_flg = $stmt -> execute();
+  // $result_flg = $stmt -> execute($arr_checklists_id);
   $result_cnt = $stmt -> rowCount();
 
   if(!$result_flg){
