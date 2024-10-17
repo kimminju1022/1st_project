@@ -122,11 +122,15 @@ try {
                         <div class="insert-btn">
                             <div class="todo-head"> 오늘까지 할 일</div>
                             <a href="/todo_list_insert.php?<?php echo "page_todo=".$page_todo."&page_checklist=".$page_checklist_today ?>">
-                                <button type="submit" class="post-btn">글남기기</button>
+                                <?php if($_SESSION["manager"]) { ?><button type="submit" class="post-btn">글남기기</button> <?php } ?>
                             </a>
                         </div>
                         <div class="todo-deadline">
-                            <div class="arrow-to-left"><a href="/board.php?<?php echo "page_checklist_today=".$prev_page_button_number_check."&page_todo=".$page_todo ?>"><img src="/img/left-pagebtn.png" alt="왼쪽" class="to_btn"></a></div>
+                            <div class="arrow-to-left"><?php if($page_checklist_today !== 1) {?>
+                                <a href="/board.php?<?php echo "page_checklist_today=".$prev_page_button_number_check."&page_todo=".$page_todo ?>">
+                                    <img src="/img/left-pagebtn.png" alt="왼쪽" class="to_btn">
+                                </a><?php } ?>
+                            </div>
                             <!-- db lib에서 데이터 불러오기 -->
                             <!-- 최대 카드 2개, 이상일 시 pagination -->
                             <div class="to_box">
@@ -134,9 +138,10 @@ try {
                                     <p class="for-today"><?php echo $item["content"] ?></p>
                                 <?php } ?>
                             </div>
-                            <div class="arrow-to-right"><?php if ($page_checklist_today !== $max_page) { ?>
-                                <a href="/board.php?<?php echo "page_checklist_today=".$next_page_button_number_check."&page_todo=".$page_todo ?>"><img src="/img/right-pagebtn.png" alt="오른쪽" class="to_btn"></a>
-                                <?php }?>
+                            <div class="arrow-to-right"><?php if ($page_checklist_today !== $max_page_check) { ?>
+                                <a href="/board.php?<?php echo "page_checklist_today=".$next_page_button_number_check."&page_todo=".$page_todo ?>">
+                                    <img src="/img/right-pagebtn.png" alt="오른쪽" class="to_btn">
+                                </a><?php }?>                                
                             </div>  
                         </div>
                     </div>
@@ -163,7 +168,7 @@ try {
                             <div class="p_btn"></div>
                         <?php } ?>
                         <button class="p_btn"><?php echo $page_todo ?></button>
-                        <?php if ($page_todo !== $max_page) { ?>
+                        <?php if ($page_todo !== $max_page_todo) { ?>
                             <a href="/board.php?<?php echo "page_checklist_today=".$page_checklist_today."&page_todo=".$next_page_button_number_todo ?>"><img src="/img/right-pagebtn.png" alt="before" class="p_btn" width="50px" height="50px"></a>
                         <?php } ?>
                     </div>
