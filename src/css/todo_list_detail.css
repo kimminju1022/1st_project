@@ -70,9 +70,6 @@
     outline: none;
 }
 
-/* .chk-area {
-    margin-top: -20px;
-} */
 .chk_list {
     display: grid;
     grid-template-columns: 1fr 1fr;
