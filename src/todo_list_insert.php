@@ -90,10 +90,10 @@
         <div class="main-background">
             <div class="side-bar">
                 <div class="back-side-bar">
-                    <div class="logo"><img src="/img/logo.png" alt="" height="120px" width="180px"></div>
+                    <div class="logo"><img src="/img/logo.png" alt="" height="120px" width="150px"></div>
                     <div class="main-side-bar">
                         <div class="emotion">
-                            <p class="emotion_comment">TODAY IS... </p>
+                            <span class="emotion_comment">TODAY IS...</span><img src="/img/heart.png" alt="" width="40px" height="40px">
                         </div>
                         <div class="profile"><img class="profile-img" src="/img/profile.jpg" alt="" width="250px" height="250px"></div>
                         <br>

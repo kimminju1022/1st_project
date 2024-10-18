@@ -98,7 +98,8 @@
     cursor: pointer;
 }
 
-.home, .history, .visit-btn, .credit {
+
+.home, .history, .todo, .credit {
     width: 85px;
     background-color: #65a7bd;
     padding: 12px 0px 12px 0px;
@@ -110,7 +111,7 @@
     border-left: none;
 }
 
-.home-tab , .history-tab, .visit-tab, .credit-tab {
+.home-tab , .history-tab, .todo-tab, .credit-tab {
     text-decoration: none;
     font-size: 1.2rem;
     color: white;
@@ -119,7 +120,7 @@
     width: 85px;
 }
 
-div > .todo {
+div > .visit-btn {
     width: 85px;
     background-color: #EEEEEE;
     padding: 12px 0px 12px 0px;
@@ -131,7 +132,7 @@ div > .todo {
     border-left: none;
 }
 
-.todo-tab {
+.visit-tab {
     color: black;
     text-decoration: none;
     font-size: 1.2rem;

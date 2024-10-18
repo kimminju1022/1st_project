@@ -95,7 +95,6 @@
     font-weight: 900;
     cursor: pointer;
 }
-
 .home, .todo , .visit-btn, .credit {
     width: 85px;
     background-color: #65a7bd;
@@ -137,4 +136,3 @@ div > .history {
     padding: 5px;
     width: 85px;
 }
-
