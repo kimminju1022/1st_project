@@ -35,6 +35,10 @@ try {
 
         $result = get_todolist_detail($conn, $arr_prepare);
 
+        if(strtotime($result[0]["deadline"]) < strtotime(date('Ymd'))){
+            throw new Exception("deadline이 지난 todo_list는 수정할 수 없습니다.");
+        }
+
     } 
     else {
 
@@ -108,7 +112,7 @@ try {
         $conn -> rollBack();
     }
 
-    // header("Location: /error.php");
+    header("Location: /error.php");
     echo $th ->getMessage();
     exit;
 }

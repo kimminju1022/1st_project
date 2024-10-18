@@ -69,7 +69,7 @@
             $conn -> rollBack();
         }
 
-        header("Loaction: /error.php");
+        header("Location: /error.php");
 
         echo $th -> getMessage();
         exit;
