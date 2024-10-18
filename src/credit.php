@@ -1,3 +1,12 @@
+<?php 
+require_once($_SERVER["DOCUMENT_ROOT"] . "/config.php");
+require_once(MY_ROOT_DB_LIB);
+require_once(MY_ROOT_UTILITY);
+session_start();
+
+go_login();
+?>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -40,8 +49,65 @@
                     <div class="main-title">
                         ブl억님으l ㅁıLI홈ㅍı
                     </div>
-                    <div class="todo-list-title">Updated Todo-List <br> <hr width="200px"></div>
-                    <div class="main-list"></div>
+                    <div class="todo-list-title">Comments<br> <hr width="120px"></div>
+                    <div class="main-list">
+                        <div class="hyun">
+                            <div class="team-name">현진</div>
+                            <div class="team-comment">
+                                <img src="/img/hj.png" alt="" width="110px" height="230px" class="team-img">
+                                <p class="personal-comment">
+                                    <br>
+                                    <br>
+                                    이거 괜찮아요?<br>
+                                    디자인 봐주실 분?<br>
+                                    마음에안드는데?<br>
+                                    이게아닌데? 
+                                </p>
+                            </div>
+                        </div>
+                        <div class="won">
+                            <div class="team-name">원상</div>
+                            <div class="team-comment">
+                                <img src="/img/ws.png" alt="" width="110px" height="230px" class="team-img">
+                                <p class="personal-comment">
+                                    <br>
+                                    <br>
+                                    일단 복붙해서<br>
+                                    해결은 했는데<br> 
+                                    왜 되는지 <br>
+                                    모르겠어
+                                </p>
+                            </div>
+                        </div>
+                        <div class="min">
+                            <div class="team-name">민주</div>
+                            <div class="team-comment">
+                                <img src="/img/mj.png" alt="" width="110px" height="230px" class="team-img">
+                                <p class="personal-comment">
+                                    <br>
+                                    자기들과 함께라<br>
+                                    모든 날 모든 순간 <br>
+                                    열심히 살았네 <br>
+                                    그렇게 모든 날 <br>
+                                    모든 순간 행복했어
+                                </p>
+                            </div>
+                        </div>
+                        <div class="sang">
+                            <div class="team-name">상민</div>
+                            <div class="team-comment">
+                                <img src="/img/sm.png" alt="" width="110px" height="230px" class="team-img">
+                                <p class="personal-comment">
+                                    <br>
+                                    <br>
+                                    내가 어떻게<br> 
+                                    버그를 찾았더라...?<br>
+                                    우리 팀 <br>
+                                    감사합니다<br>
+                                </p>
+                            </div>
+                        </div>    
+                    </div>
                 </div>
             </div>
             <div class="menu-bar">

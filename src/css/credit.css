@@ -119,6 +119,43 @@ container {
     padding-left: 20px;
 }
 
+.main-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    height: 600px;
+    width: 900px;
+    margin-left: 30px;
+    margin-top: 15px;
+}
+
+.hyun, .won, .min, .sang {
+    display: grid;
+    grid-template-rows: 70px 1fr;
+}
+
+.team-comment {
+    display: grid;
+    grid-template-columns: 110px 340px;
+
+}
+
+.personal-comment {
+    background-image: url(/img/credit-back.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    text-align: center;
+    line-height: 30px;
+    font-size: 1.3rem;
+}
+.team-name {
+    font-size: 1.7rem;
+    text-align: center;
+    line-height: 70px;
+    font-weight: 700;
+    margin-left: 50px;
+    margin-top: 20px;
+}
 .todo , .history, .visit-btn, .home {
     width: 85px;
     background-color: #65a7bd;
