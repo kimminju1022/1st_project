@@ -67,6 +67,7 @@ container {
 }
 
 .emotion {
+    display: flex;
     width: 250px;
     height: 40px;
     border-radius: 5px;
@@ -74,17 +75,17 @@ container {
     color: #5ccfe2;
     font-size: 1.4rem;
     margin-left: 15px;
-    text-indent: 30px;
-    line-height: 40px;
     font-weight: 900;
+    justify-content: center;
 }
 
-/* .emotion_comment {
-    color: #5ccfe2;
-    font-size: 1.2rem;
-    font-weight: 700;
-    padding-left: 30px;
-} */
+.emotion_comment {
+    line-height: 40px;
+}
+
+.error-img {
+margin-top: 2px;
+}
 
 .profile {
     width: 250px;

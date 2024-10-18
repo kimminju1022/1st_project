@@ -20,7 +20,7 @@ require_once($_SERVER["DOCUMENT_ROOT"]."/config.php");
                     <div class="logo"><img src="/img/logo.png" alt="" height="120px" width="150px"></div>
                     <div class="main-side-bar">
                         <div class="emotion">
-                            <p class="emotion_comment">TODAY IS... </p>
+                            <span class="emotion_comment">TODAY IS...</span><img src="/img/error.png" class="error-img" alt="" width="35px" height="35px">
                         </div>
                         <div class="profile"><img class="profile-img" src="/img/profile.jpg" alt="" width="250px" height="250px"></div>
                         <br>
