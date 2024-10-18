@@ -53,6 +53,6 @@ function check_manager(){
   $ismanager = isset($_SESSION["manager"]) ? $_SESSION["manager"] : null;
 
   if(is_null($ismanager) || !$ismanager){
-    throw new Exception("당신은 수정할 권리가 없습니다.");
+    Header("Location: /error.php");
   }
 }
