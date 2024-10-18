@@ -151,7 +151,7 @@
                         </div>
                         
                         <div class="btn-insert">
-                            <a href="/todo_list_detail.php?<?php echo "id=".$id."&page_todo=".$page_todo."&page_checklist=".$page_checklist ?>"><button type="button" class="btn">뒤로가기</button></a>
+                            <a href="/board.php?<?php echo "page_todo=".$page_todo."&page_checklist=".$page_checklist ?>"><button type="button" class="btn">뒤로가기</button></a>
                             <button type="submit" class="btn">작성 완료</button>
                             <input type="hidden" name="posttype" value="insert">
                         </div>
