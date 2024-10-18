@@ -1,16 +1,11 @@
-<?php
-
-require_once($_SERVER["DOCUMENT_ROOT"]."/config.php");
-
-?>
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/error.css">
-    <title>로그인 에러페이지</title>
+    <title>Main-page</title>
+    <link rel="stylesheet" href="/css/credit.css">
+    <link rel="stylesheet" href="/css/common-design.css">
 </head>
 <body>
     <container>
@@ -22,7 +17,7 @@ require_once($_SERVER["DOCUMENT_ROOT"]."/config.php");
                         <div class="emotion">
                             <span class="emotion_comment">TODAY IS...</span><img src="/img/heart.png" alt="" width="40px" height="40px">
                         </div>
-                        <div class="profile"><img class="profile-img" src="./img/profile.jpg" alt="" width="250px" height="300px"></div>
+                        <div class="profile"><img class="profile-img" src="/img/profile.jpg" alt="" width="250px" height="250px"></div>
                         <br>
                         <div class="comment">
                             <p>난... ㄱr끔... </p>
@@ -34,7 +29,9 @@ require_once($_SERVER["DOCUMENT_ROOT"]."/config.php");
                             <p>울 수 있 ㄷㅏ는건.... </p>
                             <p>좋은ㄱ ㅓ ㅇ ㅑ..... </p>
                         </div>
-                        <!-- <div class="logout"><button class="logout">로그아웃</button></div> -->
+                        <form action="/logout.php" method="post">
+                            <button type="submit" class="logout">로그아웃</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -43,18 +40,8 @@ require_once($_SERVER["DOCUMENT_ROOT"]."/config.php");
                     <div class="main-title">
                         ブl억님으l ㅁıLI홈ㅍı
                     </div>
-                    <div class="error_title">
-                        로그인 에러페이지
-                        <br>
-                        <hr width="110px">
-                    </div>
-                    <div class="error">
-                        <p>아이디 또는 비밀번호가 일치하지 않습니다.</p>
-                        
-                        <div>
-                            <a href="/"><button type="button" class="btn btn-bottom">메인페이지로 이동하기</button></a>
-                        </div>
-                    </div>
+                    <div class="todo-list-title">Updated Todo-List <br> <hr width="200px"></div>
+                    <div class="main-list"></div>
                 </div>
             </div>
             <div class="menu-bar">
