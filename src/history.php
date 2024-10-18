@@ -84,7 +84,7 @@ try {
                     <div class="main-title">
                         ブl억님으l ㅁıLI홈ㅍı
                     </div>
-                    <div class="todo-list-title">Updated Todo-List <br> <hr width="200px"></div>
+                    <div class="todo-list-title">History <br> <hr width="80px"></div>
                     <div class="to_body">
                         <!-- todo card foreach로 2행 4열 -->
                         <div class="to_main">
