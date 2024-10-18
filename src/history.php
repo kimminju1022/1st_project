@@ -90,7 +90,7 @@ try {
                             <div class="to_list">
                                 <?php foreach($result as $item) {?>                                
                                     <div class="to_post">
-                                        <a href="/todo_list_detail.php?<?php echo "id=".$item["id"]."&page=".$page?>">
+                                        <a href="/history_detail.php?<?php echo "id=".$item["id"]."&page=".$page?>">
                                         <p class="to_title"><span class="title-hidden"><?php echo $item["name"] ?></span></p></a>
                                         <p class="to_date"><?php echo $item["deadline"] ?></p>
                                         <div class="list_box">

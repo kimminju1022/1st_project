@@ -2,7 +2,11 @@
 
 require_once($_SERVER["DOCUMENT_ROOT"]."/config.php");
 require_once(MY_ROOT_DB_LIB);
+require_once(MY_ROOT_UTILITY);
 session_start();
+
+go_login();
+check_manager();
 
 $conn = null;
 
@@ -11,9 +15,7 @@ try {
         // GET 처리
         // 파라미터 획득(id, page)
         $id = isset($_GET["id"]) ? (int)$_GET["id"] : 0;
-        $page_todo = isset($_GET["page_todo"]) ? (int)$_GET["page_todo"] : 1;
-
-        $page_checklist = isset($_GET["page_checklist"]) ? (int)$_GET["page_checklist"] : 1;
+        $page= isset($_GET["page"]) ? (int)$_GET["page"] : 1;
 
         if($id < 1) {
             throw new Exception("파라미터 오류 : G");
@@ -144,7 +146,7 @@ try {
                     <form action="/history_delete.php" method="post" class="">
                         <div class="btn-insert">
                             <input type="hidden" name="id" value="<?php echo $result[0]["todolist_id"] ?>">
-                            <a href="/history_detail.php?<?php echo "id=".$result[0]["todolist_id"]."&page_todo=".$page_todo."&page_checklist=".$page_checklist; ?>"><button type="button" class="btn">취소</button></a>
+                            <a href="/history_detail.php?<?php echo "id=".$result[0]["todolist_id"]."&page=".$page; ?>"><button type="button" class="btn">취소</button></a>
                             <button type="submit" class="btn">삭제하기</button>
                         </div>
                     </form>

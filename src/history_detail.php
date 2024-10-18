@@ -24,12 +24,8 @@ try {
     $id = isset($_GET["id"]) ? (int)$_GET["id"] : 0;
 
     // page 획득
-    $page_todo = isset($_GET["page_todo"]) ? (int)$_GET["page_todo"] : 1;
+    $page = isset($_GET["page"]) ? (int)$_GET["page"] : 1;
 
-    $page_checklist = isset($_GET["page_checklist"]) ? (int)$_GET["page_checklist"] : 1;
-
-
-   
     if($id < 1) {
         throw new Exception("파라미터 오류");
     }
@@ -102,9 +98,6 @@ try {
                     </div>
                     
                      <form action="/history_delete.php" method="post" class=""> <!-- 여기 폼 태그 제거해야 할까요? -->
-                        <input type="hidden" name="id" value="<?php echo $result[0]["todolist_id"] ?>">
-                        <input type="hidden" name="page_checklist" value="<?php echo $page_checklist ?>">
-                        <input type="hidden" name="page_todo" value="<?php echo $page_todo ?>">
                             <div class="calendar">
                                 <div class="sub_title">제목</div>
                                 <input type="text" name="sub_title" id="sub_title"class="input_area sub_title_area" value="<?php echo $result[0]["name"] ?>" disabled>
@@ -121,7 +114,7 @@ try {
                                 <div class="chk_list">
                                     <?php $i = 0; for(;$i<count($result); $i++) {?>
                                         <div class="chk_content">
-                                            <input type="checkbox" class="check_btn" name="chk[]" value="<?php echo $result[$i]["checklist_id"] ?>" <?php if($result[$i]["ischecked"] === 1) { echo "checked" ;} ?>>
+                                            <input type="checkbox" class="check_btn" name="chk[]" value="<?php echo $result[$i]["checklist_id"] ?>" <?php if($result[$i]["ischecked"] === 1) { echo "checked" ;}  ?> disabled>
                                             <input type="text" name="text" maxlength="40" class="chk_text" value="<?php echo $result[$i]["content"] ?>" disabled>
                                             <hr class="bar">
                                         </div>
@@ -138,8 +131,10 @@ try {
                         
                         <div class="btn-insert">
                             <input type="hidden" name="posttype" value="insert">
-                            <a href="/history.php?<?php echo "page_checklist_today=".$page_checklist."&page_todo=".$page_todo ?>"><button type="button" class="btn">뒤로가기</button></a>                         
-                            <a href="/history_delete.php?<?php echo "id=".$id."&page_checklist_today=".$page_checklist."&page_todo=".$page_todo ?>"><button type="button" class="btn">삭제하기</button></a> 
+                            <a href="/history.php?<?php echo "page=".$page; ?>"><button type="button" class="btn">뒤로가기</button></a>
+                            <?php if($_SESSION["manager"]) { ?>                     
+                                <a href="/history_delete.php?<?php echo "id=".$id."&page=".$page ?>"><button type="button" class="btn">삭제하기</button></a> 
+                            <?php } ?>
                         </div>
                     </form>
                 </div>

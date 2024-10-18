@@ -4,6 +4,8 @@ require_once($_SERVER["DOCUMENT_ROOT"]."/config.php");
 require_once(MY_ROOT_DB_LIB);
 session_start();
 
+go_login();
+check_manager();
 $conn = null;
 
 try {
