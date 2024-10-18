@@ -565,6 +565,7 @@ function check_account(PDO $conn, array $arr_param, array &$user_data){
   ." FROM users                           "
   ." WHERE user_password = :user_password "
   ." AND user_name = :user_name           "
+  ." AND deleted_at IS NULL               "
   ." ; "
   ;
 
