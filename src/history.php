@@ -17,7 +17,7 @@ try {
     
     // cnt---------
     // max page 획득 처리
-    $max_board_cnt = cnt_checklist_todo($conn); // 게시글 총 수 획득
+    $max_board_cnt = cnt_checklist_todo_history($conn); // 게시글 총 수 획득
     $max_page = (int)(ceil($max_board_cnt / MY_BOARD_CARD_COUNT)); // max page 획득
 
     // pagination 설정
@@ -32,7 +32,7 @@ try {
         "offset"   => $offset
     ];
 
-    $result = get_todolist_board($conn, $arr_prepare);
+    $result = get_todolist_board_history($conn, $arr_prepare);
 
 } catch (Throwable $th) {
     echo $th->getMessage();

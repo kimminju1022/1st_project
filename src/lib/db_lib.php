@@ -433,6 +433,20 @@ function cnt_checklist_todo(PDO $conn){
   return $result["COUNT"];
 }
 
+function cnt_checklist_todo_history(PDO $conn){
+  $sql =
+ " SELECT COUNT(*) AS COUNT    "
+  ." FROM todolists            "
+  ." WHERE deleted_at IS NULL  "
+  ." AND deadline < CURDATE() "
+  ;
+
+  $stmt = $conn -> query($sql);
+  $result =$stmt -> fetch();
+
+  return $result["COUNT"];
+}
+
 
 /**
  * 방명록 총 게시글 조회할 때 쓰는 함수
@@ -847,6 +861,7 @@ function update_checklist(PDO $conn, array $arr_param){
   ." SET "
   ." updated_at = NOW() "
   ." , content = :content "
+  ." , ischecked = 0   "
   ." WHERE "
   ." list_id = :list_id "
   ." AND input_id = :input_id "
@@ -868,7 +883,7 @@ function update_checklist(PDO $conn, array $arr_param){
   return;
 }
 
-function get_todolist_board_beforeDeadline(PDO $conn, array $arr_param){
+function get_todolist_board_history(PDO $conn, array $arr_param){
   $sql = 
   " SELECT id, name, deadline  "
   ." FROM todolists            "

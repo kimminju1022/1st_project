@@ -144,7 +144,7 @@ try {
                     <form action="/todo_list_delete.php" method="post" class="">
                         <div class="btn-insert">
                             <input type="hidden" name="id" value="<?php echo $result[0]["todolist_id"] ?>">
-                            <a href="/detail.php?<?php echo "id=".$result[0]["todolist_id"]."&page_todo=".$page_todo."&page_checklist=".$page_checklist; ?>"><button type="button" class="btn">취소</button></a>
+                            <a href="/todo_list_detail.php?<?php echo "id=".$result[0]["todolist_id"]."&page_todo=".$page_todo."&page_checklist=".$page_checklist; ?>"><button type="button" class="btn">취소</button></a>
                             <button type="submit" class="btn">삭제하기</button>
                         </div>
                     </form>
