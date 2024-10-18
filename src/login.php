@@ -77,9 +77,9 @@ try{
                         Login
                     </div>
                     <div class="comment">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. <br>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit.<br>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit.<br>
+                        추억의 공간에 오신 것을 환영합니다!<br>
+                        소중한 기억을 나누고 싶다면,<br>
+                        로그인 후 함께해요!<br>
                     </div>
                     <form action="/login.php" method="post">
                         <div class="login-back">

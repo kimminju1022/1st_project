@@ -77,9 +77,9 @@
                         회원ㄱr입
                     </div>
                     <div class="comment">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. <br>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit.<br>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit.<br>
+                        우리의 가족이 되어보세요!<br>
+                        소중한 순간을 함께 나누고,<br>
+                        지금 회원가입으로 시작하세요!<br>
                     </div>
                     <form action="joinmembership.php" method="post">
                       <div class="login-back">
