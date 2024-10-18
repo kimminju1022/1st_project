@@ -63,7 +63,7 @@ try {
         $conn->commit();
 
         // 리스트 페이지로 이동
-        header("Location: /board.php?page_checklist_today=1&page_todo=1");
+        header("Location: /history.php?page=1");
         exit;
     }
 } catch(Throwable $th) {
