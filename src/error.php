@@ -42,7 +42,7 @@ require_once($_SERVER["DOCUMENT_ROOT"]."/config.php");
             </div>
             <div class="content">
                 <div class="main-content">
-                    <div class="main-title">0
+                    <div class="main-title">
                         ブl억님으l ㅁıLI홈ㅍı
                     </div>
                     <div class="error_title">
