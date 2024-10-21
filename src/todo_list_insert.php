@@ -3,7 +3,6 @@
     require_once(MY_ROOT_DB_LIB);
     require_once(MY_ROOT_UTILITY);
     
-    session_start();
 
     go_login();
     check_manager();

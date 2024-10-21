@@ -4,7 +4,6 @@ require_once(MY_ROOT_DB_LIB);
 require_once(MY_ROOT_UTILITY);
 
 $conn=null;
-session_start();
 
 go_login();
 

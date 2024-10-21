@@ -1,7 +1,6 @@
 <?php
 require_once($_SERVER["DOCUMENT_ROOT"]."/config.php");
 require_once(MY_ROOT_DB_LIB);
-session_start();
 
 $conn = null;
 
@@ -13,12 +12,12 @@ try {
         $id = isset($_POST["id"]) ? (int)$_POST["id"] : 0;
 
         // page 획득
-        $page_todo = isset($_GET["page_todo"]) ? (int)$_GET["page_todo"] : 1;
+        $page_todo = isset($_POST["page_todo"]) ? (int)$_POST["page_todo"] : 1;
 
-        $page_checklist = isset($_GET["page_checklist"]) ? (int)$_GET["page_checklist"] : 1;
+        $page_checklist = isset($_POST["page_checklist"]) ? (int)$_POST["page_checklist"] : 1;
 
         //
-        $checked = $_POST["chk"];
+        $checked = isset($_POST["chk"]) ? $_POST["chk"] : [];
         // var_dump($checked);
         // exit;
         if($id < 1) {

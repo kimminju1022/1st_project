@@ -1,5 +1,7 @@
 <?php
-
+if (!session_id()) {
+  session_start();
+}
 require_once($_SERVER["DOCUMENT_ROOT"]."/config.php");
 
 /**
@@ -14,17 +16,11 @@ function ischecked(int $value){
 }
 
 function login(int $id, bool $ismanager){
-  if(!session_id()) {
-  session_start();
-  }
   $_SESSION["id"] = $id;
   $_SESSION["manager"] = $ismanager;
 }
 
 function logout(){
-  if(!session_id()) {
-    session_start();
-  }
   unset($_SESSION["id"]);
   unset($_SESSION["manager"]);
 
@@ -34,21 +30,15 @@ function logout(){
 }
 
 function go_login(){
-  if(!session_id()) {
-    session_start();
-  }
   $id = isset($_SESSION["id"]) ? $_SESSION["id"] : null;
 
   if(is_null($id)){
-    Header("Location: /login.php");
+    Header("Location: login.php");
     exit;
   }
 }
 
 function check_manager(){
-  if(!session_id()) {
-    session_start();
-  }
 
   $ismanager = isset($_SESSION["manager"]) ? $_SESSION["manager"] : null;
 

@@ -2,7 +2,6 @@
 
 require_once($_SERVER["DOCUMENT_ROOT"] . "/config.php"); //config파일의 정보를 가져와 쓴다
 require_once(MY_ROOT_DB_LIB); //db_lib 파일의 정보를 가져와 쓴다
-session_start();
 
 // input post처리-------------
 $conn = null;
