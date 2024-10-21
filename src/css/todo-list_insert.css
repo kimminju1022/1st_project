@@ -163,9 +163,19 @@ a:visited {
     border-left: none;
 }
 
-.home-tab , .history-tab, .visit-tab, .credit-tab {
+.home-tab , .visit-tab, .credit-tab {
     text-decoration: none;
     font-size: 1.2rem;
+    color: white;
+    font-weight: 700;
+    padding: 5px;
+    width: 85px;
+}
+
+
+.history-tab {
+    text-decoration: none;
+    font-size: 1.1rem;
     color: white;
     font-weight: 700;
     padding: 5px;
